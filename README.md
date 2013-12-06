@@ -15,7 +15,7 @@ Features:
 Add the `grunt` and `fabs` as dev dependencies to your package.json.
 
     "grunt": "0.4.2",
-    "fabs": "~3.0.0",
+    "fabs": "0.2.0",
 
 
 Add something like the following lines to your `Gruntfile.js` to include fabs's grunt configuration. Of course you
