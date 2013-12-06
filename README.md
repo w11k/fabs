@@ -109,6 +109,6 @@ Run `grunt dist` to build a deployable version of the application, which is put 
 default and gets zipped to `build-output/{{ Name and Version from package.json }}.zip`
 
 
-## Roadmap / ToDo
+## Roadmap
 
 see milestones and issues at https://github.com/w11k/fabs/issues
