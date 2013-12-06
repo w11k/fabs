@@ -1,0 +1,31 @@
+{
+  "name": "fabs",
+  "description": "Fabulous AngularJS Build System - A Grunt based build system for AngularJS applications",
+  "homepage": "http://github.com/w11k/fabs",
+  "version": "0.1.0",
+
+  "author": {
+    "name": "WeigleWilczek GmbH",
+    "url": "http://www.w11k.com"
+  },
+  "contributors": [
+    "Philipp Burgmer"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w11k/fabs.git"
+  },
+
+  "main": "src/main.js",
+
+  "dependencies": {
+    "grunt": "0.4.2",
+    "lodash": "2.2.1"
+  },
+
+  "engines": {
+    "node": ">=0.10.21"
+  }
+
+}
