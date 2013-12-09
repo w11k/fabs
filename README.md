@@ -94,6 +94,13 @@ be necessary too after changing the build configuration!
 Run `grunt dist` to build a deployable version of the application, which is put to `build-output/compiled` folder by
 default and gets zipped to `build-output/{{ Name and Version from package.json }}.zip`
 
+### Additional Tasks
+
+In addition to `grunt dev` and `grunt dist` there are some other tasks meant to run standalone e.g. during release
+preparation.
+
+* `grunt bump`: bumps the semver version number (see https://github.com/vojtajina/grunt-bump)
+
 
 ## Roadmap
 
