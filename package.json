@@ -48,6 +48,7 @@
 
   "devDependencies": {
     "grunt": "0.4.2",
+    "grunt-conventional-changelog": "1.0.0",
     "grunt-bump": "0.0.13"
   },
 
