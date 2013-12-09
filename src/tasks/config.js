@@ -16,6 +16,11 @@ var exportTasksConfig = require('./export.js');
 
 var bowerrc = grunt.file.exists('./.bowerrc') ? grunt.file.readJSON('./.bowerrc') : { 'json': 'bower.json' };
 
+var bumpFiles = [ 'package.json' ];
+if (grunt.file.exists(bowerrc.json)) {
+  bumpFiles.push(bowerrc.json);
+}
+
 var additionalTasksConfig = {
   /**
    * Make 'package.json' accessible to templates like banner below.
@@ -69,7 +74,7 @@ var additionalTasksConfig = {
 
   bump: {
     options: {
-      files: [ 'package.json', bowerrc.json ],
+      files: bumpFiles,
       commit: true,
       commitMessage: 'bumps version to %VERSION%',
       commitFiles: ['-a'],
