@@ -35,33 +35,6 @@ are free to modify or extend the configuration object or merge it with other obj
     };
 
 
-Add following grunt plugins as dev dependencies to your projects package.json.
-Grunt requires all plugins to be installed as dependency of your project (relative to your Gruntfile.js).
-Unfortunately, transient dependencies don't work.
-
-    "grunt-contrib-less": "0.8.1",
-    "grunt-contrib-clean": "0.5.0",
-    "grunt-contrib-copy": "0.4.1",
-    "grunt-contrib-htmlmin": "0.1.3",
-    "grunt-contrib-jshint": "0.6.4",
-    "grunt-contrib-compass": "0.6.0",
-    "grunt-contrib-cssmin": "0.4.2",
-    "grunt-contrib-concat": "0.3.0",
-    "grunt-contrib-watch": "0.5.3",
-    "grunt-contrib-uglify": "0.2.4",
-    "grunt-contrib-connect": "0.5.0",
-    "grunt-contrib-compress": "0.5.1",
-    "grunt-connect-proxy": "0.1.6",
-    "grunt-ngmin": "0.0.3",
-    "grunt-html2js": "0.1.8",
-    "grunt-minjson": "0.1.1",
-    "grunt-replace": "0.5.1",
-    "grunt-shell": "0.5.0",
-    "grunt-karma": "0.6.2",
-    "karma-ng-scenario": "0.1.0",
-    "karma-junit-reporter": "0.1"
-
-
 ## Usage
 
 ### Configuration
