@@ -3,19 +3,32 @@
 A Grunt based build system for AngularJS applications
 
 Features:
-* Dev-mode with server, proxy and LiveReload
-* Mock data for tests and dev-mode
+* Dev-Mode with Server, Proxy and LiveReload
 * SASS 3.2 and LESS 1.5 support
-* Spec and end-2-end tests
-* Project- and per-developer configuration as well as command line arguments
-* Building distribution with code minimization and cache busting as well as running tests against build app
+* Spec and End-2-End Test
+* Mock Data for Tests and Dev-Mode
+* Running Bower to Install and Update Frontend Dependencies
+* Project- and Per-Developer Configuration as well as Command Line Arguments
+* Building Distribution with
+    * Embedding Templates and Translations
+    * Annotating AngularJS Dependencies (Transform to Array-Notation)
+    * Code Minimization
+    * Cache Busting
+    * Running End-2-End Tests Against Build Application
+
+
+## Getting Started
+
+For a demo with project structure and fully configured build system, take a look at the companion project
+https://github.com/w11k/fabs-boilerplate
+
 
 ## Installation
 
 Add the `grunt` and `fabs` as dev dependencies to your package.json.
 
     "grunt": "0.4.2",
-    "fabs": "~3.0.0",
+    "fabs": "0.2.0",
 
 
 Add something like the following lines to your `Gruntfile.js` to include fabs's grunt configuration. Of course you
@@ -33,33 +46,6 @@ are free to modify or extend the configuration object or merge it with other obj
       var config = fabs.getGruntConfig(configFolder);
       grunt.initConfig(config);
     };
-
-
-Add following grunt plugins as dev dependencies to your projects package.json.
-Grunt requires all plugins to be installed as dependency of your project (relative to your Gruntfile.js).
-Unfortunately, transient dependencies don't work.
-
-    "grunt-contrib-less": "0.8.1",
-    "grunt-contrib-clean": "0.5.0",
-    "grunt-contrib-copy": "0.4.1",
-    "grunt-contrib-htmlmin": "0.1.3",
-    "grunt-contrib-jshint": "0.6.4",
-    "grunt-contrib-compass": "0.6.0",
-    "grunt-contrib-cssmin": "0.4.2",
-    "grunt-contrib-concat": "0.3.0",
-    "grunt-contrib-watch": "0.5.3",
-    "grunt-contrib-uglify": "0.2.4",
-    "grunt-contrib-connect": "0.5.0",
-    "grunt-contrib-compress": "0.5.1",
-    "grunt-connect-proxy": "0.1.6",
-    "grunt-ngmin": "0.0.3",
-    "grunt-html2js": "0.1.8",
-    "grunt-minjson": "0.1.1",
-    "grunt-replace": "0.5.1",
-    "grunt-shell": "0.5.0",
-    "grunt-karma": "0.6.2",
-    "karma-ng-scenario": "0.1.0",
-    "karma-junit-reporter": "0.1"
 
 
 ## Usage
@@ -107,6 +93,14 @@ be necessary too after changing the build configuration!
 
 Run `grunt dist` to build a deployable version of the application, which is put to `build-output/compiled` folder by
 default and gets zipped to `build-output/{{ Name and Version from package.json }}.zip`
+
+### Additional Tasks
+
+In addition to `grunt dev` and `grunt dist` there are some other tasks meant to run stand-alone e.g. during release
+preparation.
+
+* `grunt bump`: bumps the semver version number (see https://github.com/vojtajina/grunt-bump)
+* `grunt changelog`: generates a changelog (see https://github.com/btford/grunt-conventional-changelog)
 
 
 ## Roadmap
