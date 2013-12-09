@@ -1,6 +1,7 @@
 'use strict';
 
 var lodash = require('lodash');
+var grunt = require('grunt');
 var pkg = require('./../utils/package.js');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -12,6 +13,8 @@ var devTasksConfig = require('./config.dev.js');
 var compileTasksConfig = require('./config.compile.js');
 var distTasksConfig = require('./config.dist.js');
 var exportTasksConfig = require('./export.js');
+
+var bowerrc = grunt.file.exists('./.bowerrc') ? grunt.file.readJSON('./.bowerrc') : { 'json': 'bower.json' };
 
 var additionalTasksConfig = {
   /**
@@ -61,6 +64,17 @@ var additionalTasksConfig = {
   htmlmin: {
     options: {
       collapseWhitespace: true
+    }
+  },
+
+  bump: {
+    options: {
+      files: [ 'package.json', bowerrc.json ],
+      commit: true,
+      commitMessage: 'bumps version to %VERSION%',
+      commitFiles: ['-a'],
+      createTag: false,
+      push: false
     }
   }
 
