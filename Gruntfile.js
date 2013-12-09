@@ -21,11 +21,6 @@ module.exports = function () {
         createTag: false,
         push: false
       }
-    },
-    changelog: {
-      options: {
-        // Task-specific options go here.
-      }
     }
   });
 };
