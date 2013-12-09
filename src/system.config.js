@@ -19,11 +19,11 @@ var systemConfig = {
     },
     ngmin: {
       /**
-       * Eenable / disable execution of ngmin in compile phase to automatically create array notation for angular
+       * Enable / disable execution of ngmin in compile phase to automatically create array notation for angular
        * dependency injection.
        *
        * Pay attention: ngmin does not detect all functions consuming dependencies via di. Only code that starts with
-       * 'angular.module('xyz').someFunctionOfTypeModule' will be found. See ngmin website for futher information.
+       * 'angular.module('xyz').someFunctionOfTypeModule' will be found. See ngmin website for further information.
        */
       enabled: true
     },
