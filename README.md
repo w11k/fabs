@@ -3,12 +3,25 @@
 A Grunt based build system for AngularJS applications
 
 Features:
-* Dev-mode with server, proxy and LiveReload
-* Mock data for tests and dev-mode
+* Dev-Mode with Server, Proxy and LiveReload
 * SASS 3.2 and LESS 1.5 support
-* Spec and end-2-end tests
-* Project- and per-developer configuration as well as command line arguments
-* Building distribution with code minimization and cache busting as well as running tests against build app
+* Spec and End-2-End Test
+* Mock Data for Tests and Dev-Mode
+* Running Bower to Install and Update Frontend Dependencies
+* Project- and Per-Developer Configuration as well as Command Line Arguments
+* Building Distribution with
+    * Embedding Templates and Translations
+    * Annotating AngularJS Dependencies (Transform to Array-Notation)
+    * Code Minimization
+    * Cache Busting
+    * Running End-2-End Tests Against Build Application
+
+
+## Getting Started
+
+For a demo with project structure and fully configured build system, take a look at the companion project
+https://github.com/w11k/fabs-boilerplate
+
 
 ## Installation
 
