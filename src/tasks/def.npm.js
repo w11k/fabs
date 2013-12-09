@@ -34,3 +34,4 @@ grunt.loadNpmTasks(root + 'grunt-replace');
 grunt.loadNpmTasks(root + 'grunt-html2js');
 grunt.loadNpmTasks(root + 'grunt-shell');
 grunt.loadNpmTasks(root + 'grunt-bump');
+grunt.loadNpmTasks(root + 'grunt-conventional-changelog');
