@@ -96,7 +96,7 @@ default and gets zipped to `build-output/{{ Name and Version from package.json }
 
 ### Additional Tasks
 
-In addition to `grunt dev` and `grunt dist` there are some other tasks meant to run standalone e.g. during release
+In addition to `grunt dev` and `grunt dist` there are some other tasks meant to run stand-alone e.g. during release
 preparation.
 
 * `grunt bump`: bumps the semver version number (see https://github.com/vojtajina/grunt-bump)
