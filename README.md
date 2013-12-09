@@ -100,6 +100,7 @@ In addition to `grunt dev` and `grunt dist` there are some other tasks meant to 
 preparation.
 
 * `grunt bump`: bumps the semver version number (see https://github.com/vojtajina/grunt-bump)
+* `grunt changelog`: generates a changelog (see https://github.com/btford/grunt-conventional-changelog)
 
 
 ## Roadmap
