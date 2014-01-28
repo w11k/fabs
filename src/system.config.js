@@ -70,7 +70,9 @@ var systemConfig = {
        */
       proxies: [],
       // Enables / disables starting a server (running forever, kill with Ctrl+C) serving the compiled application.
-      runInDist: false
+      runInDist: false,
+      // specifies if live reload should be activated in dev mode
+      withLiveReloadInDev: true
     },
     output: {
       // the overall output folder the build system will use

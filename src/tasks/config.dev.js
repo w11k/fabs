@@ -23,7 +23,7 @@ var devTasksConfig = {
       options: {
         port: 9000,
         hostname: '0.0.0.0',
-        livereload: true,
+        livereload: config.build.server.withLiveReloadInDev,
         base: config.build.prepare.outdir,
         middleware: utils.connectMiddleware
       },
