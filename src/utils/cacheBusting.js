@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+var _ = require('lodash');
 var config = require('./../build.config.js').getConfig();
 
 var devPatterns = function () {
@@ -22,12 +23,20 @@ var compilePatterns = function () {
     [ '**' ]
   );
 
-  var filePatterns = filesToSearchFor.map(function (file) {
-    return {
-      match: file,
-      replacement: config.build.compile.cacheBustingDir + '/' + file
-    };
-  });
+  var filePatterns = _.flatten(filesToSearchFor.map(function (file) {
+    var replacement = config.build.compile.cacheBustingDir + '/' + file;
+
+    return [
+      {
+        match: '"' + file + '"',
+        replacement: '"' + replacement + '"'
+      },
+      {
+        match: '\'' + file + '\'',
+        replacement: '\'' + replacement + '\''
+      }
+    ];
+  }));
 
   var variablePatterns = [{
     match: '@@cacheBustingDir/',
