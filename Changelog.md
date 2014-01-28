@@ -1,5 +1,14 @@
+<a name="v0.3.0-SNAPSHOT"></a>
+## v0.3.0-SNAPSHOT (2014-01-28)
+
+
+#### Features
+
+* **dev:** add possibility to deactivate LiveReload in dev mode ([56c7a989](https://github.com/w11k/fabs/commit/56c7a9899bba6d0d8a65186b46df6ad2ed0c98c6), closes [#10](https://github.com/w11k/fabs/issues/10))
+* **test:** make browser to run tests with configurable ([8e084658](https://github.com/w11k/fabs/commit/8e084658a31b263be9270f6708865c0e72dae87f), closes [#15](https://github.com/w11k/fabs/issues/15))
+
 <a name="v0.2.0"></a>
-## v0.2.0 (2013-12-09)
+### v0.2.0 (2013-12-09)
 
 #### Features
 
