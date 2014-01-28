@@ -38,7 +38,7 @@ var systemConfig = {
        * http://localhost:9010/ when you're running tests. The window/tab can be left
        * open and the tests will automatically occur there during the build.
        */
-      browsers: ['PhantomJS']
+      browsers: []
     },
     e2e: {
       // Enable / disable running end-to-end tests in dev mode
@@ -53,7 +53,7 @@ var systemConfig = {
        * http://localhost:9011/ when you're running tests. The window/tab can be left
        * open and the tests will automatically occur there during the build.
        */
-      browsers: ['PhantomJS']
+      browsers: []
     },
     mocks: {
       /**

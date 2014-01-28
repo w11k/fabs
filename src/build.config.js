@@ -63,21 +63,28 @@ function createBuildConfig(absPathToConfigFolder) {
   return buildConfig;
 }
 
+var buildConfig;
+
 module.exports = {
   setConfigFolder: function (configFolder) {
     pathToConfigFolder = configFolder;
+    buildConfig = undefined;
   },
   getConfig: function () {
-    var configFolder;
-    if (pathToConfigFolder) {
-      configFolder = pathToConfigFolder;
-    }
-    else {
-      configFolder = './build-config';
+    if (buildConfig === undefined) {
+      var configFolder;
+      if (pathToConfigFolder) {
+        configFolder = pathToConfigFolder;
+      }
+      else {
+        configFolder = './build-config';
+      }
+
+      var absPathToConfigFolder = path.resolve('./../../../', configFolder);
+
+      buildConfig = createBuildConfig(absPathToConfigFolder);
     }
 
-    var absPathToConfigFolder = path.resolve('./../../../', configFolder);
-
-    return createBuildConfig(absPathToConfigFolder);
+    return buildConfig;
   }
 };
