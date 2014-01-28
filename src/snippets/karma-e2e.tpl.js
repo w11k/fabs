@@ -65,7 +65,7 @@ module.exports = function (karmaConfig) {
      * the aesthetic advantage of not launching a browser every time you save.
      */
     browsers: [
-      'PhantomJS'
+      <%= browsers.map(function(browser) { return '\'' + browser + '\'' }).join(',\n      ') %>
     ]
   });
 };

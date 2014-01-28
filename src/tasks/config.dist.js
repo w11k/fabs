@@ -81,7 +81,8 @@ var distTasksConfig = {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
         out: config.build.output.dir + '/karma-dist-e2e.js',
         junitResults: config.build.output.dir + '/karma-dist-e2e-results.xml',
-        connectPort: '<%= connect.dist_e2e.options.port %>'
+        connectPort: '<%= connect.dist_e2e.options.port %>',
+        browsers: config.build.e2e.browsers
       },
       files: '<%= karmaConfig.dev_e2e.files %>'
     }

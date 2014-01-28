@@ -23,7 +23,7 @@ var devTasksConfig = {
       options: {
         port: 9000,
         hostname: '0.0.0.0',
-        livereload: true,
+        livereload: config.build.server.withLiveReloadInDev,
         base: config.build.prepare.outdir,
         middleware: utils.connectMiddleware
       },
@@ -58,8 +58,8 @@ var devTasksConfig = {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
         out: config.build.output.dir + '/karma-dev-e2e.js',
         junitResults: config.build.output.dir + '/karma-dev-e2e-results.xml',
-        connectPort: '<%= connect.dev_e2e.options.port %>'
-
+        connectPort: '<%= connect.dev_e2e.options.port %>',
+        browsers: config.build.e2e.browsers
       },
       files: [
         {

@@ -29,13 +29,31 @@ var systemConfig = {
     },
     spec: {
       // Enable / disable running spec tests in prepare phase (included in dev and dist)
-      runInPrepare: true
+      runInPrepare: true,
+      /**
+       * The list of browsers to launch to test on. May include:
+       * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
+       *
+       * You may also leave this empty and manually navigate your browser to
+       * http://localhost:9010/ when you're running tests. The window/tab can be left
+       * open and the tests will automatically occur there during the build.
+       */
+      browsers: ['PhantomJS']
     },
     e2e: {
       // Enable / disable running end-to-end tests in dev mode
       runInDev: true,
       // Enable / disable running end-to-end tests against compiled application
-      runInDist: true
+      runInDist: true,
+      /**
+       * The list of browsers to launch to test on. May include:
+       * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
+       *
+       * You may also leave this empty and manually navigate your browser to
+       * http://localhost:9011/ when you're running tests. The window/tab can be left
+       * open and the tests will automatically occur there during the build.
+       */
+      browsers: ['PhantomJS']
     },
     mocks: {
       /**
@@ -52,7 +70,9 @@ var systemConfig = {
        */
       proxies: [],
       // Enables / disables starting a server (running forever, kill with Ctrl+C) serving the compiled application.
-      runInDist: false
+      runInDist: false,
+      // specifies if live reload should be activated in dev mode
+      withLiveReloadInDev: true
     },
     output: {
       // the overall output folder the build system will use
