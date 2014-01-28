@@ -106,3 +106,8 @@ preparation.
 ## Roadmap
 
 see milestones and issues at https://github.com/w11k/fabs/issues
+
+
+## License
+
+MIT - see LICENSE file
