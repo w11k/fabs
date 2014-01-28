@@ -449,8 +449,8 @@ var prepareTasksConfig = {
       options: {
         template: path.normalize(__dirname + './../snippets/karma-spec.tpl.js'),
         out: config.build.output.dir + '/karma-prepare-spec.js',
-        junitResults: config.build.output.dir + '/karma-prepare-spec-results.xml'
-
+        junitResults: config.build.output.dir + '/karma-prepare-spec-results.xml',
+        browsers: config.build.spec.browsers
       },
       files: [
         {
