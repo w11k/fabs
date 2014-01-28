@@ -1,5 +1,17 @@
+<a name="v0.3.2"></a>
+### v0.3.2 (2014-01-28)
+
+#### Bug Fixes
+
+* **config:** add caching for assembled build config ([10b824e6](https://github.com/w11k/fabs/commit/10b824e6935d7f92292fc7932c7e72b0cac6306c), closes [#17](https://github.com/w11k/fabs/issues/17))
+* **test:**
+  * run tests with no browser started automatically ([bc0c4e59](https://github.com/w11k/fabs/commit/bc0c4e59ead7faa27a7c8f7ed55393fd27c339b7), closes [#18](https://github.com/w11k/fabs/issues/18))
+  * update the karma-junit-reporter plugin from 0.1.0 to 0.2.1 ([51ef015f](https://github.com/w11k/fabs/commit/51ef015f7843694406d00ab4e34c42c1ae2c1ab5))
+  * support Firefox, Safari and Opera as test browser ([5d6bd13b](https://github.com/w11k/fabs/commit/5d6bd13b57c282055c96bc9c01705c1ec7e4df87), closes [#19](https://github.com/w11k/fabs/issues/19))
+
+
 <a name="v0.3.1"></a>
-## v0.3.1 (2014-01-28)
+### v0.3.1 (2014-01-28)
 
 #### Documentation
 
