@@ -1,6 +1,13 @@
-<a name="v0.3.0-SNAPSHOT"></a>
-## v0.3.0-SNAPSHOT (2014-01-28)
+<a name="v0.3.1"></a>
+## v0.3.1 (2014-01-28)
 
+#### Documentation
+
+* Fixes version number in changelog ([2df2946](https://github.com/w11k/fabs/commit/2df29460d558d480d22a4a8d52ef760ab05d2c48))
+
+
+<a name="v0.3.0"></a>
+### v0.3.0 (2014-01-28)
 
 #### Features
 
