@@ -1,6 +1,5 @@
-<a name="v0.3.0-SNAPSHOT"></a>
-## v0.3.0-SNAPSHOT (2014-01-28)
-
+<a name="v0.3.0"></a>
+## v0.3.0 (2014-01-28)
 
 #### Features
 
