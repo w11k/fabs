@@ -18,6 +18,9 @@ module.exports = function (karmaConfig) {
     plugins: [
       'karma-jasmine',
       'karma-phantomjs-launcher',
+      'karma-firefox-launcher',
+      'karma-safari-launcher',
+      'karma-opera-launcher',
       'karma-junit-reporter'
     ],
 

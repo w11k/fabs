@@ -19,6 +19,9 @@ module.exports = function (karmaConfig) {
     plugins: [
       'karma-ng-scenario',
       'karma-phantomjs-launcher',
+      'karma-firefox-launcher',
+      'karma-safari-launcher',
+      'karma-opera-launcher',
       'karma-junit-reporter'
     ],
 
