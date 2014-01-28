@@ -1,3 +1,11 @@
+<a name="v0.3.3"></a>
+### v0.3.3 (2014-01-28)
+
+#### Bug Fixes
+
+* **cacheBusting:** prevent false positives with files with equal parts in path ([80f637f3](https://github.com/w11k/fabs/commit/80f637f33cb6d41fe83e0e2c8b8d7699b8cd4ee5), closes [#20](https://github.com/w11k/fabs/issues/20))
+
+
 <a name="v0.3.2"></a>
 ### v0.3.2 (2014-01-28)
 
@@ -26,6 +34,7 @@
 * **dev:** add possibility to deactivate LiveReload in dev mode ([56c7a989](https://github.com/w11k/fabs/commit/56c7a9899bba6d0d8a65186b46df6ad2ed0c98c6), closes [#10](https://github.com/w11k/fabs/issues/10))
 * **test:** make browser to run tests with configurable ([8e084658](https://github.com/w11k/fabs/commit/8e084658a31b263be9270f6708865c0e72dae87f), closes [#15](https://github.com/w11k/fabs/issues/15))
 
+
 <a name="v0.2.0"></a>
 ### v0.2.0 (2013-12-09)
 
@@ -34,6 +43,7 @@
 * **bump:** add bump task ([e3321d4c](https://github.com/w11k/fabs/commit/e3321d4cee3d7d4dbd1bcffb1369bfe1e1a4ab8d), closes [#8](https://github.com/w11k/fabs/issues/8))
 * **changelog:** Add changelog task ([9e0a6737](https://github.com/w11k/fabs/commit/9e0a67373c64788b8020c65038b5a403898f76c8), closes [#9](https://github.com/w11k/fabs/issues/9))
 * **plugins:** load Grunt plugins as dependencies of fabs ([89e78bcf](https://github.com/w11k/fabs/commit/89e78bcf2b94f6677cd3c9dd196977d28c77eef8), closes [#1](https://github.com/w11k/fabs/issues/1))
+
 
 <a name="v0.1.0"></a>
 ### v0.1.0 (2013-12-06)
