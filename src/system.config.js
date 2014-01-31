@@ -30,6 +30,10 @@ var systemConfig = {
     spec: {
       // Enable / disable running spec tests in prepare phase (included in dev and dist)
       runInPrepare: true,
+      karma: {
+        // port on which karma for spec tests runs
+        port: 9010
+      },
       /**
        * The list of browsers to launch to test on. May include:
        * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
@@ -45,6 +49,14 @@ var systemConfig = {
       runInDev: true,
       // Enable / disable running end-to-end tests against compiled application
       runInDist: true,
+      karma: {
+        // port on which karma for e2e tests runs
+        port: 9011
+      },
+      server: {
+        // port used to start web server serving application for e2e tests (with mocks)
+        port: 9001
+      },
       /**
        * The list of browsers to launch to test on. May include:
        * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
@@ -72,7 +84,9 @@ var systemConfig = {
       // Enables / disables starting a server (running forever, kill with Ctrl+C) serving the compiled application.
       runInDist: false,
       // specifies if live reload should be activated in dev mode
-      withLiveReloadInDev: true
+      withLiveReloadInDev: true,
+      // port used to start web server to be able to open the application in browser (dev mode and if runInDist == true in dist)
+      port: 9000
     },
     output: {
       // the overall output folder the build system will use

@@ -25,10 +25,10 @@ https://github.com/w11k/fabs-boilerplate
 
 ## Installation
 
-Add the `grunt` and `fabs` as dev dependencies to your package.json.
+Add the `grunt` and `fabs` as dev dependencies to your package.json. Replace x with most recent or required version.
 
     "grunt": "0.4.2",
-    "fabs": "0.2.0",
+    "fabs": "x",
 
 
 Add something like the following lines to your `Gruntfile.js` to include fabs's grunt configuration. Of course you
