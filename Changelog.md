@@ -1,3 +1,11 @@
+<a name="v0.4.0"></a>
+### v0.4.0 (2014-01-31)
+
+#### Features
+
+* **config:** make all ports used by fabs configurable ([fca82393](https://github.com/w11k/fabs/commit/fca82393038cff33e1b8f6eeb42842f080a060d6), closes [#21](https://github.com/w11k/fabs/issues/21))
+
+
 <a name="v0.3.3"></a>
 ### v0.3.3 (2014-01-28)
 
