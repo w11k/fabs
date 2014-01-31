@@ -11,7 +11,7 @@ var distTasksConfig = {
   connect: {
     dist: {
       options: {
-        port: 9000,
+        port: config.build.server.port,
         hostname: '0.0.0.0',
         livereload: false,
         keepalive: true,
@@ -22,7 +22,7 @@ var distTasksConfig = {
     },
     dist_e2e: {
       options: {
-        port: 9001,
+        port: config.build.e2e.server.port,
         hostname: '0.0.0.0',
         livereload: false,
         keepalive: false,
@@ -81,7 +81,8 @@ var distTasksConfig = {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
         out: config.build.output.dir + '/karma-dist-e2e.js',
         junitResults: config.build.output.dir + '/karma-dist-e2e-results.xml',
-        connectPort: '<%= connect.dist_e2e.options.port %>',
+        connectPort: config.build.e2e.server.port,
+        port: config.build.e2e.karma.port,
         browsers: config.build.e2e.browsers
       },
       files: '<%= karmaConfig.dev_e2e.files %>'

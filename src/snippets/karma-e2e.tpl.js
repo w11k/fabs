@@ -42,11 +42,9 @@ module.exports = function (karmaConfig) {
     },
 
     /**
-     * On which port should the browser connect, on which port is the test runner
-     * operating, and what is the URL path for the browser to use.
+     * On which port should the browser connect and what is the URL path for the browser to use.
      */
-    port: 9011,
-    runnerPort: 9111,
+    port: <%= port %>,
     urlRoot: '/tests/e2e/',
 
     /**

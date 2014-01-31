@@ -107,7 +107,8 @@ var karmaConfigTask = function () {
           scripts: jsFiles,
           junit_results: options.junitResults,
           connect_e2e_port: options.connectPort,
-          browsers: options.browsers
+          browsers: options.browsers,
+          port: options.port
         }
       });
     }

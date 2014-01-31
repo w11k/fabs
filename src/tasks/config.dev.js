@@ -21,7 +21,7 @@ var devTasksConfig = {
   connect: {
     dev: {
       options: {
-        port: 9000,
+        port: config.build.server.port,
         hostname: '0.0.0.0',
         livereload: config.build.server.withLiveReloadInDev,
         base: config.build.prepare.outdir,
@@ -31,7 +31,7 @@ var devTasksConfig = {
     },
     dev_e2e: {
       options: {
-        port: 9001,
+        port: config.build.e2e.server.port,
         hostname: '0.0.0.0',
         livereload: false,
         keepalive: false,
@@ -58,7 +58,8 @@ var devTasksConfig = {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
         out: config.build.output.dir + '/karma-dev-e2e.js',
         junitResults: config.build.output.dir + '/karma-dev-e2e-results.xml',
-        connectPort: '<%= connect.dev_e2e.options.port %>',
+        connectPort: config.build.e2e.server.port,
+        port: config.build.e2e.karma.port,
         browsers: config.build.e2e.browsers
       },
       files: [
