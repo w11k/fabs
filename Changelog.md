@@ -1,3 +1,11 @@
+<a name="v0.4.1"></a>
+### v0.4.1 (2014-02-03)
+
+
+#### Bug Fixes
+
+* **watch:** watch all less and sass files under src ([ac52572e](https://github.com/w11k/fabs/commit/ac52572e15bedb91d8afb0f165e511615fb71bb5), closes [#23](https://github.com/w11k/fabs/issues/23))
+
 <a name="v0.4.0"></a>
 ### v0.4.0 (2014-01-31)
 
