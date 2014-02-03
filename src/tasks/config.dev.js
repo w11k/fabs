@@ -337,8 +337,7 @@ var devTasksConfig = {
         livereload: false
       },
       files: [
-        config.app.files.less.map(utils.addCwdToPattern('src/app')),
-        config.common.files.less.map(utils.addCwdToPattern('src/common'))
+        'src/**/*.less'
       ],
       tasks: (function () {
         return [].concat(
@@ -355,8 +354,7 @@ var devTasksConfig = {
         livereload: false
       },
       files: [
-        config.app.files.sass.map(utils.addCwdToPattern('src/app')),
-        config.common.files.sass.map(utils.addCwdToPattern('src/common'))
+        'src/**/*.scss'
       ],
       tasks: (function () {
         return [].concat(
