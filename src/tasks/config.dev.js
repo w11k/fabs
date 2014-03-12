@@ -191,7 +191,8 @@ var devTasksConfig = {
      * plugin should auto-detect.
      */
     options: {
-      livereload: true
+      livereload: true,
+      interval: 1007
     },
 
     /*
@@ -204,10 +205,11 @@ var devTasksConfig = {
       files: [],
       tasks: (function () {
         return [].concat(
-          'jshint',
-          'replace:dev_cacheBusting',
-          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+          'replace:dev_cacheBusting'
+          // do not run any test or linting on startup
+//          'jshint',
+//          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
+//          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
         );
       })(),
       options: {
