@@ -191,7 +191,8 @@ var devTasksConfig = {
      * plugin should auto-detect.
      */
     options: {
-      livereload: true
+      livereload: true,
+      interval: 1007
     },
 
     /*
