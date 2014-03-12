@@ -1,39 +1,39 @@
 <a name="v0.4.2"></a>
-### v0.4.2 (2014-03-12)
+## v0.4.2 (2014-03-12)
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * **tests:** update grunt-karma to 0.8.0 ([d71f5b74](https://github.com/w11k/fabs/commit/d71f5b7473d77c3bc8464dc79702a565a40d88eb), closes [#25](https://github.com/w11k/fabs/issues/25))
 
 <a name="v0.4.1"></a>
-### v0.4.1 (2014-02-03)
+## v0.4.1 (2014-02-03)
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * **watch:** watch all less and sass files under src ([ac52572e](https://github.com/w11k/fabs/commit/ac52572e15bedb91d8afb0f165e511615fb71bb5), closes [#23](https://github.com/w11k/fabs/issues/23))
 
 <a name="v0.4.0"></a>
-### v0.4.0 (2014-01-31)
+## v0.4.0 (2014-01-31)
 
-#### Features
+### Features
 
 * **config:** make all ports used by fabs configurable ([fca82393](https://github.com/w11k/fabs/commit/fca82393038cff33e1b8f6eeb42842f080a060d6), closes [#21](https://github.com/w11k/fabs/issues/21))
 
 
 <a name="v0.3.3"></a>
-### v0.3.3 (2014-01-28)
+## v0.3.3 (2014-01-28)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **cacheBusting:** prevent false positives with files with equal parts in path ([80f637f3](https://github.com/w11k/fabs/commit/80f637f33cb6d41fe83e0e2c8b8d7699b8cd4ee5), closes [#20](https://github.com/w11k/fabs/issues/20))
 
 
 <a name="v0.3.2"></a>
-### v0.3.2 (2014-01-28)
+## v0.3.2 (2014-01-28)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **config:** add caching for assembled build config ([10b824e6](https://github.com/w11k/fabs/commit/10b824e6935d7f92292fc7932c7e72b0cac6306c), closes [#17](https://github.com/w11k/fabs/issues/17))
 * **test:**
@@ -43,26 +43,26 @@
 
 
 <a name="v0.3.1"></a>
-### v0.3.1 (2014-01-28)
+## v0.3.1 (2014-01-28)
 
-#### Documentation
+### Documentation
 
 * Fixes version number in changelog ([2df2946](https://github.com/w11k/fabs/commit/2df29460d558d480d22a4a8d52ef760ab05d2c48))
 
 
 <a name="v0.3.0"></a>
-### v0.3.0 (2014-01-28)
+## v0.3.0 (2014-01-28)
 
-#### Features
+### Features
 
 * **dev:** add possibility to deactivate LiveReload in dev mode ([56c7a989](https://github.com/w11k/fabs/commit/56c7a9899bba6d0d8a65186b46df6ad2ed0c98c6), closes [#10](https://github.com/w11k/fabs/issues/10))
 * **test:** make browser to run tests with configurable ([8e084658](https://github.com/w11k/fabs/commit/8e084658a31b263be9270f6708865c0e72dae87f), closes [#15](https://github.com/w11k/fabs/issues/15))
 
 
 <a name="v0.2.0"></a>
-### v0.2.0 (2013-12-09)
+## v0.2.0 (2013-12-09)
 
-#### Features
+### Features
 
 * **bump:** add bump task ([e3321d4c](https://github.com/w11k/fabs/commit/e3321d4cee3d7d4dbd1bcffb1369bfe1e1a4ab8d), closes [#8](https://github.com/w11k/fabs/issues/8))
 * **changelog:** Add changelog task ([9e0a6737](https://github.com/w11k/fabs/commit/9e0a67373c64788b8020c65038b5a403898f76c8), closes [#9](https://github.com/w11k/fabs/issues/9))
@@ -70,11 +70,11 @@
 
 
 <a name="v0.1.0"></a>
-### v0.1.0 (2013-12-06)
+## v0.1.0 (2013-12-06)
 
 First Release
 
-#### Features
+### Features
 
 * Dev-Mode with Server, Proxy and LiveReload
 * SASS 3.2 and LESS 1.5 support
