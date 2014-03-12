@@ -1,3 +1,12 @@
+<a name="v0.4.3"></a>
+## v0.4.3 (2014-03-12)
+
+
+### Bug Fixes
+
+* **tests:** update karma plugins and do not run tests on start of 'grunt dev' ([d6ab4cb5](https://github.com/w11k/fabs/commit/d6ab4cb58fad3742cbbc829ea2550f3ad5ad2815))
+* **watch:** increase watch interval to reduce cpu load ([998441de](https://github.com/w11k/fabs/commit/998441de87c9053f6ef4bb0c8ea948a9c47622bd))
+
 <a name="v0.4.2"></a>
 ## v0.4.2 (2014-03-12)
 

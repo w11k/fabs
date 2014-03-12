@@ -17,11 +17,12 @@ module.exports = function (karmaConfig) {
     frameworks: [ 'jasmine' ],
     plugins: [
       'karma-jasmine',
+      'karma-junit-reporter',
       'karma-phantomjs-launcher',
       'karma-firefox-launcher',
       'karma-safari-launcher',
       'karma-opera-launcher',
-      'karma-junit-reporter'
+      'karma-ie-launcher'
     ],
 
     /**
