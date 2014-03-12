@@ -1,3 +1,11 @@
+<a name="v0.4.2"></a>
+### v0.4.2 (2014-03-12)
+
+
+#### Bug Fixes
+
+* **tests:** update grunt-karma to 0.8.0 ([d71f5b74](https://github.com/w11k/fabs/commit/d71f5b7473d77c3bc8464dc79702a565a40d88eb), closes [#25](https://github.com/w11k/fabs/issues/25))
+
 <a name="v0.4.1"></a>
 ### v0.4.1 (2014-02-03)
 
