@@ -1,3 +1,51 @@
+<a name="v0.5.0"></a>
+## v0.5.0 (2014-04-17)
+
+
+### Features
+
+* **hooks:** add empty hook tasks for each phase (prepare and compile) and for each mode (dev and dist) ([73a3170c](https://github.com/w11k/fabs/commit/73a3170cecfd3fd5e86daca91dfeb664a703a9de))
+* **bless:** add bless task to split long css files for IE 9 and older ([980d85cd](https://github.com/w11k/fabs/commit/980d85cd2eb87c32b3a949bab1b5a075e0c3b6e4))
+* **templates:** change extension for templates from .tpl.html to .html ([84dc2f2e](https://github.com/w11k/fabs/commit/84dc2f2ec68a300c60598b2c3710949ef2528e77), closes [#24](https://github.com/w11k/fabs/issues/24))
+
+
+### Breaking Changes
+
+* Default extension for templates changed from .tpl.html to .html
+  To migrate your project rename all templates files or adjust your project config with the old default configuration:
+
+      app: {
+        templates: [
+          '**/*.tpl.html'
+        ],
+        templates2js: [
+          'partial/**/*.tpl.html',
+          'route/home/home.tpl.html'
+        ]
+      },
+      common: {
+        templates: [
+          '**/*.tpl.html'
+        ]
+      }
+
+  to restore the previous behaviour. Don't forget to adjust your mocks to bypass template calls.
+
+* Array with CSS files to include into index.html has changed from strings to objects { regular: ..., blessed: ... }.
+
+  To migrate your index.html replace
+
+      <% styles.forEach( function ( file ) { %>
+      <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+      <% }); %>
+
+  with
+
+      <% styles.forEach( function ( file ) { %>
+      <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="<%= file.blessed %>"/><![endif]-->
+      <!--[if gt IE 9]> --><link rel="stylesheet" type="text/css" href="<%= file.regular %>"/><!-- <![endif]-->
+      <% }); %>
+
 <a name="v0.4.3"></a>
 ## v0.4.3 (2014-03-12)
 
