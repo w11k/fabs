@@ -5,6 +5,23 @@ var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Hook tasks
+ *
+ * Register some empty dummy tasks. This tasks can be overridden by the project to hook into fabs lifecycle.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+grunt.registerTask('hookPrepareStart', []);
+grunt.registerTask('hookPrepareEnd', []);
+grunt.registerTask('hookCompileStart', []);
+grunt.registerTask('hookCompileEnd', []);
+grunt.registerTask('hookCacheBustingStart', []);
+grunt.registerTask('hookCacheBustingEnd', []);
+grunt.registerTask('hookDevStart', []);
+grunt.registerTask('hookDevEnd', []);
+grunt.registerTask('hookDistStart', []);
+grunt.registerTask('hookDistEnd', []);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * dev mode: build the app, start a web server, start karma and watch for changes.
  *
  * Watch is configured to run some tasks (jshint and karma tests) at the beginning, see watch:runOnce.
@@ -14,6 +31,9 @@ var utils = require('./../utils/common.js');
 
 var devTask = [].concat(
   'updateConfig:dev_changeLessSassConfig',
+
+  'hookDevStart',
+
   'prepare',
 
   utils.includeIf([
@@ -31,8 +51,9 @@ var devTask = [].concat(
 
   'configureProxies:dev',
   'connect:dev',
+  'watch',
 
-  'watch'
+  'hookDevEnd'
 );
 
 grunt.registerTask('dev', devTask);
@@ -43,6 +64,9 @@ grunt.registerTask('dev', devTask);
 
 var prepareTask = [].concat(
   'clean:prepare',
+
+  'hookPrepareStart',
+
   utils.includeIf('shell:prepare_bower', config.build.bower.runInPrepare),
 
   /* html2js and translations2js have to run in prepare phase because there are dependencies in
@@ -65,6 +89,7 @@ var prepareTask = [].concat(
   utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
   utils.includeIf('compass:prepare_common', config.build.sass.enabled && utils.hasFiles('src/common', config.common.files.sass)),
   'concat:prepare_css',
+  utils.includeIf('bless:prepare', config.build.bless.enabled),
   'copy:prepare_app_assets',
   'copy:prepare_vendor_assets',
   'copy:prepare_app_js',
@@ -76,7 +101,9 @@ var prepareTask = [].concat(
 
   'copy:prepare_common_js',
   'copy:prepare_vendor_js',
-  'indexHtml:prepare'
+  'indexHtml:prepare',
+
+  'hookPrepareEnd'
 );
 
 grunt.registerTask('prepare', prepareTask);
@@ -86,8 +113,11 @@ grunt.registerTask('prepare', prepareTask);
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 var compileTask = [].concat(
+  'hookCompileStart',
+
   'copy:compile_css',
   'cssmin:compile',
+  utils.includeIf('bless:compile', config.build.bless.enabled),
 
   'copy:compile_assets',
 
@@ -105,10 +135,15 @@ var compileTask = [].concat(
   'indexHtml:compile',
   'htmlmin:compile_index',
 
+  'hookCacheBustingStart',
+
   'copy:compile_cacheBusting',
   'clean:compile_cacheBusting',
   'updateConfig:replace_compile_cacheBusting',
-  'replace:compile_cacheBusting'
+  'replace:compile_cacheBusting',
+
+  'hookCacheBustingEnd',
+  'hookCompileEnd'
 );
 
 grunt.registerTask('compile', compileTask);
@@ -119,7 +154,7 @@ grunt.registerTask('compile', compileTask);
 
 // don't forget to run the tasks that are called by watch:runOnce in dev mode
 var distTask = [].concat(
-  utils.includeIf('configureProxies:dist', config.build.server.runInDist),
+  'hookDistStart',
 
   'jshint',
   'prepare',
@@ -145,7 +180,12 @@ var distTask = [].concat(
 
   'compress:dist_app',
 
-  utils.includeIf('connect:dist', config.build.server.runInDist)
+  utils.includeIf([
+    'configureProxies:dist',
+    'connect:dist'
+  ], config.build.server.runInDist),
+
+  'hookDistEnd'
 );
 
 grunt.registerTask('dist', distTask);

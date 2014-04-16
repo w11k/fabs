@@ -31,9 +31,12 @@ var indexHtmlTask = function () {
     return file.replace(basesRegExp, '');
   });
   var cssFiles = utils.filterForCSS(this.filesSrc).map(function (file) {
-    return file.replace(basesRegExp, '');
+    var filePath = file.replace(basesRegExp, '');
+    return {
+      regular: filePath,
+      blessed: options.blessedDir + '/' + filePath
+    };
   });
-
 
   grunt.file.copy('src/index.html', options.dir + '/index.html', {
     process: function (contents) {
