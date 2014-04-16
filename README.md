@@ -94,7 +94,69 @@ be necessary too after changing the build configuration!
 Run `grunt dist` to build a deployable version of the application, which is put to `build-output/compiled` folder by
 default and gets zipped to `build-output/{{ Name and Version from package.json }}.zip`
 
-### Additional Tasks
+### Hook into fabs lifecycle
+
+fabs defines some empty dummy tasks at the beginning and the end of each phase (prepare and compile) and mode (dev and dist). You can use these hooks to add additional custom tasks.
+
+Provided hooks:
+
+* hookPrepareStart
+* hookPrepareEnd
+* hookCompileStart
+* hookCompileEnd
+* hookCacheBustingStart
+* hookCacheBustingEnd
+* hookDevStart
+* hookDevEnd
+* hookDistStart
+* hookDistEnd
+
+In your Gruntfile.js you can override these tasks. In the example below a replace task is added to replace a placeholder in a template file with the version number from package.json.
+
+    'use strict';
+    
+    var grunt = require('grunt');
+    var fabs = require('fabs');
+    var path = require('path');
+    var lodash = require('lodash');
+    var pkg = grunt.file.readJSON('./package.json');
+    
+    module.exports = function () {
+      var configFolder = path.resolve('./build-config');
+      var fabsConfig = fabs.getGruntConfig(configFolder);
+    
+      var additionalConfig = {
+        replace: {
+          version: {
+            options: {
+              prefix: '',
+              patterns: [{
+                match: '@@pkg.version',
+                replacement: pkg.version,
+                expression: false
+              }]
+            },
+            files: [
+              {
+                expand: true,
+                cwd: 'build-output/prepared',
+                src: [ 'route/about/about.tpl.html' ],
+                dest: 'build-output/prepared'
+              }
+            ]
+
+          }
+        }
+      };
+      
+      var gruntConfig = lodash.merge(additionalConfig, fabsConfig);
+    
+      grunt.registerTask('hookPrepareEnd', ['replace:version']);
+      grunt.initConfig(gruntConfig);
+    };
+
+
+### Other Tasks
 
 In addition to `grunt dev` and `grunt dist` there are some other tasks meant to run stand-alone e.g. during release
 preparation.
