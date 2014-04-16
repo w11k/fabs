@@ -27,6 +27,10 @@ var systemConfig = {
        */
       enabled: true
     },
+    bless: {
+      dir: 'blessed_css',
+      enabled: true
+    },
     spec: {
       // Enable / disable running spec tests in prepare phase (included in dev and dist)
       runInPrepare: true,

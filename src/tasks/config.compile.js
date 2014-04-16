@@ -137,6 +137,19 @@ var compileTasksConfig = {
     }
   },
 
+  bless: {
+    compile: {
+      options: {
+        cacheBuster: false,
+        compress: true
+      },
+      files: [{
+        src: '<%= copy.compile_css.options.out %>',
+        dest: config.build.compile.outdir + '/' + config.build.bless.dir + '/<%= copy.compile_css.options.outRelative %>'
+      }]
+    }
+  },
+
   /**
    * Minify the sources!
    */
@@ -175,12 +188,13 @@ var compileTasksConfig = {
           config.build.compile.outdir
         ],
         dir: config.build.compile.outdir,
+        blessedDir: config.build.bless.dir,
         angular_module: config.app.angular_module.regular
       },
       files: [{
         src: [
           '<%= concat.compile_js.options.out %>',
-          '<%= concat.prepare_css.options.out %>'
+          '<%= copy.compile_css.options.out %>'
         ]
       }]
     }

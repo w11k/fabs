@@ -289,7 +289,8 @@ var prepareTasksConfig = {
   concat: {
     prepare_css: {
       options: {
-        out: config.build.prepare.outdir + '/main.css'
+        outRelative: 'main.css',
+        out: config.build.prepare.outdir + '/<%= concat.prepare_css.options.outRelative %>'
       },
       files: [{
         src: (function () {
@@ -318,6 +319,19 @@ var prepareTasksConfig = {
     }
   },
 
+  bless: {
+    prepare: {
+      options: {
+        cacheBuster: false,
+        compress: true
+      },
+      files: [{
+        src: '<%= concat.prepare_css.options.out %>',
+        dest: config.build.prepare.outdir + '/' + config.build.bless.dir + '/<%= concat.prepare_css.options.outRelative %>'
+      }]
+    }
+  },
+
   indexHtml: {
     /**
      * During development, we don't want to have wait for compilation,
@@ -330,6 +344,7 @@ var prepareTasksConfig = {
           config.build.prepare.outdir
         ],
         dir: config.build.prepare.outdir,
+        blessedDir: config.build.bless.dir,
         angular_module: (function () {
           if (config.build.mocks.loadInBrowser) {
             return config.app.angular_module.withMocks;

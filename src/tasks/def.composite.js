@@ -65,6 +65,7 @@ var prepareTask = [].concat(
   utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
   utils.includeIf('compass:prepare_common', config.build.sass.enabled && utils.hasFiles('src/common', config.common.files.sass)),
   'concat:prepare_css',
+  utils.includeIf('bless:prepare', config.build.bless.enabled),
   'copy:prepare_app_assets',
   'copy:prepare_vendor_assets',
   'copy:prepare_app_js',
@@ -88,6 +89,7 @@ grunt.registerTask('prepare', prepareTask);
 var compileTask = [].concat(
   'copy:compile_css',
   'cssmin:compile',
+  utils.includeIf('bless:compile', config.build.bless.enabled),
 
   'copy:compile_assets',
 
