@@ -27,7 +27,7 @@ https://github.com/w11k/fabs-boilerplate
 
 Add the `grunt` and `fabs` as dev dependencies to your package.json. Replace x with most recent or required version.
 
-    "grunt": "0.4.2",
+    "grunt": "0.4.4",
     "fabs": "x",
 
 
@@ -140,7 +140,7 @@ In your Gruntfile.js you can override these tasks. In the example below a replac
               {
                 expand: true,
                 cwd: 'build-output/prepared',
-                src: [ 'route/about/about.tpl.html' ],
+                src: [ 'route/about/about.html' ],
                 dest: 'build-output/prepared'
               }
             ]

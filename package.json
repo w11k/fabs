@@ -20,7 +20,7 @@
   "main": "src/main.js",
 
   "dependencies": {
-    "grunt": "0.4.2",
+    "grunt": "0.4.4",
     "lodash": "2.2.1",
 
     "grunt-contrib-less": "0.8.1",
@@ -57,7 +57,7 @@
   },
 
   "devDependencies": {
-    "grunt": "0.4.2",
+    "grunt": "0.4.4",
     "grunt-conventional-changelog": "1.0.0",
     "grunt-bump": "0.0.13"
   },
