@@ -140,7 +140,7 @@ var systemConfig = {
 
       // application's html templates
       templates: [
-        '**/*.tpl.html'
+        '**/*.html'
       ],
       // a subset of templates to compile to js and preload with js code
       templates2js: [
@@ -149,9 +149,9 @@ var systemConfig = {
          * All matching templates from common will be included also!
          * Do not use something like the next line!
          */
-        // '**/*.tpl.html'
-        'partial/**/*.tpl.html',
-        'route/home/home.tpl.html'
+        // '**/*.html'
+        'partial/**/*.html',
+        'route/home/home.html'
       ],
       /**
        * Translations are specified for app only, no common.files.translations nor vendor.files.translations.
@@ -244,7 +244,7 @@ var systemConfig = {
         '**/*.css'
       ],
       templates: [
-        '**/*.tpl.html'
+        '**/*.html'
       ],
       // a subset of common.templates to compile to js and preload with js code
       templates2js: [
@@ -253,7 +253,7 @@ var systemConfig = {
        * All matching templates from app will be included also!
        * Do not use something like the next line!
        */
-        //'**/*.tpl.html'
+        //'**/*.html'
       ]
     }
   },
