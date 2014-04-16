@@ -121,7 +121,6 @@ grunt.registerTask('compile', compileTask);
 
 // don't forget to run the tasks that are called by watch:runOnce in dev mode
 var distTask = [].concat(
-  utils.includeIf('configureProxies:dist', config.build.server.runInDist),
 
   'jshint',
   'prepare',
@@ -147,7 +146,10 @@ var distTask = [].concat(
 
   'compress:dist_app',
 
-  utils.includeIf('connect:dist', config.build.server.runInDist)
+  utils.includeIf([
+    'configureProxies:dist',
+    'connect:dist'
+  ], config.build.server.runInDist),
 );
 
 grunt.registerTask('dist', distTask);
