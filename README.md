@@ -27,7 +27,7 @@ https://github.com/w11k/fabs-boilerplate
 
 Add the `grunt` and `fabs` as dev dependencies to your package.json. Replace x with most recent or required version.
 
-    "grunt": "0.4.2",
+    "grunt": "0.4.4",
     "fabs": "x",
 
 
