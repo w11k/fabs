@@ -140,7 +140,7 @@ In your Gruntfile.js you can override these tasks. In the example below a replac
               {
                 expand: true,
                 cwd: 'build-output/prepared',
-                src: [ 'route/about/about.tpl.html' ],
+                src: [ 'route/about/about.html' ],
                 dest: 'build-output/prepared'
               }
             ]
