@@ -93,6 +93,7 @@ var devTasksConfig = {
           config.build.dev.e2e.outdir
         ],
         dir: config.build.dev.e2e.outdir,
+        blessedPrefix: config.build.bless.prefix,
         angular_module: config.app.angular_module.withMocks
       },
       files: (function () {

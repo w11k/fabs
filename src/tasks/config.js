@@ -55,6 +55,13 @@ var additionalTasksConfig = {
     }
   },
 
+  bless: {
+    options: {
+      imports: false,
+      cacheBuster: false
+    }
+  },
+
   compass: {
     options: {
       importPath: [ 'vendor' ],

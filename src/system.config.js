@@ -28,7 +28,7 @@ var systemConfig = {
       enabled: true
     },
     bless: {
-      dir: 'blessed_css',
+      prefix: 'blessed_',
       enabled: true
     },
     spec: {
