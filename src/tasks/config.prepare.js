@@ -321,13 +321,9 @@ var prepareTasksConfig = {
 
   bless: {
     prepare: {
-      options: {
-        cacheBuster: false,
-        compress: true
-      },
       files: [{
         src: '<%= concat.prepare_css.options.out %>',
-        dest: config.build.prepare.outdir + '/' + config.build.bless.dir + '/<%= concat.prepare_css.options.outRelative %>'
+        dest: config.build.prepare.outdir + '/' + config.build.bless.prefix + '<%= concat.prepare_css.options.outRelative %>'
       }]
     }
   },
@@ -344,7 +340,7 @@ var prepareTasksConfig = {
           config.build.prepare.outdir
         ],
         dir: config.build.prepare.outdir,
-        blessedDir: config.build.bless.dir,
+        blessedPrefix: config.build.bless.prefix,
         angular_module: (function () {
           if (config.build.mocks.loadInBrowser) {
             return config.app.angular_module.withMocks;

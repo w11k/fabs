@@ -3,6 +3,7 @@
 var grunt = require('grunt');
 var path = require('path');
 var utils = require('./../utils/common.js');
+var _ = require('lodash');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * The index.html template includes the stylesheet and javascript sources
@@ -30,13 +31,30 @@ var indexHtmlTask = function () {
   var jsFiles = utils.filterForJS(this.filesSrc).map(function (file) {
     return file.replace(basesRegExp, '');
   });
+
   var cssFiles = utils.filterForCSS(this.filesSrc).map(function (file) {
-    var filePath = file.replace(basesRegExp, '');
-    return {
-      regular: filePath,
-      blessed: options.blessedDir + '/' + filePath
-    };
+    return file.replace(basesRegExp, '');
   });
+
+  var blessedCssFiles = _.flatten(utils.filterForCSS(this.filesSrc).map(function (file) {
+    var fileDir = path.dirname(file);
+    var fileName = path.basename(file, '.css');
+
+    var blessedFiles = grunt.file.expand(
+      {
+        nosort: true
+      },
+      [
+        fileDir + '/' + options.blessedPrefix + fileName + '.css',
+        fileDir + '/' + options.blessedPrefix + fileName + '-blessed?.css',
+        fileDir + '/' + options.blessedPrefix + fileName + '-blessed??.css'
+      ]
+    );
+
+    return blessedFiles.map(function (file) {
+      return path.normalize(file).replace(basesRegExp, '');
+    });
+  }));
 
   grunt.file.copy('src/index.html', options.dir + '/index.html', {
     process: function (contents) {
@@ -44,6 +62,7 @@ var indexHtmlTask = function () {
         data: {
           scripts: jsFiles,
           styles: cssFiles,
+          blessedStyles: blessedCssFiles,
           angular_module: options.angular_module
         }
       });

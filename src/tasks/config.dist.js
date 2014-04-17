@@ -99,6 +99,7 @@ var distTasksConfig = {
           config.build.dist.e2e.outdir
         ],
         dir: config.build.dist.e2e.outdir,
+        blessedPrefix: config.build.bless.prefix,
         angular_module: config.app.angular_module.withMocks
       },
       files: [
