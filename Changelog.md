@@ -1,7 +1,31 @@
+<a name="v0.5.2"></a>
+## v0.5.2 (2014-04-18)
+
+
+### Bug Fixes
+
+* **bless:** refactors blessed css files for IE8 and IE9 ([dc6c6ee5](https://github.com/w11k/fabs/commit/dc6c6ee5e0bbc7a70ca2249300cf1df6272e6ed5))
+
+
+### Breaking Changes
+
+* Blessed CSS files has to be imported separately from regular CSS files in index.html like this:
+
+      <!--[if lte IE 9]>
+      <% blessedStyles.forEach( function ( file ) { %><link rel="stylesheet" type="text/css" href="<%= file %>"/><% }); %>
+      <![endif]-->
+      <!--[if gt IE 9]> -->
+      <% styles.forEach( function ( file ) { %>
+      <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+      <% }); %>
+      <!-- <![endif]-->
+
+
 <a name="v0.5.1"></a>
 ## v0.5.1 (2014-04-17)
 
 * update grunt from 0.4.2 to 0.4.4 ([6ac7dcd](https://github.com/w11k/fabs/commit/6ac7dcd9f0a1f9e5cfaf2cd3c9a6816fbf478def))
+
 
 <a name="v0.5.0"></a>
 ## v0.5.0 (2014-04-17)
