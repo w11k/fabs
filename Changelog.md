@@ -17,7 +17,8 @@
 ### Breaking Changes
 
 * Default extension for templates changed from .tpl.html to .html
-  To migrate your project rename all templates files or adjust your project config with the old default configuration:
+  All templates with .tpl.html will be matched by .html as well. So you can rename all your template files or leave them as they are. If you rename your templates from .tpl.html to .html, don't forget to adjust your mocks to bypass template calls.
+  If you have ohter .html files that should not be treated as templates, you have to adjust your project config to restore the old behaviour.
 
       app: {
         templates: [
@@ -34,7 +35,7 @@
         ]
       }
 
-  to restore the previous behaviour. Don't forget to adjust your mocks to bypass template calls.
+  
 
 * Array with CSS files to include into index.html has changed from strings to objects { regular: ..., blessed: ... }.
 
