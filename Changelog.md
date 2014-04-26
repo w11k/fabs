@@ -1,10 +1,18 @@
+<a name="v0.5.3"></a>
+## v0.5.3 (2014-04-26)
+
+
+### Bug Fixes
+
+* **bless:** fix include order of blessed css files ([ef0d33cb](https://github.com/w11k/fabs/commit/ef0d33cbb4927692a0e2224fbf309337f3c2738e))
+
 <a name="v0.5.2"></a>
 ## v0.5.2 (2014-04-18)
 
 
 ### Bug Fixes
 
-* **bless:** refactors blessed css files for IE8 and IE9 ([dc6c6ee5](https://github.com/w11k/fabs/commit/dc6c6ee5e0bbc7a70ca2249300cf1df6272e6ed5))
+* **bless:** refactor blessed css files for IE8 and IE9 ([dc6c6ee5](https://github.com/w11k/fabs/commit/dc6c6ee5e0bbc7a70ca2249300cf1df6272e6ed5))
 
 
 ### Breaking Changes
