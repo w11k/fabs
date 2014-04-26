@@ -49,7 +49,7 @@ var indexHtmlTask = function () {
         fileDir + '/' + options.blessedPrefix + fileName + '-blessed?.css',
         fileDir + '/' + options.blessedPrefix + fileName + '-blessed??.css'
       ]
-    );
+    ).reverse();
 
     return blessedFiles.map(function (file) {
       return path.normalize(file).replace(basesRegExp, '');
