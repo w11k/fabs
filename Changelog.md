@@ -11,14 +11,16 @@
 
 * Blessed CSS files has to be imported separately from regular CSS files in index.html like this:
 
-      <!--[if lte IE 9]>
-      <% blessedStyles.forEach( function ( file ) { %><link rel="stylesheet" type="text/css" href="<%= file %>"/><% }); %>
-      <![endif]-->
-      <!--[if gt IE 9]> -->
-      <% styles.forEach( function ( file ) { %>
-      <link rel="stylesheet" type="text/css" href="<%= file %>"/>
-      <% }); %>
-      <!-- <![endif]-->
+  ```
+  <!--[if lte IE 9]>
+  <% blessedStyles.forEach( function ( file ) { %><link rel="stylesheet" type="text/css" href="<%= file %>"/><% }); %>
+  <![endif]-->
+  <!--[if gt IE 9]> -->
+  <% styles.forEach( function ( file ) { %>
+  <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+  <% }); %>
+  <!-- <![endif]-->
+  ```
 
 
 <a name="v0.5.1"></a>
@@ -44,20 +46,22 @@
   All templates with .tpl.html will be matched by .html as well. So you can rename all your template files or leave them as they are. If you rename your templates from .tpl.html to .html, don't forget to adjust your mocks to bypass template calls.
   If you have ohter .html files that should not be treated as templates, you have to adjust your project config to restore the old behaviour.
 
-      app: {
-        templates: [
-          '**/*.tpl.html'
-        ],
-        templates2js: [
-          'partial/**/*.tpl.html',
-          'route/home/home.tpl.html'
-        ]
-      },
-      common: {
-        templates: [
-          '**/*.tpl.html'
-        ]
-      }
+  ```
+  app: {
+    templates: [
+      '**/*.tpl.html'
+    ],
+    templates2js: [
+      'partial/**/*.tpl.html',
+      'route/home/home.tpl.html'
+    ]
+  },
+  common: {
+    templates: [
+      '**/*.tpl.html'
+    ]
+  }
+  ```
 
   
 
@@ -65,16 +69,20 @@
 
   To migrate your index.html replace
 
-      <% styles.forEach( function ( file ) { %>
-      <link rel="stylesheet" type="text/css" href="<%= file %>"/>
-      <% }); %>
+  ```
+  <% styles.forEach( function ( file ) { %>
+  <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+  <% }); %>
+  ```
 
   with
 
-      <% styles.forEach( function ( file ) { %>
-      <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="<%= file.blessed %>"/><![endif]-->
-      <!--[if gt IE 9]> --><link rel="stylesheet" type="text/css" href="<%= file.regular %>"/><!-- <![endif]-->
-      <% }); %>
+  ```
+  <% styles.forEach( function ( file ) { %>
+  <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="<%= file.blessed %>"/><![endif]-->
+  <!--[if gt IE 9]> --><link rel="stylesheet" type="text/css" href="<%= file.regular %>"/><!-- <![endif]-->
+  <% }); %>
+  ```
 
 <a name="v0.4.3"></a>
 ## v0.4.3 (2014-03-12)
