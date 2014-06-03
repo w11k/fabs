@@ -15,9 +15,13 @@ var distTasksConfig = require('./config.dist.js');
 var exportTasksConfig = require('./export.js');
 
 var bowerrc = grunt.file.exists('./.bowerrc') ? grunt.file.readJSON('./.bowerrc') : { 'json': 'bower.json' };
+var bower;
+if (grunt.file.exists(bowerrc.json)) {
+  bower = grunt.file.readJSON(bowerrc.json);
+}
 
 var bumpFiles = [ 'package.json' ];
-if (grunt.file.exists(bowerrc.json)) {
+if (bower !== undefined && bower.version !== undefined) {
   bumpFiles.push(bowerrc.json);
 }
 
