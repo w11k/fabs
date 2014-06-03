@@ -1,3 +1,12 @@
+<a name="v0.5.4"></a>
+## v0.5.4 (2014-06-03)
+
+
+### Bug Fixes
+
+* **bump:** do not fail if bower.json does not contain version number ([59641968](https://github.com/w11k/fabs/commit/596419684e6342cdf8fe99a65b9a756a99e9a2dc))
+
+
 <a name="v0.5.3"></a>
 ## v0.5.3 (2014-04-26)
 
