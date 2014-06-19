@@ -156,7 +156,9 @@ grunt.registerTask('compile', compileTask);
 var distTask = [].concat(
   'hookDistStart',
 
-  'jshint',
+  utils.includeIf([
+    'jshint'
+  ], config.build.jshint.runInDist),
   'prepare',
 
   utils.includeIf([

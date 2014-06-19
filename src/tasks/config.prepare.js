@@ -305,6 +305,8 @@ var prepareTasksConfig = {
             config.common.files.sass
               .map(utils.addCwdToPattern('<%= compass.prepare_common.options.cssDir %>/src/common'))
               .map(utils.replaceExtension('scss', 'css')),
+            config.app.files.css
+              .map(utils.addCwdToPattern('src/app')),
             config.app.files.less
               .map(utils.addCwdToPattern('<%= less.prepare_app.options.out %>'))
               .map(utils.replaceExtension('less', 'css')),

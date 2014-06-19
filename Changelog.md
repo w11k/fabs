@@ -1,3 +1,12 @@
+<a name="v0.5.5"></a>
+## v0.5.5 (2014-06-19)
+
+
+### Bug Fixes
+
+* **css:** add css files from app to output ([205518c1](https://github.com/w11k/fabs/commit/205518c19686be8516e583d3d43c1a34c67ae1eb))
+* **jshint:** add options to deactivate jshint in dev and dist mode ([5f499e9b](https://github.com/w11k/fabs/commit/5f499e9b1f1455166c603f39fa30f37ffe0fa168))
+
 <a name="v0.5.4"></a>
 ## v0.5.4 (2014-06-03)
 
