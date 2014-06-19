@@ -27,6 +27,10 @@ var systemConfig = {
        */
       enabled: true
     },
+    jshint: {
+      runInDev: true,
+      runInDist: true
+    },
     bless: {
       prefix: 'blessed_',
       enabled: true
@@ -168,6 +172,9 @@ var systemConfig = {
       translations2js: [
         'translations/en.json',
         'translations/de.json'
+      ],
+      css: [
+        '**/*.css'
       ],
       /**
        * We can use wildcards to match multiple or all less files or we can specify less files and use imports
