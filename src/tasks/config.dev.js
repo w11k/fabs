@@ -208,7 +208,7 @@ var devTasksConfig = {
         return [].concat(
           'replace:dev_cacheBusting'
           // do not run any test or linting on startup
-//          'jshint',
+//          utils.includeIf('jshint', config.build.jshint.runInPrepare),
 //          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
 //          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
         );
@@ -229,7 +229,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          'jshint:src',
+          utils.includeIf('jshint:src', config.build.jshint.runInPrepare),
           utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
           utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev),
           'copy:prepare_app_js',
@@ -247,7 +247,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          'jshint:mock',
+          utils.includeIf('jshint:mock', config.build.jshint.runInPrepare),
           utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
           utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev),
           utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser),
@@ -271,7 +271,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          'jshint:spec',
+          utils.includeIf('jshint:spec', config.build.jshint.runInPrepare),
           utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare)
         );
       })()
@@ -287,7 +287,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          'jshint:e2e',
+          utils.includeIf('jshint:e2e', config.build.jshint.runInPrepare),
           utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
         );
       })()

@@ -27,6 +27,10 @@ var systemConfig = {
        */
       enabled: true
     },
+    jshint: {
+      runInDev: true,
+      runInDist: true
+    },
     bless: {
       prefix: 'blessed_',
       enabled: true
