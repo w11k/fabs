@@ -173,6 +173,9 @@ var systemConfig = {
         'translations/en.json',
         'translations/de.json'
       ],
+      css: [
+        '**/*.css'
+      ],
       /**
        * We can use wildcards to match multiple or all less files or we can specify less files and use imports
        * within these file to manage the inclusion manually.
