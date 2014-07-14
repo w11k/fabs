@@ -66,12 +66,6 @@ var devTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'vendor',
-          src: config.vendor.files.js_e2e
-        },
-        {
-          expand: true,
-          nosort: true,
           cwd: 'src/common',
           src: config.common.files.js_e2e
         },
