@@ -79,6 +79,30 @@ var devTasksConfig = {
     }
   },
 
+  protractorConfig: {
+    dev: {
+      options: {
+        template: path.normalize(__dirname + './../snippets/protractor.tpl.js'),
+        out: config.build.output.dir + '/protractor-dev.js',
+        browsers: config.build.e2e.browsers
+      },
+      files: [
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/common',
+          src: config.common.files.js_e2e
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/app',
+          src: config.app.files.js_e2e
+        }
+      ]
+    }
+  },
+
   indexHtml: {
     dev_e2e: {
       options: {

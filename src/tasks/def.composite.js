@@ -44,6 +44,7 @@ var devTask = [].concat(
   utils.includeIf([
     'indexHtml:dev_e2e',
     'karmaConfig:dev_e2e',
+    'protractorConfig:dev',
     'configureProxies:dev_e2e',
     'connect:dev_e2e',
     'karma:dev_e2e_watch'
