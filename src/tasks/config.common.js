@@ -167,8 +167,8 @@ var commonTasksConfig = {
     options: {
       files: bumpFiles,
       commit: true,
-      commitMessage: 'bumps version to %VERSION%',
-      commitFiles: ['-a'],
+      commitMessage: 'chore(project): bump version to %VERSION%',
+      commitFiles: bumpFiles,
       createTag: false,
       push: false
     }
