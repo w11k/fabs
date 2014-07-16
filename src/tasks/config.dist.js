@@ -87,13 +87,26 @@ var distTasksConfig = {
     dist_e2e: {
       options: {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
-        out: config.build.output.dir + '/karma-dist-e2e.js',
-        junitResults: config.build.output.dir + '/karma-dist-e2e-results.xml',
+        out: config.build.output.dir + '/karma-e2e.js',
+        junitResults: config.build.output.dir + '/karma-e2e-results.xml',
         connectPort: config.build.e2e.server.port,
         port: config.build.e2e.karma.port,
         browsers: config.build.e2e.browsers
       },
-      files: '<%= karmaConfig.dev_e2e.files %>'
+      files: [
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/common',
+          src: config.common.files.js_e2e
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/app',
+          src: config.app.files.js_e2e
+        }
+      ]
     }
   },
 
