@@ -90,7 +90,7 @@ var devTasksConfig = {
           'replace:dev_cacheBusting'
           // do not run any test or linting on startup
 //          utils.includeIf('jshint', config.build.jshint.runInDev),
-//          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev)
+//          utils.includeIf('karma:dev_spec:run', runKarmaInDev)
         );
       })(),
       options: {
@@ -110,7 +110,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:src', config.build.jshint.runInDev),
-          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
+          utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           'copy:prepare_app_js',
           'copy:prepare_common_js',
           'replace:dev_cacheBusting',
@@ -127,7 +127,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:mock', config.build.jshint.runInDev),
-          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
+          utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser),
           utils.includeIf('copy:prepare_common_js_mock', config.build.mocks.loadInBrowser),
           'indexHtml:prepare'
@@ -150,7 +150,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:spec', config.build.jshint.runInDev),
-          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev)
+          utils.includeIf('karma:dev_spec:run', runKarmaInDev)
         );
       })()
     },
@@ -248,6 +248,16 @@ var devTasksConfig = {
       ],
       // livereload only
       tasks: []
+    }
+  },
+
+  karma: {
+    dev_spec: {
+      configFile: '<%= karmaConfig.spec.options.out %>',
+      background: true,
+      reporters: [
+        'progress'
+      ]
     }
   }
 

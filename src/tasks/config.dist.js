@@ -65,8 +65,16 @@ var distTasksConfig = {
   },
 
   karma: {
+    dist_spec: {
+      configFile: '<%= karmaConfig.spec.options.out %>',
+      singleRun: true,
+      reporters: [
+        'progress',
+        'junit'
+      ]
+    },
     dist_e2e: {
-      configFile: '<%= karmaConfig.dist_e2e.options.out %>',
+      configFile: '<%= karmaConfig.e2e.options.out %>',
       singleRun: true,
       reporters: [
         'progress',

@@ -38,8 +38,10 @@ var systemConfig = {
       enabled: true
     },
     spec: {
-      // Enable / disable running spec tests in prepare phase (included in dev and dist)
-      runInPrepare: true,
+      // Enable / disable running spec tests in dev mode
+      runInDev: true,
+      // Enable / disable running spec tests in dist mode
+      runInDist: true,
       karma: {
         // port on which karma for spec tests runs
         port: 9010

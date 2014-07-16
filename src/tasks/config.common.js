@@ -83,6 +83,86 @@ var commonTasksConfig = {
     }
   },
 
+  karmaConfig: {
+    spec: {
+      options: {
+        template: path.normalize(__dirname + './../snippets/karma-spec.tpl.js'),
+        out: config.build.output.dir + '/karma-prepare-spec.js',
+        junitResults: config.build.output.dir + '/karma-prepare-spec-results.xml',
+        browsers: config.build.spec.browsers,
+        port: config.build.spec.karma.port
+      },
+      files: [
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'vendor',
+          src: config.vendor.files.js
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'vendor',
+          src: config.vendor.files.js_mock
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'vendor',
+          src: config.vendor.files.js_spec
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: '.',
+          src: '<%= copy.prepare_app_templates2js.options.out %>'
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: '.',
+          src: '<%= translations2js.prepare.options.out %>'
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/common',
+          src: config.common.files.js
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/app',
+          src: config.app.files.js
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/common',
+          src: config.common.files.js_mock
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/app',
+          src: config.app.files.js_mock
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/common',
+          src: config.common.files.js_spec
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/app',
+          src: config.app.files.js_spec
+        }
+      ]
+    }
+  },
+
   bump: {
     options: {
       files: bumpFiles,
