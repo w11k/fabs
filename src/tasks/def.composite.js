@@ -166,11 +166,19 @@ var distTask = [].concat(
     'htmlmin:dist_e2e',
     'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',
-    'karmaConfig:dist_e2e',
     'configureProxies:dist_e2e',
-    'connect:dist_e2e',
-    'karma:dist_e2e'
+    'connect:dist_e2e'
   ], config.build.e2e.runInDist),
+
+  utils.includeIf([
+    'karmaConfig:dist_e2e',
+    'karma:dist_e2e'
+  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
+
+  utils.includeIf([
+    'protractorConfig:dist',
+    'protractor:dist'
+  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
 
   'compress:dist_app',
 

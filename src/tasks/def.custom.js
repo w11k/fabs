@@ -146,16 +146,20 @@ grunt.registerMultiTask('karmaConfig', 'Process karma config templates', karmaCo
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 var protractorConfigTask = function () {
-  var jsFiles = utils.filterForJS(this.filesSrc);
+  var jsFiles = utils.filterForJS(this.filesSrc).map(utils.addCwdToPattern('..'));
 
   var options = this.options({});
+
+  var capabilities = options.browsers.map(function (browser) { return { browserName: browser.toLowerCase() }; });
+  var capabilitiesAsStrings = capabilities.map(function (capability) { return JSON.stringify(capability); });
 
   grunt.file.copy(options.template, options.out, {
     process: function (contents) {
       return grunt.template.process(contents, {
         data: {
           scripts: jsFiles,
-          browsers: options.browsers
+          capabilities: capabilitiesAsStrings,
+          baseUrl: options.url
         }
       });
     }

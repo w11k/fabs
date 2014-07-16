@@ -56,8 +56,14 @@ var systemConfig = {
       // Enable / disable running end-to-end tests against compiled application
       runInDist: true,
       karma: {
+        // Enable / disable running end-to-end tests with karma and ng-scenario runner
+        enabled: false,
         // port on which karma for e2e tests runs
         port: 9011
+      },
+      protrctor: {
+        // Enable / disable running end-to-end tests with protractor
+        enabled: true
       },
       server: {
         // port used to start web server serving application for e2e tests (with mocks)

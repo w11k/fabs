@@ -2,10 +2,11 @@
 
 exports.config = {
   rootElement: 'html',
+  baseUrl: '<%= baseUrl %>',
   specs: [
-    <%= scripts.map(function(file) { return '\'' + file + '\'' }).join(',\n      ') %>
+    <%= scripts.map(function(file) { return '\'' + file + '\'' }).join(',\n    ') %>
   ],
   multiCapabilities: [
-    <% browsers.forEach( function ( browser ) { %>{ browserName: <%= browser %> }<% }); %>
+    <%= capabilities.join(',\n    ') %>
   ]
 };
