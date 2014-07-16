@@ -53,8 +53,6 @@ var systemConfig = {
       browsers: []
     },
     e2e: {
-      // Enable / disable running end-to-end tests in dev mode
-      runInDev: true,
       // Enable / disable running end-to-end tests against compiled application
       runInDist: true,
       karma: {
@@ -114,12 +112,6 @@ var systemConfig = {
       e2e: {
         // used internally to run e2e tests against compiled app but with mock files
         dir: 'dist_e2e'
-      }
-    },
-    dev: {
-      e2e: {
-        // used internally to run e2e tests with mock files while in dev mode
-        dir: 'dev_e2e'
       }
     }
   },

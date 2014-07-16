@@ -41,15 +41,6 @@ var devTask = [].concat(
     'karma:prepare_spec_watch'
   ], config.build.spec.runInPrepare),
 
-  utils.includeIf([
-    'indexHtml:dev_e2e',
-    'karmaConfig:dev_e2e',
-    'protractorConfig:dev',
-    'configureProxies:dev_e2e',
-    'connect:dev_e2e',
-    'karma:dev_e2e_watch'
-  ], config.build.e2e.runInDev),
-
   'configureProxies:dev',
   'connect:dev',
   'watch',
