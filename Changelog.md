@@ -1,5 +1,32 @@
 # fabs Changelog
 
+<a name="v0.6.0"></a>
+## v0.6.0 (2014-07-16)
+
+
+### Bug Fixes
+
+* **spec:**
+  * run karma only if there are spec tests to run, avoid failing because of no tests ([af7419e2](https://github.com/w11k/fabs/commit/af7419e21db1c71d487374261a7f0b9b4387d0f5))
+  * add karma-chrome-launcher plugin to karma config to be able to launch chrome aut ([1d9d5ae5](https://github.com/w11k/fabs/commit/1d9d5ae59adaf2eec2f7ca2f26625a793207e9ac))
+
+
+### Features
+
+* **e2e:** add support protractor to run end-2-end tests with ([1e83d468](https://github.com/w11k/fabs/commit/1e83d46811a277790527b1c68f0558afb7691758))
+* **ng-annotate:** replace ng-min with ng-annotate (which has support for explicit @ngInject annotation) ([3d51f9ff](https://github.com/w11k/fabs/commit/3d51f9ffba70c1acc3230a37ac14dfd7c7f8361d))
+* **bower:** unify options - use runInDev and runInDist instead of runInPrepare ([333facb3](https://github.com/w11k/fabs/commit/333facb38ad566ae4659925229b977d21719ef1e))
+* **spec:** unify options - use runInDev and runInDist instead of runInPrepare ([0783e86b](https://github.com/w11k/fabs/commit/0783e86bd45ca61da737c43c182d1cf4d62b4af4))
+
+
+### Breaking Changes
+
+* Running end-2-end tests in dev-mode is not supported anymore
+* end-2-end tests can be run with protractor or karma + ng-scenario-runner but protractor is the new default. karma + ng-scenario-runner is disabled by default. To restore old behaviour set build.e2e.karma.enabled = true and build.e2e.protractor.endabled = false in your config file
+* config build.bower.runInPrepare is now splitted into build.bower.runInDev and build.bower.runInDist
+* config build.spec.runInPrepare is now splitted into build.spec.runInDev and build.spec.runInDist
+
+
 <a name="v0.5.6"></a>
 ## v0.5.6 (2014-07-16)
 
