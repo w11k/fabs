@@ -2,7 +2,7 @@
   "name": "fabs",
   "description": "Fabulous AngularJS Build System - A Grunt based build system for AngularJS applications",
   "homepage": "http://github.com/w11k/fabs",
-  "version": "0.5.5",
+  "version": "0.5.6",
 
   "author": {
     "name": "WeigleWilczek GmbH",
