@@ -53,13 +53,17 @@ var systemConfig = {
       browsers: []
     },
     e2e: {
-      // Enable / disable running end-to-end tests in dev mode
-      runInDev: true,
       // Enable / disable running end-to-end tests against compiled application
       runInDist: true,
       karma: {
+        // Enable / disable running end-to-end tests with karma and ng-scenario runner
+        enabled: false,
         // port on which karma for e2e tests runs
         port: 9011
+      },
+      protrctor: {
+        // Enable / disable running end-to-end tests with protractor
+        enabled: true
       },
       server: {
         // port used to start web server serving application for e2e tests (with mocks)
@@ -114,12 +118,6 @@ var systemConfig = {
       e2e: {
         // used internally to run e2e tests against compiled app but with mock files
         dir: 'dist_e2e'
-      }
-    },
-    dev: {
-      e2e: {
-        // used internally to run e2e tests with mock files while in dev mode
-        dir: 'dev_e2e'
       }
     }
   },

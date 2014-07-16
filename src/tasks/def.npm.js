@@ -36,3 +36,4 @@ grunt.loadNpmTasks(root + 'grunt-shell');
 grunt.loadNpmTasks(root + 'grunt-bless');
 grunt.loadNpmTasks(root + 'grunt-bump');
 grunt.loadNpmTasks(root + 'grunt-conventional-changelog');
+grunt.loadNpmTasks(root + 'grunt-protractor-runner');

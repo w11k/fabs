@@ -58,7 +58,6 @@ function createBuildConfig(absPathToConfigFolder) {
   buildConfig.build.prepare.outdir = buildConfig.build.output.dir + '/' + buildConfig.build.prepare.dir;
   buildConfig.build.compile.outdir = buildConfig.build.output.dir + '/' + buildConfig.build.compile.dir;
   buildConfig.build.dist.e2e.outdir = buildConfig.build.output.dir + '/' + buildConfig.build.dist.e2e.dir;
-  buildConfig.build.dev.e2e.outdir = buildConfig.build.output.dir + '/' + buildConfig.build.dev.e2e.dir;
 
   return buildConfig;
 }

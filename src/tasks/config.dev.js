@@ -29,126 +29,6 @@ var devTasksConfig = {
         middleware: utils.connectMiddleware
       },
       proxies: config.build.server.proxies
-    },
-    dev_e2e: {
-      options: {
-        port: config.build.e2e.server.port,
-        hostname: '0.0.0.0',
-        livereload: false,
-        keepalive: false,
-        base: [
-          config.build.dev.e2e.outdir,
-          config.build.prepare.outdir
-        ],
-        middleware: utils.connectMiddleware
-      },
-      proxies: config.build.server.proxies
-    }
-  },
-
-  karma: {
-    dev_e2e_watch: {
-      configFile: '<%= karmaConfig.dev_e2e.options.out %>',
-      background: true
-    }
-  },
-
-  karmaConfig: {
-    dev_e2e: {
-      options: {
-        template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
-        out: config.build.output.dir + '/karma-dev-e2e.js',
-        junitResults: config.build.output.dir + '/karma-dev-e2e-results.xml',
-        connectPort: config.build.e2e.server.port,
-        port: config.build.e2e.karma.port,
-        browsers: config.build.e2e.browsers
-      },
-      files: [
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'vendor',
-          src: config.vendor.files.js_e2e
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
-          src: config.app.files.js_e2e
-        }
-      ]
-    }
-  },
-
-  indexHtml: {
-    dev_e2e: {
-      options: {
-        base: [
-          config.build.prepare.outdir,
-          config.build.dev.e2e.outdir
-        ],
-        dir: config.build.dev.e2e.outdir,
-        blessedPrefix: config.build.bless.prefix,
-        angular_module: config.app.angular_module.withMocks
-      },
-      files: (function () {
-        return [].concat(
-          // javascript
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_vendor_js.options.out %>',
-            src: config.vendor.files.js
-          },
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_common_js.options.out %>',
-            src: config.common.files.js
-          },
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_app_js.options.out %>',
-            src: config.app.files.js
-          },
-          {
-            src: '<%= translations2js.prepare.options.out %>'
-          },
-          {
-            src: '<%= copy.prepare_app_templates2js.options.out %>'
-          },
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_vendor_js_mock.options.out %>',
-            src: config.vendor.files.js_mock
-          },
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_common_js_mock.options.out %>',
-            src: config.common.files.js_mock
-          },
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_app_js_mock.options.out %>',
-            src: config.app.files.js_mock
-          },
-
-          // css
-          {
-            src: '<%= concat.prepare_css.options.out %>'
-          }
-        );
-      })()
     }
   },
 
@@ -210,8 +90,7 @@ var devTasksConfig = {
           'replace:dev_cacheBusting'
           // do not run any test or linting on startup
 //          utils.includeIf('jshint', config.build.jshint.runInPrepare),
-//          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
-//          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+//          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev)
         );
       })(),
       options: {
@@ -232,7 +111,6 @@ var devTasksConfig = {
         return [].concat(
           utils.includeIf('jshint:src', config.build.jshint.runInPrepare),
           utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev),
           'copy:prepare_app_js',
           'copy:prepare_common_js',
           'replace:dev_cacheBusting',
@@ -250,7 +128,6 @@ var devTasksConfig = {
         return [].concat(
           utils.includeIf('jshint:mock', config.build.jshint.runInPrepare),
           utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev),
           utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser),
           utils.includeIf('copy:prepare_common_js_mock', config.build.mocks.loadInBrowser),
           'indexHtml:prepare'
@@ -288,8 +165,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          utils.includeIf('jshint:e2e', config.build.jshint.runInPrepare),
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+          utils.includeIf('jshint:e2e', config.build.jshint.runInPrepare)
         );
       })()
     },
@@ -316,8 +192,7 @@ var devTasksConfig = {
       files: [ 'src/index.html' ],
       tasks: (function () {
         return [].concat(
-          'indexHtml:prepare',
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+          'indexHtml:prepare'
         );
       })()
     },
@@ -330,8 +205,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           'copy:prepare_app_templates',
-          'copy:prepare_common_templates',
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+          'copy:prepare_common_templates'
         );
       })()
     },
@@ -348,8 +222,7 @@ var devTasksConfig = {
           utils.includeIf('less:prepare_app', config.build.less.enabled && utils.hasFiles('src/app', config.app.files.less)),
           utils.includeIf('less:prepare_common', config.build.less.enabled && utils.hasFiles('src/common', config.common.files.less)),
           'concat:prepare_css',
-          'indexHtml:prepare',
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+          'indexHtml:prepare'
         );
       })()
     },
@@ -365,8 +238,7 @@ var devTasksConfig = {
           utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
           utils.includeIf('compass:prepare_common', config.build.sass.enabled && utils.hasFiles('src/common', config.common.files.sass)),
           'concat:prepare_css',
-          'indexHtml:prepare',
-          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
+          'indexHtml:prepare'
         );
       })()
     },

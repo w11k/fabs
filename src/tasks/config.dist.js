@@ -89,6 +89,39 @@ var distTasksConfig = {
     }
   },
 
+  protractorConfig: {
+    dist: {
+      options: {
+        template: path.normalize(__dirname + './../snippets/protractor.tpl.js'),
+        out: config.build.output.dir + '/protractor.js',
+        browsers: config.build.e2e.browsers,
+        url: 'http://localhost:' + config.build.e2e.server.port
+      },
+      files: [
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/common',
+          src: config.common.files.js_e2e
+        },
+        {
+          expand: true,
+          nosort: true,
+          cwd: 'src/app',
+          src: config.app.files.js_e2e
+        }
+      ]
+    }
+  },
+
+  protractor: {
+    dist: {
+      options: {
+        configFile: '<%= protractorConfig.dist.options.out %>'
+      }
+    }
+  },
+
   indexHtml: {
     dist_e2e: {
       options: {
