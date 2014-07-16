@@ -27,13 +27,6 @@ module.exports = {
       buildConfig.build.mocks.loadInBrowser = !!grunt.option('mocks');
     }
 
-    // Enable or disable running e2e tests, in dev mode
-    // check for undefined to not override the default
-    if (grunt.option('e2e') !== undefined) {
-      grunt.verbose.writeln('detected command line argument: --e2e= ' + grunt.option('e2e'));
-      buildConfig.build.e2e.runInDev = !!grunt.option('e2e');
-    }
-
     // Enable or disable running bower
     // check for undefined to not override the default
     if (grunt.option('bower') !== undefined) {

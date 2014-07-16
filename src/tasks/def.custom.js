@@ -140,6 +140,35 @@ var karmaConfigTask = function () {
 grunt.registerMultiTask('karmaConfig', 'Process karma config templates', karmaConfigTask);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * In order to avoid having to specify manually the files needed for protractor to
+ * run, we use grunt to manage the list for us. The `snippets/protractor-*` files are
+ * compiled as grunt templates.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var protractorConfigTask = function () {
+  var jsFiles = utils.filterForJS(this.filesSrc).map(utils.addCwdToPattern('..'));
+
+  var options = this.options({});
+
+  var capabilities = options.browsers.map(function (browser) { return { browserName: browser.toLowerCase() }; });
+  var capabilitiesAsStrings = capabilities.map(function (capability) { return JSON.stringify(capability); });
+
+  grunt.file.copy(options.template, options.out, {
+    process: function (contents) {
+      return grunt.template.process(contents, {
+        data: {
+          scripts: jsFiles,
+          capabilities: capabilitiesAsStrings,
+          baseUrl: options.url
+        }
+      });
+    }
+  });
+};
+
+grunt.registerMultiTask('protractorConfig', 'Process Protractor config templates', protractorConfigTask);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * We need to calculate a lot of configuration lazy. For most use cases grunt's templating is sufficient. But for
  * some use cases we need to call a function lazy, not on loading the configuration and that function returns complex
  * data, not a string. The 'update config' task helps us to modify the grunt configuration declarative.

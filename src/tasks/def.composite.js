@@ -34,20 +34,14 @@ var devTask = [].concat(
 
   'hookDevStart',
 
+  utils.includeIf('shell:bower', config.build.bower.runInDev),
+
   'prepare',
 
   utils.includeIf([
-    'karmaConfig:prepare_spec',
-    'karma:prepare_spec_watch'
-  ], config.build.spec.runInPrepare),
-
-  utils.includeIf([
-    'indexHtml:dev_e2e',
-    'karmaConfig:dev_e2e',
-    'configureProxies:dev_e2e',
-    'connect:dev_e2e',
-    'karma:dev_e2e_watch'
-  ], config.build.e2e.runInDev),
+    'karmaConfig:spec',
+    'karma:dev_spec'
+  ], config.build.spec.runInDev && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
 
   'configureProxies:dev',
   'connect:dev',
@@ -66,8 +60,6 @@ var prepareTask = [].concat(
   'clean:prepare',
 
   'hookPrepareStart',
-
-  utils.includeIf('shell:prepare_bower', config.build.bower.runInPrepare),
 
   /* html2js and translations2js have to run in prepare phase because there are dependencies in
    * the code referencing the generated angular modules
@@ -128,7 +120,7 @@ var compileTask = [].concat(
   'copy:compile_translations',
   'minjson:compile_translations',
 
-  utils.includeIf('ngmin', config.build.ngmin.enabled),
+  utils.includeIf('ngAnnotate', config.build.ngAnnotate.enabled),
   'concat:compile_js',
   'uglify:compile',
 
@@ -159,12 +151,14 @@ var distTask = [].concat(
   utils.includeIf([
     'jshint'
   ], config.build.jshint.runInDist),
+  utils.includeIf('shell:bower', config.build.bower.runInDist),
+
   'prepare',
 
   utils.includeIf([
-    'karmaConfig:prepare_spec',
-    'karma:prepare_spec'
-  ], config.build.spec.runInPrepare),
+    'karmaConfig:spec',
+    'karma:dist_spec'
+  ], config.build.spec.runInDist && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
 
   'compile',
 
@@ -174,11 +168,19 @@ var distTask = [].concat(
     'htmlmin:dist_e2e',
     'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',
-    'karmaConfig:dist_e2e',
     'configureProxies:dist_e2e',
-    'connect:dist_e2e',
-    'karma:dist_e2e'
+    'connect:dist_e2e'
   ], config.build.e2e.runInDist),
+
+  utils.includeIf([
+    'karmaConfig:dist_e2e',
+    'karma:dist_e2e'
+  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
+
+  utils.includeIf([
+    'protractorConfig:dist',
+    'protractor:dist'
+  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
 
   'compress:dist_app',
 

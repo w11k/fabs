@@ -104,11 +104,7 @@ var compileTasksConfig = {
     }
   },
 
-  /**
-   * `ng-min` annotates the sources before minifying. That is, it allows us
-   * to code without AngularJS's array syntax for dependency injection.
-   */
-  ngmin: {
+  ngAnnotate: {
     compile: {
       files: [
         {
