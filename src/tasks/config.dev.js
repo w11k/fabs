@@ -3,7 +3,8 @@
 var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
-var path = require('path');
+
+var runKarmaInDev = config.build.spec.runInPrepare && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec));
 
 var devTasksConfig = {
 
@@ -209,7 +210,7 @@ var devTasksConfig = {
           'replace:dev_cacheBusting'
           // do not run any test or linting on startup
 //          utils.includeIf('jshint', config.build.jshint.runInPrepare),
-//          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
+//          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
 //          utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev)
         );
       })(),
@@ -230,7 +231,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:src', config.build.jshint.runInPrepare),
-          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
+          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
           utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev),
           'copy:prepare_app_js',
           'copy:prepare_common_js',
@@ -248,7 +249,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:mock', config.build.jshint.runInPrepare),
-          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare),
+          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev),
           utils.includeIf('karma:dev_e2e_watch:run', config.build.e2e.runInDev),
           utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser),
           utils.includeIf('copy:prepare_common_js_mock', config.build.mocks.loadInBrowser),
@@ -272,7 +273,7 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:spec', config.build.jshint.runInPrepare),
-          utils.includeIf('karma:prepare_spec_watch:run', config.build.spec.runInPrepare)
+          utils.includeIf('karma:prepare_spec_watch:run', runKarmaInDev)
         );
       })()
     },

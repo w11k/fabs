@@ -164,7 +164,7 @@ var distTask = [].concat(
   utils.includeIf([
     'karmaConfig:prepare_spec',
     'karma:prepare_spec'
-  ], config.build.spec.runInPrepare),
+  ], config.build.spec.runInPrepare && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
 
   'compile',
 
