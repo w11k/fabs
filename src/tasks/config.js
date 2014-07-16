@@ -83,6 +83,15 @@ var additionalTasksConfig = {
     }
   },
 
+  shell: {
+    bower: {
+      command: [
+        'bower install',
+        'bower update -q'
+      ].join(' && ')
+    }
+  },
+
   bump: {
     options: {
       files: bumpFiles,

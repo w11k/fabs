@@ -6,8 +6,10 @@ var systemConfig = {
 
   build: {
     bower: {
-      // Enable / disable execution of 'bower install' && 'bower update' in prepare phase (includes in dev and dist)
-      runInPrepare: true
+      // Enable / disable execution of 'bower install' && 'bower update' in dev mode
+      runInDev: true,
+      // Enable / disable execution of 'bower install' && 'bower update' in dist mode
+      runInDist: true
     },
     less: {
       // Enable / disable usage of less

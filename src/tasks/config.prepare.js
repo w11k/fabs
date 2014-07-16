@@ -424,24 +424,6 @@ var prepareTasksConfig = {
     }
   },
 
-  /**
-   * Try to install and update bower components.
-   * You can disable it temporarily via command line option --boser=false
-   */
-  shell: {
-    prepare_bower: {
-      options: {
-        stdout: true,
-        stderr: true,
-        failOnError: true
-      },
-      command: [
-        'bower install',
-        'bower update -q'
-      ].join(' && ')
-    }
-  },
-
   karma: {
     prepare_spec_watch: {
       configFile: '<%= karmaConfig.prepare_spec.options.out %>',

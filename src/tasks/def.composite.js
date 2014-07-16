@@ -34,6 +34,8 @@ var devTask = [].concat(
 
   'hookDevStart',
 
+  utils.includeIf('shell:bower', config.build.bower.runInDev),
+
   'prepare',
 
   utils.includeIf([
@@ -58,8 +60,6 @@ var prepareTask = [].concat(
   'clean:prepare',
 
   'hookPrepareStart',
-
-  utils.includeIf('shell:prepare_bower', config.build.bower.runInPrepare),
 
   /* html2js and translations2js have to run in prepare phase because there are dependencies in
    * the code referencing the generated angular modules
@@ -151,6 +151,8 @@ var distTask = [].concat(
   utils.includeIf([
     'jshint'
   ], config.build.jshint.runInDist),
+  utils.includeIf('shell:bower', config.build.bower.runInDist),
+
   'prepare',
 
   utils.includeIf([
