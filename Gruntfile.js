@@ -16,7 +16,7 @@ module.exports = function () {
       options: {
         files: ['package.json'],
         commit: true,
-        commitMessage: 'bumps version to %VERSION%',
+        commitMessage: 'chore(project): bump version to %VERSION%',
         commitFiles: ['package.json'], // '-a' for all files
         createTag: false,
         push: false
