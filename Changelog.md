@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="v0.6.1"></a>
+## v0.6.1 (2014-07-16)
+
+
+### Bug Fixes
+
+* **bump:** adjust commit message to angular-commit-message-guidline and commit bumped files only ([c18045de](https://github.com/w11k/fabs/commit/c18045de641a3682f024341877a4a1569aae764c))
+
+
 <a name="v0.6.0"></a>
 ## v0.6.0 (2014-07-16)
 
