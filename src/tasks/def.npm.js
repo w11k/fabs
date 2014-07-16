@@ -28,7 +28,7 @@ grunt.loadNpmTasks(root + 'grunt-contrib-compress');
 grunt.loadNpmTasks(root + 'grunt-contrib-less');
 grunt.loadNpmTasks(root + 'grunt-connect-proxy');
 grunt.loadNpmTasks(root + 'grunt-karma');
-grunt.loadNpmTasks(root + 'grunt-ngmin');
+grunt.loadNpmTasks(root + 'grunt-ng-annotate');
 grunt.loadNpmTasks(root + 'grunt-minjson');
 grunt.loadNpmTasks(root + 'grunt-replace');
 grunt.loadNpmTasks(root + 'grunt-html2js');

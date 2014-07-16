@@ -17,13 +17,13 @@ var systemConfig = {
       // Enable / disable usage of sass
       enabled: true
     },
-    ngmin: {
+    ngAnnotate: {
       /**
-       * Enable / disable execution of ngmin in compile phase to automatically create array notation for angular
+       * Enable / disable execution of ng-annotate in compile phase to automatically create array notation for angular
        * dependency injection.
        *
-       * Pay attention: ngmin does not detect all functions consuming dependencies via di. Only code that starts with
-       * 'angular.module('xyz').someFunctionOfTypeModule' will be found. See ngmin website for further information.
+       * Pay attention: ng-annotate perhaps does not detect all functions consuming dependencies via di.
+       * Use a multiline comment with @ngInject in front of a function to mark it for annotation. See ng-annotate website for more information.
        */
       enabled: true
     },

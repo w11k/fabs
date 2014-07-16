@@ -120,7 +120,7 @@ var compileTask = [].concat(
   'copy:compile_translations',
   'minjson:compile_translations',
 
-  utils.includeIf('ngmin', config.build.ngmin.enabled),
+  utils.includeIf('ngAnnotate', config.build.ngAnnotate.enabled),
   'concat:compile_js',
   'uglify:compile',
 
