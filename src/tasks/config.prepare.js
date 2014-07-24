@@ -22,28 +22,28 @@ var prepareTasksConfig = {
     src: {
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js
       }]
     },
     mock: {
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js_mock
       }]
     },
     spec: {
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js_spec
       }]
     },
     e2e: {
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js_e2e
       }]
     }
@@ -64,7 +64,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.templates,
         dest: '<%= copy.prepare_app_templates.options.out %>'
       }]
@@ -90,7 +90,7 @@ var prepareTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.translations,
           dest: '<%= copy.prepare_app_translations.options.out %>'
         }
@@ -122,7 +122,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js,
         dest: '<%= copy.prepare_app_js.options.out %>'
       }]
@@ -144,7 +144,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js_mock,
         dest: '<%= copy.prepare_app_js_mock.options.out %>'
       }]
@@ -170,7 +170,7 @@ var prepareTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.less,
           dest: '<%= less.prepare_app.options.out %>',
           ext: '.css'
@@ -185,10 +185,10 @@ var prepareTasksConfig = {
         // files
         sassDir: '.',
         specify: grunt.file.expand(
-          { cwd: 'src/app' },
+          { cwd: config.app.files.root },
           config.app.files.sass
         ).map(function (file) {
-            return 'src/app/' + file;
+            return config.app.files.root + '/' + file;
           }
         ),
         cssDir: config.build.prepare.outdir + '/sass/app'
@@ -208,12 +208,12 @@ var prepareTasksConfig = {
             config.vendor.files.css
               .map(utils.addCwdToPattern('vendor')),
             config.app.files.css
-              .map(utils.addCwdToPattern('src/app')),
+              .map(utils.addCwdToPattern(config.app.files.root)),
             config.app.files.less
               .map(utils.addCwdToPattern('<%= less.prepare_app.options.out %>'))
               .map(utils.replaceExtension('less', 'css')),
             config.app.files.sass
-              .map(utils.addCwdToPattern('<%= compass.prepare_app.options.cssDir %>/src/app'))
+              .map(utils.addCwdToPattern('<%= compass.prepare_app.options.cssDir %>/' + config.app.files.root))
               .map(utils.replaceExtension('scss', 'css'))
           );
         })(),
@@ -308,7 +308,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.translations2js
       }]
     }

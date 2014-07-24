@@ -5,7 +5,7 @@ var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
 var project = require('./../utils/project.js');
 
-var runKarmaInDev = config.build.spec.runInPrepare && utils.hasFiles('src/app', config.app.files.js_spec);
+var runKarmaInDev = config.build.spec.runInPrepare && utils.hasFiles(config.app.files.root, config.app.files.js_spec);
 var bowerRc = project.getBowerRc();
 
 var devTasksConfig = {
@@ -103,7 +103,7 @@ var devTasksConfig = {
      */
     js: {
       files: [
-        config.app.files.js.map(utils.addCwdToPattern('src/app'))
+        config.app.files.js.map(utils.addCwdToPattern(config.app.files.root))
       ],
       tasks: (function () {
         return [].concat(
@@ -118,7 +118,7 @@ var devTasksConfig = {
 
     js_mock: {
       files: [
-        config.app.files.js_mock.map(utils.addCwdToPattern('src/app'))
+        config.app.files.js_mock.map(utils.addCwdToPattern(config.app.files.root))
       ],
       tasks: (function () {
         return [].concat(
@@ -139,7 +139,7 @@ var devTasksConfig = {
         livereload: false
       },
       files: [
-        config.app.files.js_spec.map(utils.addCwdToPattern('src/app'))
+        config.app.files.js_spec.map(utils.addCwdToPattern(config.app.files.root))
       ],
       tasks: (function () {
         return [].concat(
@@ -154,7 +154,7 @@ var devTasksConfig = {
         livereload: false
       },
       files: [
-        config.app.files.js_e2e.map(utils.addCwdToPattern('src/app'))
+        config.app.files.js_e2e.map(utils.addCwdToPattern(config.app.files.root))
       ],
       tasks: (function () {
         return [].concat(
@@ -165,7 +165,7 @@ var devTasksConfig = {
 
     translations: {
       files: [
-        config.app.files.translations.map(utils.addCwdToPattern('src/app'))
+        config.app.files.translations.map(utils.addCwdToPattern(config.app.files.root))
       ],
       tasks: [ 'translations2js:prepare' ]
     },
@@ -182,6 +182,7 @@ var devTasksConfig = {
     },
 
     html: {
+      // TODO: make configurable
       files: [ 'src/index.html' ],
       tasks: (function () {
         return [].concat(
@@ -192,7 +193,7 @@ var devTasksConfig = {
 
     templates: {
       files: [
-        config.app.files.templates.map(utils.addCwdToPattern('src/app'))
+        config.app.files.templates.map(utils.addCwdToPattern(config.app.files.root))
       ],
       tasks: [ 'copy:prepare_app_templates' ]
     },
@@ -206,7 +207,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          utils.includeIf('less:prepare_app', config.build.less.enabled && utils.hasFiles('src/app', config.app.files.less)),
+          utils.includeIf('less:prepare_app', config.build.less.enabled && utils.hasFiles(config.app.files.root, config.app.files.less)),
           'concat:prepare_css',
           'indexHtml:prepare'
         );
@@ -221,7 +222,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
+          utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
           'concat:prepare_css',
           'indexHtml:prepare'
         );

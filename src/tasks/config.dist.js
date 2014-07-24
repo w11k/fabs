@@ -50,7 +50,7 @@ var distTasksConfig = {
         },
         {
           expand: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_mock,
           dest: '<%= copy.dist_e2e.options.out %>'
         }
@@ -91,7 +91,7 @@ var distTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_e2e
         }
       ]
@@ -110,7 +110,7 @@ var distTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_e2e
         }
       ]

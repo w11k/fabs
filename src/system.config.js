@@ -131,9 +131,10 @@ var systemConfig = {
     /**
      * Specifies which files to include to the prepared / compiled application.
      *
-     * ALL PATHS ARE RELATIVE TO 'src/app' !!!
+     * ALL PATHS ARE RELATIVE TO root !!!
      */
     files: {
+      root: 'src',
       js: [
         '**/*.js',
         '!**/*.mock.js',
@@ -146,7 +147,8 @@ var systemConfig = {
 
       // application's html templates
       templates: [
-        '**/*.html'
+        '**/*.html',
+        '!index.html'
       ],
       // a subset of templates to compile to js and preload with js code
       templates2js: [
