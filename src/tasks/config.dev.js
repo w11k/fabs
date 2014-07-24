@@ -111,7 +111,7 @@ var devTasksConfig = {
           utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           'copy:prepare_app_js',
           'replace:dev_cacheBusting',
-          'indexHtml:prepare'
+          'processHtml:prepare'
         );
       })()
     },
@@ -125,7 +125,7 @@ var devTasksConfig = {
           utils.includeIf('jshint:mock', config.build.jshint.runInDev),
           utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser),
-          'indexHtml:prepare'
+          'processHtml:prepare'
         );
       })()
     },
@@ -182,13 +182,8 @@ var devTasksConfig = {
     },
 
     html: {
-      // TODO: make configurable
-      files: [ 'src/index.html' ],
-      tasks: (function () {
-        return [].concat(
-          'indexHtml:prepare'
-        );
-      })()
+      files: config.app.files.html.map(utils.addCwdToPattern(config.app.files.root)),
+      tasks: [ 'processHtml:prepare' ]
     },
 
     templates: {
@@ -209,7 +204,7 @@ var devTasksConfig = {
         return [].concat(
           utils.includeIf('less:prepare_app', config.build.less.enabled && utils.hasFiles(config.app.files.root, config.app.files.less)),
           'concat:prepare_css',
-          'indexHtml:prepare'
+          'processHtml:prepare'
         );
       })()
     },
@@ -224,7 +219,7 @@ var devTasksConfig = {
         return [].concat(
           utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
           'concat:prepare_css',
-          'indexHtml:prepare'
+          'processHtml:prepare'
         );
       })()
     },

@@ -145,15 +145,18 @@ var systemConfig = {
       js_spec: [ '**/*.spec.js' ],
       js_e2e: [ '**/*.e2e.js' ],
 
+      html: [
+        'index.html'
+      ],
+
       // application's html templates
       templates: [
-        '**/*.html',
-        '!index.html'
+        '**/*.html'
       ],
       // a subset of templates to compile to js and preload with js code
       templates2js: [
+        // don't use the next line, otherwise index.html will be included too
         // '**/*.html'
-        'partial/**/*.html',
         'route/home/home.html'
       ],
       /**

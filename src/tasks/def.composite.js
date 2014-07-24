@@ -88,7 +88,7 @@ var prepareTask = [].concat(
   utils.includeIf('copy:prepare_vendor_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
 
   'copy:prepare_vendor_js',
-  'indexHtml:prepare',
+  'processHtml:prepare',
 
   'hookPrepareEnd'
 );
@@ -119,7 +119,7 @@ var compileTask = [].concat(
   'concat:compile_js',
   'uglify:compile',
 
-  'indexHtml:compile',
+  'processHtml:compile',
   'htmlmin:compile_index',
 
   'hookCacheBustingStart',
@@ -159,7 +159,7 @@ var distTask = [].concat(
 
   utils.includeIf([
     'copy:dist_e2e',
-    'indexHtml:dist_e2e',
+    'processHtml:dist_e2e',
     'htmlmin:dist_e2e',
     'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',

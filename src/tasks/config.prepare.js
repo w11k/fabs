@@ -232,7 +232,7 @@ var prepareTasksConfig = {
     }
   },
 
-  indexHtml: {
+  processHtml: {
     /**
      * During development, we don't want to have wait for compilation,
      * concatenation, minification, etc. So to avoid these steps, we simply
@@ -243,7 +243,6 @@ var prepareTasksConfig = {
         base: [
           config.build.prepare.outdir
         ],
-        dir: config.build.prepare.outdir,
         blessedPrefix: config.build.bless.prefix,
         angular_module: (function () {
           if (config.build.mocks.loadInBrowser) {
@@ -254,9 +253,8 @@ var prepareTasksConfig = {
           }
         })()
       },
-      files: (function () {
+      javascript: (function () {
         return [].concat(
-          // javascript
           {
             expand: true,
             nosort: true,
@@ -288,14 +286,18 @@ var prepareTasksConfig = {
               cwd: '<%= copy.prepare_app_js_mock.options.out %>',
               src: config.app.files.js_mock
             }
-          ], config.build.mocks.loadInBrowser),
-
-          // css
-          {
-            src: '<%= concat.prepare_css.options.out %>'
-          }
+          ], config.build.mocks.loadInBrowser)
         );
-      })()
+      })(),
+      css: [{
+        src: '<%= concat.prepare_css.options.out %>'
+      }],
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.html,
+        dest: config.build.prepare.outdir
+      }]
     }
   },
 
