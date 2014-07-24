@@ -3,8 +3,10 @@
 var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
+var project = require('./../utils/project.js');
 
 var runKarmaInDev = config.build.spec.runInPrepare && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec));
+var bowerRc = project.getBowerRc();
 
 var devTasksConfig = {
 
@@ -260,7 +262,16 @@ var devTasksConfig = {
       ]
     }
   }
-
 };
+
+if (config.build.bower.runInDev) {
+  devTasksConfig.watch.vendor = {
+    options: {
+      livereload: false
+    },
+    files: [ bowerRc.json ],
+    tasks: ['shell:bower']
+  };
+}
 
 module.exports = devTasksConfig;

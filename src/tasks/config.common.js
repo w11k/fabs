@@ -2,14 +2,11 @@
 
 var config = require('./../build.config.js').getConfig();
 var grunt = require('grunt');
-var pkg = require('./../utils/package.js');
+var project = require('./../utils/project.js');
 var path = require('path');
 
-var bowerrc = grunt.file.exists('./.bowerrc') ? grunt.file.readJSON('./.bowerrc') : { 'json': 'bower.json' };
-var bower;
-if (grunt.file.exists(bowerrc.json)) {
-  bower = grunt.file.readJSON(bowerrc.json);
-}
+var bowerrc = project.getBowerRc();
+var bower = project.getBowerJson();
 
 var bumpFiles = [ 'package.json' ];
 if (bower !== undefined && bower.version !== undefined) {
@@ -20,7 +17,7 @@ var commonTasksConfig = {
   /**
    * Make 'package.json' accessible to templates like banner below.
    */
-  pkg: pkg,
+  pkg: project.getPackageJson(),
 
   /**
    * The banner is the comment that is placed at the top of our compiled files.
@@ -76,10 +73,8 @@ var commonTasksConfig = {
 
   shell: {
     bower: {
-      command: [
-        'bower install',
-        'bower update -q'
-      ].join(' && ')
+      command:
+        'bower install --offline'
     }
   },
 
