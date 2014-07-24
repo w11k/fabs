@@ -5,7 +5,7 @@
  * The exported object will be merged with 'project.config.js' and 'system.config.js', so this file can be used
  * to temporarily override some values (e.g. proxies). Also, you can use the developer configuration to enable or
  * disable some features of the build system during development like running 'bower install' on each start of
- * 'grunt dev' without adding '--bower=false' all the time.
+ * 'grunt dev'.
  *
  * COPY THE FILE AND REMOVE THE .tpl BUT DO NOT COMMIT THE RESULTING JS FILE !!!
  * Otherwise another developer may override your settings or the CI build will fail because of reading your personal
@@ -28,11 +28,6 @@ module.exports = {
       ]
     },
 
-    // disable long running e2e tests in dev mode
-    e2e: {
-      runInDev: false
-    },
-
     // do not depend on the server guys, develop teh frontend with mocks
     mocks: {
       loadInBrowser: true
@@ -43,7 +38,7 @@ module.exports = {
      * changes the frontend dependencies specified via bower.json (e.g. after pulling)
      */
     bower: {
-      runInPrepare: false
+      runInDev: false
     }
   }
 
