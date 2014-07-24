@@ -5,7 +5,7 @@ var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
 var project = require('./../utils/project.js');
 
-var runKarmaInDev = config.build.spec.runInPrepare && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec));
+var runKarmaInDev = config.build.spec.runInPrepare && utils.hasFiles('src/app', config.app.files.js_spec);
 var bowerRc = project.getBowerRc();
 
 var devTasksConfig = {
@@ -48,10 +48,7 @@ var devTasksConfig = {
         {
           expand: true,
           cwd: '.',
-          src: [
-            '<%= copy.prepare_app_js.options.out %>/**/*.js',
-            '<%= copy.prepare_common_js.options.out %>/**/*.js'
-          ],
+          src: [ '<%= copy.prepare_app_js.options.out %>/**/*.js' ],
           dest: '.'
         }
       ]
@@ -106,15 +103,13 @@ var devTasksConfig = {
      */
     js: {
       files: [
-        config.app.files.js.map(utils.addCwdToPattern('src/app')),
-        config.common.files.js.map(utils.addCwdToPattern('src/common'))
+        config.app.files.js.map(utils.addCwdToPattern('src/app'))
       ],
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:src', config.build.jshint.runInDev),
           utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           'copy:prepare_app_js',
-          'copy:prepare_common_js',
           'replace:dev_cacheBusting',
           'indexHtml:prepare'
         );
@@ -123,15 +118,13 @@ var devTasksConfig = {
 
     js_mock: {
       files: [
-        config.app.files.js_mock.map(utils.addCwdToPattern('src/app')),
-        config.common.files.js_mock.map(utils.addCwdToPattern('src/common'))
+        config.app.files.js_mock.map(utils.addCwdToPattern('src/app'))
       ],
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:mock', config.build.jshint.runInDev),
           utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser),
-          utils.includeIf('copy:prepare_common_js_mock', config.build.mocks.loadInBrowser),
           'indexHtml:prepare'
         );
       })()
@@ -146,8 +139,7 @@ var devTasksConfig = {
         livereload: false
       },
       files: [
-        config.app.files.js_spec.map(utils.addCwdToPattern('src/app')),
-        config.common.files.js_spec.map(utils.addCwdToPattern('src/common'))
+        config.app.files.js_spec.map(utils.addCwdToPattern('src/app'))
       ],
       tasks: (function () {
         return [].concat(
@@ -162,8 +154,7 @@ var devTasksConfig = {
         livereload: false
       },
       files: [
-        config.app.files.js_e2e.map(utils.addCwdToPattern('src/app')),
-        config.common.files.js_e2e.map(utils.addCwdToPattern('src/common'))
+        config.app.files.js_e2e.map(utils.addCwdToPattern('src/app'))
       ],
       tasks: (function () {
         return [].concat(
@@ -201,15 +192,9 @@ var devTasksConfig = {
 
     templates: {
       files: [
-        config.app.files.templates.map(utils.addCwdToPattern('src/app')),
-        config.common.files.templates.map(utils.addCwdToPattern('src/common'))
+        config.app.files.templates.map(utils.addCwdToPattern('src/app'))
       ],
-      tasks: (function () {
-        return [].concat(
-          'copy:prepare_app_templates',
-          'copy:prepare_common_templates'
-        );
-      })()
+      tasks: [ 'copy:prepare_app_templates' ]
     },
 
     less: {
@@ -222,7 +207,6 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('less:prepare_app', config.build.less.enabled && utils.hasFiles('src/app', config.app.files.less)),
-          utils.includeIf('less:prepare_common', config.build.less.enabled && utils.hasFiles('src/common', config.common.files.less)),
           'concat:prepare_css',
           'indexHtml:prepare'
         );
@@ -238,7 +222,6 @@ var devTasksConfig = {
       tasks: (function () {
         return [].concat(
           utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
-          utils.includeIf('compass:prepare_common', config.build.sass.enabled && utils.hasFiles('src/common', config.common.files.sass)),
           'concat:prepare_css',
           'indexHtml:prepare'
         );

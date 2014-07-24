@@ -50,12 +50,6 @@ var distTasksConfig = {
         },
         {
           expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_mock,
-          dest: '<%= copy.dist_e2e.options.out %>'
-        },
-        {
-          expand: true,
           cwd: 'src/app',
           src: config.app.files.js_mock,
           dest: '<%= copy.dist_e2e.options.out %>'
@@ -97,12 +91,6 @@ var distTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        },
-        {
-          expand: true,
-          nosort: true,
           cwd: 'src/app',
           src: config.app.files.js_e2e
         }
@@ -119,12 +107,6 @@ var distTasksConfig = {
         url: 'http://localhost:' + config.build.e2e.server.port
       },
       files: [
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        },
         {
           expand: true,
           nosort: true,
@@ -167,12 +149,6 @@ var distTasksConfig = {
           nosort: true,
           cwd: '<%= copy.dist_e2e.options.out %>',
           src: config.vendor.files.js_mock
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: '<%= copy.dist_e2e.options.out %>',
-          src: config.common.files.js_mock
         },
         {
           expand: true,

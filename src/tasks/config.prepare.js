@@ -20,60 +20,32 @@ var prepareTasksConfig = {
       jshintrc: '.jshintrc'
     },
     src: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js
-        }
-      ]
+      files: [{
+        expand: true,
+        cwd: 'src/app',
+        src: config.app.files.js
+      }]
     },
     mock: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js_mock
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_mock
-        }
-      ]
+      files: [{
+        expand: true,
+        cwd: 'src/app',
+        src: config.app.files.js_mock
+      }]
     },
     spec: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js_spec
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_spec
-        }
-      ]
+      files: [{
+        expand: true,
+        cwd: 'src/app',
+        src: config.app.files.js_spec
+      }]
     },
     e2e: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js_e2e
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        }
-      ]
+      files: [{
+        expand: true,
+        cwd: 'src/app',
+        src: config.app.files.js_e2e
+      }]
     }
   },
 
@@ -95,18 +67,6 @@ var prepareTasksConfig = {
         cwd: 'src/app',
         src: config.app.files.templates,
         dest: '<%= copy.prepare_app_templates.options.out %>'
-      }]
-    },
-    prepare_common_templates: {
-      options: {
-        // app and common templates have to be in the same folder for later processing
-        out: '<%= copy.prepare_app_templates.options.out %>'
-      },
-      files: [{
-        expand: true,
-        cwd: 'src/common',
-        src: config.common.files.templates,
-        dest: '<%= copy.prepare_common_templates.options.out %>'
       }]
     },
     prepare_app_templates2js: {
@@ -167,17 +127,6 @@ var prepareTasksConfig = {
         dest: '<%= copy.prepare_app_js.options.out %>'
       }]
     },
-    prepare_common_js: {
-      options: {
-        out: config.build.prepare.outdir + '/js/common'
-      },
-      files: [{
-        expand: true,
-        cwd: 'src/common',
-        src: config.common.files.js,
-        dest: '<%= copy.prepare_common_js.options.out %>'
-      }]
-    },
     prepare_vendor_js: {
       options: {
         out: config.build.prepare.outdir + '/js/vendor'
@@ -198,17 +147,6 @@ var prepareTasksConfig = {
         cwd: 'src/app',
         src: config.app.files.js_mock,
         dest: '<%= copy.prepare_app_js_mock.options.out %>'
-      }]
-    },
-    prepare_common_js_mock: {
-      options: {
-        out: config.build.prepare.outdir + '/js/common_mock'
-      },
-      files: [{
-        expand: true,
-        cwd: 'src/common',
-        src: config.common.files.js_mock,
-        dest: '<%= copy.prepare_common_js_mock.options.out %>'
       }]
     },
     prepare_vendor_js_mock: {
@@ -238,20 +176,6 @@ var prepareTasksConfig = {
           ext: '.css'
         }
       ]
-    },
-    prepare_common: {
-      options: {
-        out: config.build.prepare.outdir + '/less/common'
-      },
-      files: [
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.less,
-          dest: '<%= less.prepare_common.options.out %>',
-          ext: '.css'
-        }
-      ]
     }
   },
 
@@ -269,20 +193,6 @@ var prepareTasksConfig = {
         ),
         cssDir: config.build.prepare.outdir + '/sass/app'
       }
-    },
-    prepare_common: {
-      options: {
-        // files
-        sassDir: '.',
-        specify:  grunt.file.expand(
-          { cwd: 'src/common' },
-          config.common.files.sass
-        ).map(function (file) {
-            return 'src/common/' + file;
-          }
-        ),
-        cssDir: config.build.prepare.outdir + '/sass/common'
-      }
     }
   },
 
@@ -297,14 +207,6 @@ var prepareTasksConfig = {
           return [].concat(
             config.vendor.files.css
               .map(utils.addCwdToPattern('vendor')),
-            config.common.files.css
-              .map(utils.addCwdToPattern('src/common')),
-            config.common.files.less
-              .map(utils.addCwdToPattern('<%= less.prepare_common.options.out %>'))
-              .map(utils.replaceExtension('less', 'css')),
-            config.common.files.sass
-              .map(utils.addCwdToPattern('<%= compass.prepare_common.options.cssDir %>/src/common'))
-              .map(utils.replaceExtension('scss', 'css')),
             config.app.files.css
               .map(utils.addCwdToPattern('src/app')),
             config.app.files.less
@@ -364,12 +266,6 @@ var prepareTasksConfig = {
           {
             expand: true,
             nosort: true,
-            cwd: '<%= copy.prepare_common_js.options.out %>',
-            src: config.common.files.js
-          },
-          {
-            expand: true,
-            nosort: true,
             cwd: '<%= copy.prepare_app_js.options.out %>',
             src: config.app.files.js
           },
@@ -385,12 +281,6 @@ var prepareTasksConfig = {
               nosort: true,
               cwd: '<%= copy.prepare_vendor_js_mock.options.out %>',
               src: config.vendor.files.js_mock
-            },
-            {
-              expand: true,
-              nosort: true,
-              cwd: '<%= copy.prepare_common_js_mock.options.out %>',
-              src: config.common.files.js_mock
             },
             {
               expand: true,
