@@ -41,7 +41,7 @@ var devTask = [].concat(
   utils.includeIf([
     'karmaConfig:spec',
     'karma:dev_spec'
-  ], config.build.spec.runInDev && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
+  ], config.build.spec.runInDev && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
   'configureProxies:dev',
   'connect:dev',
@@ -66,7 +66,6 @@ var prepareTask = [].concat(
    * in prepare we create the module, but without content
    */
   'copy:prepare_app_templates',
-  'copy:prepare_common_templates',
   'copy:prepare_app_templates2js',
 
   /**
@@ -77,9 +76,7 @@ var prepareTask = [].concat(
   'translations2js:prepare',
 
   utils.includeIf('less:prepare_app', config.build.less.enabled),
-  utils.includeIf('less:prepare_common', config.build.less.enabled),
-  utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
-  utils.includeIf('compass:prepare_common', config.build.sass.enabled && utils.hasFiles('src/common', config.common.files.sass)),
+  utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
   'concat:prepare_css',
   utils.includeIf('bless:prepare', config.build.bless.enabled),
   'copy:prepare_app_assets',
@@ -88,10 +85,8 @@ var prepareTask = [].concat(
   'copy:prepare_app_translations',
 
   utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
-  utils.includeIf('copy:prepare_common_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
   utils.includeIf('copy:prepare_vendor_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
 
-  'copy:prepare_common_js',
   'copy:prepare_vendor_js',
   'indexHtml:prepare',
 
@@ -158,7 +153,7 @@ var distTask = [].concat(
   utils.includeIf([
     'karmaConfig:spec',
     'karma:dist_spec'
-  ], config.build.spec.runInDist && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
+  ], config.build.spec.runInDist && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
   'compile',
 
@@ -175,12 +170,12 @@ var distTask = [].concat(
   utils.includeIf([
     'karmaConfig:dist_e2e',
     'karma:dist_e2e'
-  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
+  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
 
   utils.includeIf([
     'protractorConfig:dist',
     'protractor:dist'
-  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
+  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
 
   'compress:dist_app',
 

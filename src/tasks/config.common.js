@@ -121,37 +121,19 @@ var commonTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js
         },
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_mock
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_mock
         },
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_spec
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_spec
         }
       ]
