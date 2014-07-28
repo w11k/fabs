@@ -2,7 +2,7 @@
   "name": "fabs",
   "description": "Fabulous AngularJS Build System - A Grunt based build system for AngularJS applications",
   "homepage": "http://github.com/w11k/fabs",
-  "version": "0.6.1",
+  "version": "0.6.2",
 
   "author": {
     "name": "WeigleWilczek GmbH",
@@ -20,8 +20,11 @@
   "main": "src/main.js",
 
   "dependencies": {
-    "grunt": "0.4.4",
-    "lodash": "2.2.1",
+    "lodash": "2.2.1"
+  },
+
+  "peerDependencies": {
+    "grunt": ">= 0.4.4",
 
     "grunt-contrib-less": "0.11.3",
     "grunt-contrib-clean": "0.5.0",
@@ -64,10 +67,6 @@
     "grunt": "0.4.4",
     "grunt-conventional-changelog": "1.1.0",
     "grunt-bump": "0.0.14"
-  },
-
-  "scripts": {
-    "install": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
 
   "engines": {

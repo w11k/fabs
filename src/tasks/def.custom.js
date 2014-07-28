@@ -5,6 +5,8 @@ var path = require('path');
 var utils = require('./../utils/common.js');
 var _ = require('lodash');
 
+grunt.verbose.writeln('registering custom tasks');
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * The index.html template includes the stylesheet and javascript sources
  * based on dynamic names calculated in this Gruntfile. This task assembles
@@ -200,3 +202,5 @@ var updateConfigTask = function () {
 };
 
 grunt.registerMultiTask('updateConfig', 'updates the grunt config dynamically', updateConfigTask);
+
+grunt.verbose.writeln('custom tasks registered');
