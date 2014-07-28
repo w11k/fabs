@@ -11,8 +11,12 @@ module.exports = {
      * Load the build configuration.
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+    grunt.verbose.writeln('used config folder: ' + pathToConfigFolder);
     configuration.setConfigFolder(pathToConfigFolder);
+
+    grunt.verbose.writeln('reading fabs configuration');
     var buildConfig = configuration.getConfig();
+    grunt.verbose.writeln('fabs configuration read');
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      * Change the build configuration according to command line options. A developer can use developer.config.js
@@ -47,7 +51,10 @@ module.exports = {
      * value from build configuration. Then apply the resulting configuration.
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+
+    grunt.verbose.writeln('reading tasks configuration');
     var tasksConfig = require('./tasks/config.js');
+    grunt.verbose.writeln('tasks configuration read');
 
     var gruntConfig = _.extend(tasksConfig, buildConfig);
 
@@ -56,9 +63,11 @@ module.exports = {
      * tasks themselves.
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+    grunt.verbose.writeln('registering tasks');
     require('./tasks/def.npm.js');
     require('./tasks/def.composite.js');
     require('./tasks/def.custom.js');
+    grunt.verbose.writeln('tasks registered');
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      * Dump configuration to console (e.g. for debugging the build system)

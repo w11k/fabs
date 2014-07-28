@@ -13,6 +13,7 @@ var grunt = require('grunt');
  * So we have to tell Grunt the relative path down to the node_modules folder of fabs.
  */
 var root = 'fabs/node_modules/';
+grunt.verbose.writeln('loading npm tasks');
 
 grunt.loadNpmTasks(root + 'grunt-contrib-clean');
 grunt.loadNpmTasks(root + 'grunt-contrib-copy');
@@ -37,3 +38,5 @@ grunt.loadNpmTasks(root + 'grunt-bless');
 grunt.loadNpmTasks(root + 'grunt-bump');
 grunt.loadNpmTasks(root + 'grunt-conventional-changelog');
 grunt.loadNpmTasks(root + 'grunt-protractor-runner');
+
+grunt.verbose.writeln('npm tasks loaded');
