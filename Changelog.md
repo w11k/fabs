@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="v0.6.2"></a>
+## v0.6.2 (2014-07-28)
+
+
+### Bug Fixes
+
+* **grunt:** move grunt and all grunt plugins from dependencies to peerDependencies to avoid loading different grunt versions inside of fabs and Grunfile.js of the project ([42c0691f](https://github.com/w11k/fabs/commit/42c0691f79cf6c6b9a66920a4de331489dd56b9a))
+* **installation:** make installation of webdriver lazy ([08f303ec](https://github.com/w11k/fabs/commit/08f303ec2801fb44dd61a32c6aacd2f9d74da1b3))
+
 <a name="v0.6.1"></a>
 ## v0.6.1 (2014-07-16)
 
