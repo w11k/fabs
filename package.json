@@ -69,10 +69,6 @@
     "grunt-bump": "0.0.14"
   },
 
-  "scripts": {
-    "install": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
-  },
-
   "engines": {
     "node": ">=0.10.21"
   }

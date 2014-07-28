@@ -135,6 +135,12 @@ var distTasksConfig = {
     }
   },
 
+  shell: {
+    dist_e2e: {
+      command: 'node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
+    }
+  },
+
   protractor: {
     dist: {
       options: {

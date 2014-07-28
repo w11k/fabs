@@ -175,6 +175,7 @@ var distTask = [].concat(
     'htmlmin:dist_e2e',
     'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',
+    'shell:dist_e2e',
     'configureProxies:dist_e2e',
     'connect:dist_e2e'
   ], config.build.e2e.runInDist),
