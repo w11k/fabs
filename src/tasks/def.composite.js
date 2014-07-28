@@ -10,6 +10,8 @@ var utils = require('./../utils/common.js');
  * Register some empty dummy tasks. This tasks can be overridden by the project to hook into fabs lifecycle.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+grunt.verbose.writeln('registering hook tasks');
+
 grunt.registerTask('hookPrepareStart', []);
 grunt.registerTask('hookPrepareEnd', []);
 grunt.registerTask('hookCompileStart', []);
@@ -20,6 +22,11 @@ grunt.registerTask('hookDevStart', []);
 grunt.registerTask('hookDevEnd', []);
 grunt.registerTask('hookDistStart', []);
 grunt.registerTask('hookDistEnd', []);
+
+grunt.verbose.writeln('hook tasks registered');
+
+
+grunt.verbose.writeln('registering composite tasks');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * dev mode: build the app, start a web server, start karma and watch for changes.
@@ -163,6 +170,7 @@ var distTask = [].concat(
     'htmlmin:dist_e2e',
     'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',
+    'shell:dist_e2e',
     'configureProxies:dist_e2e',
     'connect:dist_e2e'
   ], config.build.e2e.runInDist),
@@ -203,3 +211,5 @@ grunt.registerTask('export', [ 'compress:project', 'compress:build_system' ]);
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 grunt.registerTask('default', [ 'dist' ]);
+
+grunt.verbose.writeln('composite tasks registered');
