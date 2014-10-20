@@ -153,6 +153,12 @@ var protractorConfigTask = function () {
   var options = this.options({});
 
   var capabilities = options.browsers.map(function (browser) { return { browserName: browser.toLowerCase() }; });
+
+  var phantomJsCapabilities = capabilities.filter(function (capability) { return capability.browserName == 'phantomjs'; });
+  phantomJsCapabilities.forEach(function (capability) {
+    capability['phantomjs.binary.path'] = './node_modules/phantomjs/bin/phantomjs';
+  });
+
   var capabilitiesAsStrings = capabilities.map(function (capability) { return JSON.stringify(capability); });
 
   grunt.file.copy(options.template, options.out, {
