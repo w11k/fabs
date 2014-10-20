@@ -5,7 +5,7 @@ var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
 var project = require('./../utils/project.js');
 
-var runKarmaInDev = config.build.spec.runInPrepare && utils.hasFiles(config.app.files.root, config.app.files.js_spec);
+var runKarmaInDev = config.build.spec.runInDev && utils.hasFiles(config.app.files.root, config.app.files.js_spec);
 var bowerRc = project.getBowerRc();
 
 var devTasksConfig = {

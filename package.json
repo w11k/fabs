@@ -58,6 +58,7 @@
 
     "karma-ng-scenario": "0.1.0",
     "grunt-protractor-runner": "1.0.1",
+    "phantomjs": "1.9.7-15",
 
     "grunt-bump": "0.0.14",
     "grunt-conventional-changelog": "1.1.0"
