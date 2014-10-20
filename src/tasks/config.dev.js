@@ -4,7 +4,7 @@ var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
 
-var runKarmaInDev = config.build.spec.runInPrepare && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec));
+var runKarmaInDev = config.build.spec.runInDev && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec));
 
 var devTasksConfig = {
 

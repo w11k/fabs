@@ -35,7 +35,7 @@ module.exports = {
     // check for undefined to not override the default
     if (grunt.option('bower') !== undefined) {
       grunt.verbose.writeln('detected command line argument: --bower=' + grunt.option('bower'));
-      buildConfig.build.bower.runInPrepare = !!grunt.option('bower');
+      buildConfig.build.bower.runInDev = !!grunt.option('bower');
     }
 
     // Enable or disable running dist server

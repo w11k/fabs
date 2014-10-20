@@ -43,7 +43,7 @@ module.exports = {
      * changes the frontend dependencies specified via bower.json (e.g. after pulling)
      */
     bower: {
-      runInPrepare: false
+      runInDev: false
     }
   }
 
