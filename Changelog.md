@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="v0.6.3"></a>
+## v0.6.3 (2014-10-20)
+
+
+### Bug Fixes
+
+* **config:** fix usage of old config variables 'runInPrepare' instead of new 'runInDev' ([2fa4f112](https://github.com/w11k/fabs/commit/2fa4f112dc352a4db6ffa3be2b3fea5026376256))
+* **tests:** install and use PhantomJS as Node module to avoid version conflicts ([532e343d](https://github.com/w11k/fabs/commit/532e343d984798f762783001d74e605c7a0edfc7))
+
 <a name="v0.6.2"></a>
 ## v0.6.2 (2014-07-28)
 
