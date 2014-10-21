@@ -1,28 +1,37 @@
 # fabs Changelog
 
+<a name="0.6.4"></a>
+### 0.6.4 (2014-10-22)
+
+
+#### Bug Fixes
+
+* **tests:** update karma to run spec tests with PhantomJS from node module ([7ec65554](https://github.com/w11k/fabs/commit/7ec65554924b9651b7c0639e9a6095b7e9deb16d))
+
+
 <a name="v0.6.3"></a>
-## v0.6.3 (2014-10-20)
+### v0.6.3 (2014-10-20)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **config:** fix usage of old config variables 'runInPrepare' instead of new 'runInDev' ([2fa4f112](https://github.com/w11k/fabs/commit/2fa4f112dc352a4db6ffa3be2b3fea5026376256))
 * **tests:** install and use PhantomJS as Node module to avoid version conflicts ([532e343d](https://github.com/w11k/fabs/commit/532e343d984798f762783001d74e605c7a0edfc7))
 
 <a name="v0.6.2"></a>
-## v0.6.2 (2014-07-28)
+### v0.6.2 (2014-07-28)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **grunt:** move grunt and all grunt plugins from dependencies to peerDependencies to avoid loading different grunt versions inside of fabs and Grunfile.js of the project ([42c0691f](https://github.com/w11k/fabs/commit/42c0691f79cf6c6b9a66920a4de331489dd56b9a))
 * **installation:** make installation of webdriver lazy ([08f303ec](https://github.com/w11k/fabs/commit/08f303ec2801fb44dd61a32c6aacd2f9d74da1b3))
 
 <a name="v0.6.1"></a>
-## v0.6.1 (2014-07-16)
+### v0.6.1 (2014-07-16)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **bump:** adjust commit message to angular-commit-message-guidline and commit bumped files only ([c18045de](https://github.com/w11k/fabs/commit/c18045de641a3682f024341877a4a1569aae764c))
 
@@ -31,14 +40,14 @@
 ## v0.6.0 (2014-07-16)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **spec:**
   * run karma only if there are spec tests to run, avoid failing because of no tests ([af7419e2](https://github.com/w11k/fabs/commit/af7419e21db1c71d487374261a7f0b9b4387d0f5))
   * add karma-chrome-launcher plugin to karma config to be able to launch chrome aut ([1d9d5ae5](https://github.com/w11k/fabs/commit/1d9d5ae59adaf2eec2f7ca2f26625a793207e9ac))
 
 
-### Features
+#### Features
 
 * **e2e:** add support protractor to run end-2-end tests with ([1e83d468](https://github.com/w11k/fabs/commit/1e83d46811a277790527b1c68f0558afb7691758))
 * **ng-annotate:** replace ng-min with ng-annotate (which has support for explicit @ngInject annotation) ([3d51f9ff](https://github.com/w11k/fabs/commit/3d51f9ffba70c1acc3230a37ac14dfd7c7f8361d))
@@ -46,7 +55,7 @@
 * **spec:** unify options - use runInDev and runInDist instead of runInPrepare ([0783e86b](https://github.com/w11k/fabs/commit/0783e86bd45ca61da737c43c182d1cf4d62b4af4))
 
 
-### Breaking Changes
+#### Breaking Changes
 
 * Running end-2-end tests in dev-mode is not supported anymore
 * end-2-end tests can be run with protractor or karma + ng-scenario-runner but protractor is the new default. karma + ng-scenario-runner is disabled by default. To restore old behaviour set build.e2e.karma.enabled = true and build.e2e.protractor.endabled = false in your config file
@@ -55,51 +64,51 @@
 
 
 <a name="v0.5.6"></a>
-## v0.5.6 (2014-07-16)
+### v0.5.6 (2014-07-16)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **jshint:** unify usage of 'runInDev' and 'runInPrepare' in config.build.jshint to 'runInDev' ([0f6ad996](https://github.com/w11k/fabs/commit/0f6ad9966cfa9ad96b6532fa2dbd1eee1041f0ac), closes [#28](https://github.com/w11k/fabs/issues/28))
 
 
 <a name="v0.5.5"></a>
-## v0.5.5 (2014-06-19)
+### v0.5.5 (2014-06-19)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **css:** add css files from app to output ([205518c1](https://github.com/w11k/fabs/commit/205518c19686be8516e583d3d43c1a34c67ae1eb))
 * **jshint:** add options to deactivate jshint in dev and dist mode ([5f499e9b](https://github.com/w11k/fabs/commit/5f499e9b1f1455166c603f39fa30f37ffe0fa168))
 
 
 <a name="v0.5.4"></a>
-## v0.5.4 (2014-06-03)
+### v0.5.4 (2014-06-03)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **bump:** do not fail if bower.json does not contain version number ([59641968](https://github.com/w11k/fabs/commit/596419684e6342cdf8fe99a65b9a756a99e9a2dc))
 
 
 <a name="v0.5.3"></a>
-## v0.5.3 (2014-04-26)
+### v0.5.3 (2014-04-26)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **bless:** fix include order of blessed css files ([ef0d33cb](https://github.com/w11k/fabs/commit/ef0d33cbb4927692a0e2224fbf309337f3c2738e))
 
 <a name="v0.5.2"></a>
-## v0.5.2 (2014-04-18)
+### v0.5.2 (2014-04-18)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **bless:** refactor blessed css files for IE8 and IE9 ([dc6c6ee5](https://github.com/w11k/fabs/commit/dc6c6ee5e0bbc7a70ca2249300cf1df6272e6ed5))
 
 
-### Breaking Changes
+#### Breaking Changes
 
 * Blessed CSS files has to be imported separately from regular CSS files in index.html like this:
 
@@ -116,7 +125,7 @@
 
 
 <a name="v0.5.1"></a>
-## v0.5.1 (2014-04-17)
+### v0.5.1 (2014-04-17)
 
 * update grunt from 0.4.2 to 0.4.4 ([6ac7dcd](https://github.com/w11k/fabs/commit/6ac7dcd9f0a1f9e5cfaf2cd3c9a6816fbf478def))
 
@@ -125,14 +134,14 @@
 ## v0.5.0 (2014-04-17)
 
 
-### Features
+#### Features
 
 * **hooks:** add empty hook tasks for each phase (prepare and compile) and for each mode (dev and dist) ([73a3170c](https://github.com/w11k/fabs/commit/73a3170cecfd3fd5e86daca91dfeb664a703a9de))
 * **bless:** add bless task to split long css files for IE 9 and older ([980d85cd](https://github.com/w11k/fabs/commit/980d85cd2eb87c32b3a949bab1b5a075e0c3b6e4))
 * **templates:** change extension for templates from .tpl.html to .html ([84dc2f2e](https://github.com/w11k/fabs/commit/84dc2f2ec68a300c60598b2c3710949ef2528e77), closes [#24](https://github.com/w11k/fabs/issues/24))
 
 
-### Breaking Changes
+#### Breaking Changes
 
 * Default extension for templates changed from .tpl.html to .html
   All templates with .tpl.html will be matched by .html as well. So you can rename all your template files or leave them as they are. If you rename your templates from .tpl.html to .html, don't forget to adjust your mocks to bypass template calls.
@@ -177,50 +186,50 @@
   ```
 
 <a name="v0.4.3"></a>
-## v0.4.3 (2014-03-12)
+### v0.4.3 (2014-03-12)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **tests:** update karma plugins and do not run tests on start of 'grunt dev' ([d6ab4cb5](https://github.com/w11k/fabs/commit/d6ab4cb58fad3742cbbc829ea2550f3ad5ad2815))
 * **watch:** increase watch interval to reduce cpu load ([998441de](https://github.com/w11k/fabs/commit/998441de87c9053f6ef4bb0c8ea948a9c47622bd))
 
 <a name="v0.4.2"></a>
-## v0.4.2 (2014-03-12)
+### v0.4.2 (2014-03-12)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **tests:** update grunt-karma to 0.8.0 ([d71f5b74](https://github.com/w11k/fabs/commit/d71f5b7473d77c3bc8464dc79702a565a40d88eb), closes [#25](https://github.com/w11k/fabs/issues/25))
 
 <a name="v0.4.1"></a>
-## v0.4.1 (2014-02-03)
+### v0.4.1 (2014-02-03)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **watch:** watch all less and sass files under src ([ac52572e](https://github.com/w11k/fabs/commit/ac52572e15bedb91d8afb0f165e511615fb71bb5), closes [#23](https://github.com/w11k/fabs/issues/23))
 
 <a name="v0.4.0"></a>
 ## v0.4.0 (2014-01-31)
 
-### Features
+#### Features
 
 * **config:** make all ports used by fabs configurable ([fca82393](https://github.com/w11k/fabs/commit/fca82393038cff33e1b8f6eeb42842f080a060d6), closes [#21](https://github.com/w11k/fabs/issues/21))
 
 
 <a name="v0.3.3"></a>
-## v0.3.3 (2014-01-28)
+### v0.3.3 (2014-01-28)
 
-### Bug Fixes
+#### Bug Fixes
 
 * **cacheBusting:** prevent false positives with files with equal parts in path ([80f637f3](https://github.com/w11k/fabs/commit/80f637f33cb6d41fe83e0e2c8b8d7699b8cd4ee5), closes [#20](https://github.com/w11k/fabs/issues/20))
 
 
 <a name="v0.3.2"></a>
-## v0.3.2 (2014-01-28)
+### v0.3.2 (2014-01-28)
 
-### Bug Fixes
+#### Bug Fixes
 
 * **config:** add caching for assembled build config ([10b824e6](https://github.com/w11k/fabs/commit/10b824e6935d7f92292fc7932c7e72b0cac6306c), closes [#17](https://github.com/w11k/fabs/issues/17))
 * **test:**
@@ -230,9 +239,9 @@
 
 
 <a name="v0.3.1"></a>
-## v0.3.1 (2014-01-28)
+### v0.3.1 (2014-01-28)
 
-### Documentation
+#### Documentation
 
 * Fixes version number in changelog ([2df2946](https://github.com/w11k/fabs/commit/2df29460d558d480d22a4a8d52ef760ab05d2c48))
 
@@ -240,7 +249,7 @@
 <a name="v0.3.0"></a>
 ## v0.3.0 (2014-01-28)
 
-### Features
+#### Features
 
 * **dev:** add possibility to deactivate LiveReload in dev mode ([56c7a989](https://github.com/w11k/fabs/commit/56c7a9899bba6d0d8a65186b46df6ad2ed0c98c6), closes [#10](https://github.com/w11k/fabs/issues/10))
 * **test:** make browser to run tests with configurable ([8e084658](https://github.com/w11k/fabs/commit/8e084658a31b263be9270f6708865c0e72dae87f), closes [#15](https://github.com/w11k/fabs/issues/15))
@@ -249,7 +258,7 @@
 <a name="v0.2.0"></a>
 ## v0.2.0 (2013-12-09)
 
-### Features
+#### Features
 
 * **bump:** add bump task ([e3321d4c](https://github.com/w11k/fabs/commit/e3321d4cee3d7d4dbd1bcffb1369bfe1e1a4ab8d), closes [#8](https://github.com/w11k/fabs/issues/8))
 * **changelog:** Add changelog task ([9e0a6737](https://github.com/w11k/fabs/commit/9e0a67373c64788b8020c65038b5a403898f76c8), closes [#9](https://github.com/w11k/fabs/issues/9))
@@ -261,7 +270,7 @@
 
 First Release
 
-### Features
+#### Features
 
 * Dev-Mode with Server, Proxy and LiveReload
 * SASS 3.2 and LESS 1.5 support
