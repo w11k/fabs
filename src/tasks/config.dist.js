@@ -3,7 +3,8 @@
 var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
-var pkg = require('./../utils/package.js');
+var project = require('./../utils/project.js');
+var pkg = project.getPackageJson();
 var path = require('path');
 
 var distTasksConfig = {

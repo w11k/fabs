@@ -1,6 +1,7 @@
 'use strict';
 
-var pkg = require('./utils/package.js');
+var project = require('./utils/project.js');
+var pkg = project.getPackageJson();
 
 var systemConfig = {
 

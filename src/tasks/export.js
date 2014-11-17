@@ -1,7 +1,8 @@
 'use strict';
 
 var config = require('./../build.config.js').getConfig();
-var pkg = require('./../utils/package.js');
+var project = require('./../utils/project.js');
+var pkg = project.getPackageJson();
 
 var taskConfig = {
   compress: {
