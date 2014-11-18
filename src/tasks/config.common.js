@@ -42,7 +42,6 @@ var commonTasksConfig = {
     options: {
       // changed for dev mode via updateConfig:dev_changeLessSassConfig
       dumpLineNumbers: 'false',
-      compress: true,
       paths: [ 'vendor' ]
     }
   },
@@ -58,9 +57,9 @@ var commonTasksConfig = {
     options: {
       importPath: [ 'vendor' ],
       relativeAssets: false,
+      outputStyle: 'expanded',
 
       // changed for dev mode via updateConfig:dev_changeLessSassConfig
-      outputStyle: 'compressed',
       debugInfo: false
     }
   },

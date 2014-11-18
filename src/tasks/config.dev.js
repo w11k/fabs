@@ -13,10 +13,8 @@ var devTasksConfig = {
   updateConfig: {
     dev_changeLessSassConfig: {
       update: {
-        'compass.options.outputStyle': 'expanded',
         'compass.options.debugInfo': true,
         'less.options.dumpLineNumbers': 'mediaquery',
-        'less.options.compress': false
       }
     }
   },
