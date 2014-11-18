@@ -183,7 +183,7 @@ var prepareTasksConfig = {
     prepare_app: {
       options: {
         // files
-        sassDir: '.',
+        sassDir: config.app.files.root,
         specify: grunt.file.expand(
           { cwd: config.app.files.root },
           config.app.files.sass
@@ -213,7 +213,7 @@ var prepareTasksConfig = {
               .map(utils.addCwdToPattern('<%= less.prepare_app.options.out %>'))
               .map(utils.replaceExtension('less', 'css')),
             config.app.files.sass
-              .map(utils.addCwdToPattern('<%= compass.prepare_app.options.cssDir %>/' + config.app.files.root))
+              .map(utils.addCwdToPattern('<%= compass.prepare_app.options.cssDir %>'))
               .map(utils.replaceExtension('scss', 'css'))
           );
         })(),
