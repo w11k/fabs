@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="0.6.5"></a>
+### 0.6.5 (2014-11-18)
+
+
+#### Bug Fixes
+
+* **sass:** fix sass compilation with compass 1.0 ([88d41f02](https://github.com/w11k/fabs/commit/88d41f02df83b74ac0201d4a8dac993e9f5477ef))
+
+
 <a name="0.6.4"></a>
 ### 0.6.4 (2014-10-22)
 
