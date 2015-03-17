@@ -173,11 +173,17 @@ var compileTasksConfig = {
         blessedPrefix: config.build.bless.prefix,
         angular_module: config.app.angular_module.regular
       },
+      javascript: [{
+        src: '<%= concat.compile_js.options.out %>'
+      }],
+      css: [{
+        src: '<%= copy.compile_css.options.out %>'
+      }],
       files: [{
-        src: [
-          '<%= concat.compile_js.options.out %>',
-          '<%= copy.compile_css.options.out %>'
-        ]
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.html,
+        dest: config.build.compile.outdir
       }]
     }
   },
