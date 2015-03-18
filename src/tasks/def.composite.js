@@ -143,36 +143,36 @@ var compileTask = [].concat(
 grunt.registerTask('compile', compileTask);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * The 'dist' task prepares and compiles the app and then runs e2e tests against the compiled app.
+ * The 'build' task prepares and compiles the app
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // don't forget to run the tasks that are called by watch:runOnce in dev mode
-var distTask = [].concat(
-  'hookDistStart',
-
+var buildTask = [].concat(
   utils.includeIf([
-    'jshint'
+    'jshint:src',
+    'jshint:mock'
   ], config.build.jshint.runInDist),
   utils.includeIf('shell:bower', config.build.bower.runInDist),
 
   'prepare',
+  'compile'
+);
 
+grunt.registerTask('build', buildTask);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * The 'test' task runs spec and e2e tests (e2e against the compiled app).
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var testTask = [].concat(
   utils.includeIf([
+    'jshint:spec',
     'karmaConfig:spec',
     'karma:dist_spec'
   ], config.build.spec.runInDist && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
-  'compile',
-
   utils.includeIf([
-    'copy:dist_e2e',
-    'processHtml:dist_e2e',
-    'htmlmin:dist_e2e',
-    'updateConfig:replace_dist_e2e_cacheBusting',
-    'replace:dist_e2e_cacheBusting',
-    'shell:dist_e2e',
-    'configureProxies:dist_e2e',
-    'connect:dist_e2e'
+    'jshint:e2e'
   ], config.build.e2e.runInDist),
 
   utils.includeIf([
@@ -184,6 +184,30 @@ var distTask = [].concat(
     'protractorConfig:dist',
     'protractor:dist'
   ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
+
+  utils.includeIf([
+    'copy:dist_e2e',
+    'processHtml:dist_e2e',
+    'htmlmin:dist_e2e',
+    'updateConfig:replace_dist_e2e_cacheBusting',
+    'replace:dist_e2e_cacheBusting',
+    'shell:dist_e2e',
+    'configureProxies:dist_e2e',
+    'connect:dist_e2e'
+  ], config.build.e2e.runInDist)
+);
+
+grunt.registerTask('test', testTask);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * The 'dist' task builds and tests the app.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var distTask = [].concat(
+  'hookDistStart',
+
+  'build',
+  'test',
 
   'compress:dist_app',
 
