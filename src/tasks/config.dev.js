@@ -14,7 +14,7 @@ var devTasksConfig = {
     dev_changeLessSassConfig: {
       update: {
         'compass.options.debugInfo': true,
-        'less.options.dumpLineNumbers': 'mediaquery',
+        'less.options.dumpLineNumbers': 'mediaquery'
       }
     }
   },

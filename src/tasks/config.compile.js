@@ -158,11 +158,6 @@ var compileTasksConfig = {
   },
 
   processHtml: {
-    /**
-     * When it is time to have a completely compiled application, we can
-     * alter the above to include only a single JavaScript and a single CSS
-     * file.
-     */
     compile: {
       options: {
         base: [
