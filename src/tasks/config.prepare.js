@@ -8,10 +8,10 @@ var path = require('path');
 var prepareTasksConfig = {
 
   jshint: {
-    options: {
-      jshintrc: '.jshintrc'
-    },
     src: {
+      options: {
+        jshintrc: true
+      },
       files: [{
         expand: true,
         cwd: config.app.files.root,
@@ -19,6 +19,9 @@ var prepareTasksConfig = {
       }]
     },
     mock: {
+      options: {
+        jshintrc: true
+      },
       files: [{
         expand: true,
         cwd: config.app.files.root,
@@ -26,6 +29,9 @@ var prepareTasksConfig = {
       }]
     },
     spec: {
+      options: {
+        jshintrc: true
+      },
       files: [{
         expand: true,
         cwd: config.app.files.root,
@@ -33,6 +39,9 @@ var prepareTasksConfig = {
       }]
     },
     e2e: {
+      options: {
+        jshintrc: true
+      },
       files: [{
         expand: true,
         cwd: config.app.files.root,
