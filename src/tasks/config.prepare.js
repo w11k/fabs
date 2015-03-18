@@ -166,7 +166,8 @@ var prepareTasksConfig = {
   less: {
     prepare_app: {
       options: {
-        out: config.build.prepare.outdir + '/less/app'
+        out: config.build.prepare.outdir + '/less/app',
+        paths: [config.app.files.root, 'vendor']
       },
       files: [
         {

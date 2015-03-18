@@ -2,7 +2,7 @@
 
 module.exports = function (karmaConfig) {
   karmaConfig.set({
-    basePath: '../',
+    basePath: '<%= basePath %>',
 
     files: [
       <%= scripts.map(function(file) { return '\'' + file + '\'' }).join(',\n      ') %>

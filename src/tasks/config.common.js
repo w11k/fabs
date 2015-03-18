@@ -84,7 +84,8 @@ var commonTasksConfig = {
         out: config.build.output.dir + '/karma-prepare-spec.js',
         junitResults: config.build.output.dir + '/karma-prepare-spec-results.xml',
         browsers: config.build.spec.browsers,
-        port: config.build.spec.karma.port
+        port: config.build.spec.karma.port,
+        basePath: path.resolve('.')
       },
       files: [
         {

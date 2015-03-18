@@ -86,7 +86,8 @@ var distTasksConfig = {
         junitResults: config.build.output.dir + '/karma-e2e-results.xml',
         connectPort: config.build.e2e.server.port,
         port: config.build.e2e.karma.port,
-        browsers: config.build.e2e.browsers
+        browsers: config.build.e2e.browsers,
+        basePath: path.resolve('.')
       },
       files: [
         {
