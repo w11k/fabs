@@ -48,7 +48,7 @@ var devTask = [].concat(
   utils.includeIf([
     'karmaConfig:spec',
     'karma:dev_spec'
-  ], config.build.spec.runInDev && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
+  ], config.build.spec.runInDev && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
   'configureProxies:dev',
   'connect:dev',
@@ -73,7 +73,6 @@ var prepareTask = [].concat(
    * in prepare we create the module, but without content
    */
   'copy:prepare_app_templates',
-  'copy:prepare_common_templates',
   'copy:prepare_app_templates2js',
 
   /**
@@ -84,9 +83,7 @@ var prepareTask = [].concat(
   'translations2js:prepare',
 
   utils.includeIf('less:prepare_app', config.build.less.enabled),
-  utils.includeIf('less:prepare_common', config.build.less.enabled),
-  utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles('src/app', config.app.files.sass)),
-  utils.includeIf('compass:prepare_common', config.build.sass.enabled && utils.hasFiles('src/common', config.common.files.sass)),
+  utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
   'concat:prepare_css',
   utils.includeIf('bless:prepare', config.build.bless.enabled),
   'copy:prepare_app_assets',
@@ -95,12 +92,10 @@ var prepareTask = [].concat(
   'copy:prepare_app_translations',
 
   utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
-  utils.includeIf('copy:prepare_common_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
   utils.includeIf('copy:prepare_vendor_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
 
-  'copy:prepare_common_js',
   'copy:prepare_vendor_js',
-  'indexHtml:prepare',
+  'processHtml:prepare',
 
   'hookPrepareEnd'
 );
@@ -131,7 +126,7 @@ var compileTask = [].concat(
   'concat:compile_js',
   'uglify:compile',
 
-  'indexHtml:compile',
+  'processHtml:compile',
   'htmlmin:compile_index',
 
   'hookCacheBustingStart',
@@ -148,47 +143,71 @@ var compileTask = [].concat(
 grunt.registerTask('compile', compileTask);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * The 'dist' task prepares and compiles the app and then runs e2e tests against the compiled app.
+ * The 'build' task prepares and compiles the app
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // don't forget to run the tasks that are called by watch:runOnce in dev mode
-var distTask = [].concat(
-  'hookDistStart',
-
+var buildTask = [].concat(
   utils.includeIf([
-    'jshint'
+    'jshint:src',
+    'jshint:mock'
   ], config.build.jshint.runInDist),
   utils.includeIf('shell:bower', config.build.bower.runInDist),
 
   'prepare',
+  'compile'
+);
 
+grunt.registerTask('build', buildTask);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * The 'test' task runs spec and e2e tests (e2e against the compiled app).
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var testTask = [].concat(
   utils.includeIf([
+    'jshint:spec',
     'karmaConfig:spec',
     'karma:dist_spec'
-  ], config.build.spec.runInDist && (utils.hasFiles('src/app', config.app.files.js_spec) || utils.hasFiles('src/common', config.common.files.js_spec))),
+  ], config.build.spec.runInDist && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
-  'compile',
+  utils.includeIf([
+    'jshint:e2e'
+  ], config.build.e2e.runInDist),
+
+  utils.includeIf([
+    'karmaConfig:dist_e2e',
+    'karma:dist_e2e'
+  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
+
+  utils.includeIf([
+    'protractorConfig:dist',
+    'protractor:dist'
+  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
 
   utils.includeIf([
     'copy:dist_e2e',
-    'indexHtml:dist_e2e',
+    'processHtml:dist_e2e',
     'htmlmin:dist_e2e',
     'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',
     'shell:dist_e2e',
     'configureProxies:dist_e2e',
     'connect:dist_e2e'
-  ], config.build.e2e.runInDist),
+  ], config.build.e2e.runInDist)
+);
 
-  utils.includeIf([
-    'karmaConfig:dist_e2e',
-    'karma:dist_e2e'
-  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
+grunt.registerTask('test', testTask);
 
-  utils.includeIf([
-    'protractorConfig:dist',
-    'protractor:dist'
-  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && (utils.hasFiles('src/app', config.app.files.js_e2e) || utils.hasFiles('src/common', config.common.files.js_e2e))),
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * The 'dist' task builds and tests the app.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var distTask = [].concat(
+  'hookDistStart',
+
+  'build',
+  'test',
 
   'compress:dist_app',
 

@@ -14,11 +14,10 @@ grunt.verbose.writeln('registering custom tasks');
  * compilation.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-var indexHtmlTask = function () {
+var processHtmlTask = function () {
   var options = this.options({});
 
   var bases = options.base;
-
   if (Array.isArray(bases) === false) {
     bases = [ bases ];
   }
@@ -30,15 +29,23 @@ var indexHtmlTask = function () {
   var basesJoined = basesEscaped.join('|');
   var basesRegExp = new RegExp('^(' + basesJoined + ')\/', 'g');
 
-  var jsFiles = utils.filterForJS(this.filesSrc).map(function (file) {
+  var jsFilesWithPath = _.flatten(this.data.javascript.map(function (jsFiles) {
+    return grunt.file.expand(jsFiles, jsFiles.src);
+  }));
+
+  var jsFiles = jsFilesWithPath.map(function (file) {
     return file.replace(basesRegExp, '');
   });
 
-  var cssFiles = utils.filterForCSS(this.filesSrc).map(function (file) {
+  var cssFilesWithPath = _.flatten(this.data.css.map(function (jsFiles) {
+    return grunt.file.expand(jsFiles, jsFiles.src);
+  }));
+
+  var cssFiles = cssFilesWithPath.map(function (file) {
     return file.replace(basesRegExp, '');
   });
 
-  var blessedCssFiles = _.flatten(utils.filterForCSS(this.filesSrc).map(function (file) {
+  var blessedCssFiles = cssFilesWithPath.map(function (file) {
     var fileDir = path.dirname(file);
     var fileName = path.basename(file, '.css');
 
@@ -56,23 +63,29 @@ var indexHtmlTask = function () {
     return blessedFiles.map(function (file) {
       return path.normalize(file).replace(basesRegExp, '');
     });
-  }));
+  });
 
-  grunt.file.copy('src/index.html', options.dir + '/index.html', {
-    process: function (contents) {
-      return grunt.template.process(contents, {
-        data: {
-          scripts: jsFiles,
-          styles: cssFiles,
-          blessedStyles: blessedCssFiles,
-          angular_module: options.angular_module
-        }
-      });
+  this.files.forEach(function (file) {
+    if (file.src.length > 1) {
+      grunt.fail.warn('more than one source file to copy to destination');
     }
+
+    grunt.file.copy(file.src[0], file.dest, {
+      process: function (contents) {
+        return grunt.template.process(contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            blessedStyles: blessedCssFiles,
+            angular_module: options.angular_module
+          }
+        });
+      }
+    });
   });
 };
 
-grunt.registerMultiTask('indexHtml', 'Process index.html template', indexHtmlTask);
+grunt.registerMultiTask('processHtml', 'Process html pages (not templates but entry pages)', processHtmlTask);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * translations2js reads the specified translations (files property), put them into an angular module (options.module),
@@ -132,7 +145,8 @@ var karmaConfigTask = function () {
           junit_results: options.junitResults,
           connect_e2e_port: options.connectPort,
           browsers: options.browsers,
-          port: options.port
+          port: options.port,
+          basePath: options.basePath
         }
       });
     }

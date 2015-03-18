@@ -2,14 +2,11 @@
 
 var config = require('./../build.config.js').getConfig();
 var grunt = require('grunt');
-var pkg = require('./../utils/package.js');
+var project = require('./../utils/project.js');
 var path = require('path');
 
-var bowerrc = grunt.file.exists('./.bowerrc') ? grunt.file.readJSON('./.bowerrc') : { 'json': 'bower.json' };
-var bower;
-if (grunt.file.exists(bowerrc.json)) {
-  bower = grunt.file.readJSON(bowerrc.json);
-}
+var bowerrc = project.getBowerRc();
+var bower = project.getBowerJson();
 
 var bumpFiles = [ 'package.json' ];
 if (bower !== undefined && bower.version !== undefined) {
@@ -20,7 +17,7 @@ var commonTasksConfig = {
   /**
    * Make 'package.json' accessible to templates like banner below.
    */
-  pkg: pkg,
+  pkg: project.getPackageJson(),
 
   /**
    * The banner is the comment that is placed at the top of our compiled files.
@@ -45,7 +42,6 @@ var commonTasksConfig = {
     options: {
       // changed for dev mode via updateConfig:dev_changeLessSassConfig
       dumpLineNumbers: 'false',
-      compress: true,
       paths: [ 'vendor' ]
     }
   },
@@ -61,9 +57,9 @@ var commonTasksConfig = {
     options: {
       importPath: [ 'vendor' ],
       relativeAssets: false,
+      outputStyle: 'expanded',
 
       // changed for dev mode via updateConfig:dev_changeLessSassConfig
-      outputStyle: 'compressed',
       debugInfo: false
     }
   },
@@ -76,10 +72,8 @@ var commonTasksConfig = {
 
   shell: {
     bower: {
-      command: [
-        'bower install',
-        'bower update -q'
-      ].join(' && ')
+      command:
+        'bower install --offline'
     }
   },
 
@@ -90,7 +84,8 @@ var commonTasksConfig = {
         out: config.build.output.dir + '/karma-prepare-spec.js',
         junitResults: config.build.output.dir + '/karma-prepare-spec-results.xml',
         browsers: config.build.spec.browsers,
-        port: config.build.spec.karma.port
+        port: config.build.spec.karma.port,
+        basePath: path.resolve('.')
       },
       files: [
         {
@@ -126,37 +121,19 @@ var commonTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js
         },
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_mock
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_mock
         },
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_spec
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_spec
         }
       ]

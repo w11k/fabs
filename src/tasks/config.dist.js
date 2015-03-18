@@ -3,7 +3,8 @@
 var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
-var pkg = require('./../utils/package.js');
+var project = require('./../utils/project.js');
+var pkg = project.getPackageJson();
 var path = require('path');
 
 var distTasksConfig = {
@@ -50,13 +51,7 @@ var distTasksConfig = {
         },
         {
           expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_mock,
-          dest: '<%= copy.dist_e2e.options.out %>'
-        },
-        {
-          expand: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_mock,
           dest: '<%= copy.dist_e2e.options.out %>'
         }
@@ -91,19 +86,14 @@ var distTasksConfig = {
         junitResults: config.build.output.dir + '/karma-e2e-results.xml',
         connectPort: config.build.e2e.server.port,
         port: config.build.e2e.karma.port,
-        browsers: config.build.e2e.browsers
+        browsers: config.build.e2e.browsers,
+        basePath: path.resolve('.')
       },
       files: [
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_e2e
         }
       ]
@@ -122,13 +112,7 @@ var distTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.js_e2e
         }
       ]
@@ -173,12 +157,6 @@ var distTasksConfig = {
           nosort: true,
           cwd: '<%= copy.dist_e2e.options.out %>',
           src: config.vendor.files.js_mock
-        },
-        {
-          expand: true,
-          nosort: true,
-          cwd: '<%= copy.dist_e2e.options.out %>',
-          src: config.common.files.js_mock
         },
         {
           expand: true,

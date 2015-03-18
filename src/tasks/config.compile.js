@@ -37,10 +37,7 @@ var compileTasksConfig = {
         {
           expand: true,
           cwd: '<%= copy.prepare_app_templates.options.out %>',
-          src: [
-            config.app.files.templates,
-            config.common.files.templates
-          ],
+          src: [ config.app.files.templates ],
           dest: config.build.compile.outdir
         }
       ]
@@ -92,7 +89,6 @@ var compileTasksConfig = {
           return [].concat(
             config.vendor.files.js.map(utils.addCwdToPattern('<%= copy.prepare_vendor_js.options.out %>')),
             path.normalize(__dirname + './../snippets/module.prefix'),
-            config.common.files.js.map(utils.addCwdToPattern('<%= copy.prepare_common_js.options.out %>')),
             config.app.files.js.map(utils.addCwdToPattern('<%= copy.prepare_app_js.options.out %>')),
             '<%= html2js.compile_templates.options.out %>',
             '<%= translations2js.prepare.options.out %>',
@@ -112,12 +108,6 @@ var compileTasksConfig = {
           cwd: '<%= copy.prepare_app_js.options.out %>',
           src: config.app.files.js,
           dest: '<%= copy.prepare_app_js.options.out %>'
-        },
-        {
-          expand: true,
-          cwd: '<%= copy.prepare_common_js.options.out %>',
-          src: config.common.files.js,
-          dest: '<%= copy.prepare_common_js.options.out %>'
         }
       ]
     }
@@ -167,12 +157,7 @@ var compileTasksConfig = {
     }
   },
 
-  indexHtml: {
-    /**
-     * When it is time to have a completely compiled application, we can
-     * alter the above to include only a single JavaScript and a single CSS
-     * file.
-     */
+  processHtml: {
     compile: {
       options: {
         base: [
@@ -183,11 +168,17 @@ var compileTasksConfig = {
         blessedPrefix: config.build.bless.prefix,
         angular_module: config.app.angular_module.regular
       },
+      javascript: [{
+        src: '<%= concat.compile_js.options.out %>'
+      }],
+      css: [{
+        src: '<%= copy.compile_css.options.out %>'
+      }],
       files: [{
-        src: [
-          '<%= concat.compile_js.options.out %>',
-          '<%= copy.compile_css.options.out %>'
-        ]
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.html,
+        dest: config.build.compile.outdir
       }]
     }
   },
@@ -199,12 +190,6 @@ var compileTasksConfig = {
           expand: true,
           cwd: '<%= copy.prepare_app_templates.options.out %>',
           src: config.app.files.templates,
-          dest: '<%= copy.prepare_app_templates.options.out %>'
-        },
-        {
-          expand: true,
-          cwd: '<%= copy.prepare_common_templates.options.out %>',
-          src: config.common.files.templates,
           dest: '<%= copy.prepare_app_templates.options.out %>'
         }
       ]
@@ -228,10 +213,7 @@ var compileTasksConfig = {
         {
           expand: true,
           cwd: '<%= copy.prepare_app_templates.options.out %>',
-          src: [
-            config.common.files.templates2js,
-            config.app.files.templates2js
-          ],
+          src: [ config.app.files.templates2js ],
           // task requires a dir as dest so we must use the rename function to place all templates into one js file
           dest: config.build.prepare.outdir,
           rename: function () {
@@ -274,10 +256,7 @@ var compileTasksConfig = {
         {
           expand: true,
           cwd: config.build.compile.outdir + '/' + config.build.compile.cacheBustingDir,
-          src: [
-            config.app.files.templates,
-            config.common.files.templates
-          ],
+          src: [ config.app.files.templates ],
           dest: config.build.compile.outdir + '/' + config.build.compile.cacheBustingDir
         }
       ]

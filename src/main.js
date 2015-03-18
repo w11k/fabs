@@ -19,33 +19,6 @@ module.exports = {
     grunt.verbose.writeln('fabs configuration read');
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     * Change the build configuration according to command line options. A developer can use developer.config.js
-     * to persist the options to not have to type them over and over again on the command line. Using/Merging the
-     * developer.config.js can be disabled via --devConfig=false.
-     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-    // Enable or disable loading mock files in browser too, in dev mode
-    // check for undefined to not override the default
-    if (grunt.option('mocks') !== undefined) {
-      grunt.verbose.writeln('detected command line argument: --mocks=' + grunt.option('mocks'));
-      buildConfig.build.mocks.loadInBrowser = !!grunt.option('mocks');
-    }
-
-    // Enable or disable running bower
-    // check for undefined to not override the default
-    if (grunt.option('bower') !== undefined) {
-      grunt.verbose.writeln('detected command line argument: --bower=' + grunt.option('bower'));
-      buildConfig.build.bower.runInDev = !!grunt.option('bower');
-    }
-
-    // Enable or disable running dist server
-    // check for undefined to not override the default
-    if (grunt.option('server') !== undefined) {
-      grunt.verbose.writeln('detected command line argument: --server=' + grunt.option('server'));
-      buildConfig.build.server.runInDist = !!grunt.option('server');
-    }
-
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      * Load the task configuration, the object Grunt uses to give each task its instructions and apply the build
      * configuration -> replace all variables like '<%= build.output.dir %>' within task configuration with the
      * value from build configuration. Then apply the resulting configuration.
@@ -59,7 +32,7 @@ module.exports = {
     var gruntConfig = _.extend(tasksConfig, buildConfig);
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     * Load our composite and custom tasks. No need to do anything else than require the modules. They register the
+     * Load composite and custom tasks. No need to do anything else than require the modules. They register the
      * tasks themselves.
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 

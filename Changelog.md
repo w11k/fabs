@@ -1,5 +1,30 @@
 # fabs Changelog
 
+<a name="0.7.0"></a>
+## 0.7.0 (2015-03-19)
+
+
+#### Bug Fixes
+
+* **config:** fix broken build with build output folder with 2 levels (e.g. 'build/fabs') ([f404aa73](https://github.com/w11k/fabs/commit/f404aa7349b543d8de6d7e3d35cd8f4e076c3371))
+* **css:** do not compress css in dev mode ([80f15438](https://github.com/w11k/fabs/commit/80f15438ee8f99689c97e1684a44dfbebd5c9850))
+
+
+#### Features
+
+* **entry-page:** make entry-pages (previously hard coded index.html) configurable ([f08c1087](https://github.com/w11k/fabs/commit/f08c1087bad7e319c0ade0b75ecd18c69f025357))
+* **jshint:** use jshintrc near by code file ([0c5e98da](https://github.com/w11k/fabs/commit/0c5e98dacb5089a975d9991c14c3978f0fea4539))
+* **tasks:** break up dist-task into 'build' and 'test' to be able to call them separately fr ([4ce52e4e](https://github.com/w11k/fabs/commit/4ce52e4e663d32b390be6382b60b660488a15413))
+* **watch:** watch bower.json for changes and run bower automatically to install dependencies ([1949b6d0](https://github.com/w11k/fabs/commit/1949b6d0a156efe45dc00195e0a406ac6f29d054))
+
+
+#### Breaking Changes
+
+* src/common and all configuration for common is removed. There is only one src folder now which holds all the code for your app, common code and app specific code.
+As before you are free to organise your app code with subfolders. So you can leave your src/common and src/app folder unchanged but you have to adjust your app.files configuration to mach files in both. Or you merge the code of src/common and src/app to one folder.
+ ([e470e6f2](https://github.com/w11k/fabs/commit/e470e6f2292762fa9374a6c691402c5d34151940))
+
+
 <a name="0.6.5"></a>
 ## 0.6.5 (2014-11-18)
 

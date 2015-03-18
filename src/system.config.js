@@ -1,6 +1,7 @@
 'use strict';
 
-var pkg = require('./utils/package.js');
+var project = require('./utils/project.js');
+var pkg = project.getPackageJson();
 
 var systemConfig = {
 
@@ -85,7 +86,7 @@ var systemConfig = {
     },
     mocks: {
       /**
-       * Enable / disable loading the mock files (app.files.js_mock, common.files.js_mock and vendor.files.js_mock) in
+       * Enable / disable loading the mock files (app.files.js_mock and vendor.files.js_mock) in
        * the browser during development (dev mode)
        */
       loadInBrowser: false
@@ -131,9 +132,10 @@ var systemConfig = {
     /**
      * Specifies which files to include to the prepared / compiled application.
      *
-     * ALL PATHS ARE RELATIVE TO 'src/app' !!!
+     * ALL PATHS ARE RELATIVE TO root !!!
      */
     files: {
+      root: 'src',
       js: [
         '**/*.js',
         '!**/*.mock.js',
@@ -144,23 +146,21 @@ var systemConfig = {
       js_spec: [ '**/*.spec.js' ],
       js_e2e: [ '**/*.e2e.js' ],
 
+      html: [
+        'index.html'
+      ],
+
       // application's html templates
       templates: [
         '**/*.html'
       ],
       // a subset of templates to compile to js and preload with js code
       templates2js: [
-        /**
-         * Don't use too generic wildcard here! common.templates and app.templates get merged during build.
-         * All matching templates from common will be included also!
-         * Do not use something like the next line!
-         */
+        // don't use the next line, otherwise index.html will be included too
         // '**/*.html'
-        'partial/**/*.html',
         'route/home/home.html'
       ],
       /**
-       * Translations are specified for app only, no common.files.translations nor vendor.files.translations.
        * Translations for one language must be defined within one file. There is no merging of translations, neither
        * within the build system nor withing the running application.
        */
@@ -224,49 +224,6 @@ var systemConfig = {
     }
   },
 
-  common: {
-    /**
-     * Specifies which files to include to the prepared / compiled application.
-     *
-     * ALL PATHS ARE RELATIVE TO 'src/common' !!!
-     */
-    files: {
-      js: [
-        '**/*.js',
-        '!**/*.mock.js',
-        '!**/*.spec.js',
-        '!**/*.e2e.js'
-      ],
-      js_mock: [ '**/*.mock.js' ],
-      js_spec: [ '**/*.spec.js' ],
-      js_e2e: [ '**/*.e2e.js' ],
-      less: [
-        '**/*.less',
-        '!**/_*.less'
-      ],
-      sass: [
-        '**/*.scss'
-        // why not exluded? see app.files.sass
-        //'!**/_*.scss'
-      ],
-      css: [
-        '**/*.css'
-      ],
-      templates: [
-        '**/*.html'
-      ],
-      // a subset of common.templates to compile to js and preload with js code
-      templates2js: [
-      /**
-       * Don't use too generic wildcard here! common.templates and app.templates get merged during build.
-       * All matching templates from app will be included also!
-       * Do not use something like the next line!
-       */
-        //'**/*.html'
-      ]
-    }
-  },
-
   vendor: {
     /**
      * Specifies which files to include to the prepared / compiled application.
@@ -274,7 +231,7 @@ var systemConfig = {
      * No default values because you will always have to add something and arrays get replaced, not concatenated or
      * merged. So the default will always be replaced.
      *
-     * While 'app.files' and 'common.files' can easily use wildcards, it's a bit more complicate for vendor code.
+     * While 'app.files' can easily use wildcards, it's a bit more complicate for vendor code.
      * Bower packages usually comes with a bunch of files and we certainly do not want to include them all. So we have
      * to handle the inclusion manually.
      *

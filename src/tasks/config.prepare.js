@@ -7,73 +7,46 @@ var path = require('path');
 
 var prepareTasksConfig = {
 
-  /**
-   * `jshint` defines the rules of our linter as well as which files we
-   * should check. This file, all javascript sources, and all our unit tests
-   * are linted based on the policies listed in `options`. But we can also
-   * specify exclusionary patterns by prefixing them with an exclamation
-   * point (!); this is useful when code comes from a third party but is
-   * nonetheless inside `src/`.
-   */
   jshint: {
-    options: {
-      jshintrc: '.jshintrc'
-    },
     src: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js
-        }
-      ]
+      options: {
+        jshintrc: true
+      },
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.js
+      }]
     },
     mock: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js_mock
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_mock
-        }
-      ]
+      options: {
+        jshintrc: true
+      },
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.js_mock
+      }]
     },
     spec: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js_spec
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_spec
-        }
-      ]
+      options: {
+        jshintrc: true
+      },
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.js_spec
+      }]
     },
     e2e: {
-      files: [
-        {
-          expand: true,
-          cwd: 'src/app',
-          src: config.app.files.js_e2e
-        },
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.js_e2e
-        }
-      ]
+      options: {
+        jshintrc: true
+      },
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.js_e2e
+      }]
     }
   },
 
@@ -92,21 +65,9 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.templates,
         dest: '<%= copy.prepare_app_templates.options.out %>'
-      }]
-    },
-    prepare_common_templates: {
-      options: {
-        // app and common templates have to be in the same folder for later processing
-        out: '<%= copy.prepare_app_templates.options.out %>'
-      },
-      files: [{
-        expand: true,
-        cwd: 'src/common',
-        src: config.common.files.templates,
-        dest: '<%= copy.prepare_common_templates.options.out %>'
       }]
     },
     prepare_app_templates2js: {
@@ -130,7 +91,7 @@ var prepareTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.translations,
           dest: '<%= copy.prepare_app_translations.options.out %>'
         }
@@ -162,20 +123,9 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js,
         dest: '<%= copy.prepare_app_js.options.out %>'
-      }]
-    },
-    prepare_common_js: {
-      options: {
-        out: config.build.prepare.outdir + '/js/common'
-      },
-      files: [{
-        expand: true,
-        cwd: 'src/common',
-        src: config.common.files.js,
-        dest: '<%= copy.prepare_common_js.options.out %>'
       }]
     },
     prepare_vendor_js: {
@@ -195,20 +145,9 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.js_mock,
         dest: '<%= copy.prepare_app_js_mock.options.out %>'
-      }]
-    },
-    prepare_common_js_mock: {
-      options: {
-        out: config.build.prepare.outdir + '/js/common_mock'
-      },
-      files: [{
-        expand: true,
-        cwd: 'src/common',
-        src: config.common.files.js_mock,
-        dest: '<%= copy.prepare_common_js_mock.options.out %>'
       }]
     },
     prepare_vendor_js_mock: {
@@ -227,28 +166,15 @@ var prepareTasksConfig = {
   less: {
     prepare_app: {
       options: {
-        out: config.build.prepare.outdir + '/less/app'
+        out: config.build.prepare.outdir + '/less/app',
+        paths: [config.app.files.root, 'vendor']
       },
       files: [
         {
           expand: true,
-          cwd: 'src/app',
+          cwd: config.app.files.root,
           src: config.app.files.less,
           dest: '<%= less.prepare_app.options.out %>',
-          ext: '.css'
-        }
-      ]
-    },
-    prepare_common: {
-      options: {
-        out: config.build.prepare.outdir + '/less/common'
-      },
-      files: [
-        {
-          expand: true,
-          cwd: 'src/common',
-          src: config.common.files.less,
-          dest: '<%= less.prepare_common.options.out %>',
           ext: '.css'
         }
       ]
@@ -259,29 +185,15 @@ var prepareTasksConfig = {
     prepare_app: {
       options: {
         // files
-        sassDir: 'src/app',
+        sassDir: config.app.files.root,
         specify: grunt.file.expand(
-          { cwd: 'src/app' },
+          { cwd: config.app.files.root },
           config.app.files.sass
         ).map(function (file) {
-            return 'src/app/' + file;
+            return config.app.files.root + '/' + file;
           }
         ),
         cssDir: config.build.prepare.outdir + '/sass/app'
-      }
-    },
-    prepare_common: {
-      options: {
-        // files
-        sassDir: 'src/common',
-        specify:  grunt.file.expand(
-          { cwd: 'src/common' },
-          config.common.files.sass
-        ).map(function (file) {
-            return 'src/common/' + file;
-          }
-        ),
-        cssDir: config.build.prepare.outdir + '/sass/common'
       }
     }
   },
@@ -297,16 +209,8 @@ var prepareTasksConfig = {
           return [].concat(
             config.vendor.files.css
               .map(utils.addCwdToPattern('vendor')),
-            config.common.files.css
-              .map(utils.addCwdToPattern('src/common')),
-            config.common.files.less
-              .map(utils.addCwdToPattern('<%= less.prepare_common.options.out %>'))
-              .map(utils.replaceExtension('less', 'css')),
-            config.common.files.sass
-              .map(utils.addCwdToPattern('<%= compass.prepare_common.options.cssDir %>'))
-              .map(utils.replaceExtension('scss', 'css')),
             config.app.files.css
-              .map(utils.addCwdToPattern('src/app')),
+              .map(utils.addCwdToPattern(config.app.files.root)),
             config.app.files.less
               .map(utils.addCwdToPattern('<%= less.prepare_app.options.out %>'))
               .map(utils.replaceExtension('less', 'css')),
@@ -330,7 +234,7 @@ var prepareTasksConfig = {
     }
   },
 
-  indexHtml: {
+  processHtml: {
     /**
      * During development, we don't want to have wait for compilation,
      * concatenation, minification, etc. So to avoid these steps, we simply
@@ -341,7 +245,6 @@ var prepareTasksConfig = {
         base: [
           config.build.prepare.outdir
         ],
-        dir: config.build.prepare.outdir,
         blessedPrefix: config.build.bless.prefix,
         angular_module: (function () {
           if (config.build.mocks.loadInBrowser) {
@@ -352,20 +255,13 @@ var prepareTasksConfig = {
           }
         })()
       },
-      files: (function () {
+      javascript: (function () {
         return [].concat(
-          // javascript
           {
             expand: true,
             nosort: true,
             cwd: '<%= copy.prepare_vendor_js.options.out %>',
             src: config.vendor.files.js
-          },
-          {
-            expand: true,
-            nosort: true,
-            cwd: '<%= copy.prepare_common_js.options.out %>',
-            src: config.common.files.js
           },
           {
             expand: true,
@@ -389,23 +285,21 @@ var prepareTasksConfig = {
             {
               expand: true,
               nosort: true,
-              cwd: '<%= copy.prepare_common_js_mock.options.out %>',
-              src: config.common.files.js_mock
-            },
-            {
-              expand: true,
-              nosort: true,
               cwd: '<%= copy.prepare_app_js_mock.options.out %>',
               src: config.app.files.js_mock
             }
-          ], config.build.mocks.loadInBrowser),
-
-          // css
-          {
-            src: '<%= concat.prepare_css.options.out %>'
-          }
+          ], config.build.mocks.loadInBrowser)
         );
-      })()
+      })(),
+      css: [{
+        src: '<%= concat.prepare_css.options.out %>'
+      }],
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.html,
+        dest: config.build.prepare.outdir
+      }]
     }
   },
 
@@ -418,7 +312,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'src/app',
+        cwd: config.app.files.root,
         src: config.app.files.translations2js
       }]
     }
