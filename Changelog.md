@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="0.7.1"></a>
+## 0.7.1 (2015-03-20)
+
+
+#### Bug Fixes
+
+* **dependencies:** update grunt-contrib-compress to avoid usage of is binaryfile 0.10.0 with russia ([54108c78](https://github.com/w11k/fabs/commit/54108c7837a5064a4adeebc890f30cff20f14d92))
+
+
 <a name="0.7.0"></a>
 ## 0.7.0 (2015-03-19)
 
