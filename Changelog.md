@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="0.7.2"></a>
+### 0.7.2 (2015-03-23)
+
+
+### Bug Fixes
+
+* **configuration:** export merged build configuration ([76e77d3c](https://github.com/w11k/fabs/commit/76e77d3c6c172283ce40e610c419ebec0c0f8a23))
+
+
 <a name="0.7.1"></a>
 ## 0.7.1 (2015-03-20)
 
