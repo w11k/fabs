@@ -56,8 +56,5 @@ module.exports = {
     }
 
     return gruntConfig;
-  },
-  getFabsConfig: function () {
-    return configuration;
   }
 };
