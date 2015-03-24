@@ -83,9 +83,13 @@ module.exports = {
         configFolder = './build-config';
       }
 
-      var absPathToConfigFolder = path.resolve('./../../../', configFolder);
+      grunt.verbose.writeln('reading fabs configuration');
+      grunt.verbose.writeln('used config folder: ' + configFolder);
 
+      var absPathToConfigFolder = path.resolve('./../../../', configFolder);
       buildConfig = createBuildConfig(absPathToConfigFolder);
+
+      grunt.verbose.writeln('fabs configuration read');
     }
 
     return buildConfig;

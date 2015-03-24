@@ -155,7 +155,9 @@ var buildTask = [].concat(
   utils.includeIf('shell:bower', config.build.bower.runInDist),
 
   'prepare',
-  'compile'
+  'compile',
+
+  'compress:dist_app'
 );
 
 grunt.registerTask('build', buildTask);
@@ -208,8 +210,6 @@ var distTask = [].concat(
 
   'build',
   'test',
-
-  'compress:dist_app',
 
   utils.includeIf([
     'configureProxies:dist',
