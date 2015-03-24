@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="0.7.3"></a>
+### 0.7.3 (2015-03-24)
+
+
+#### Bug Fixes
+
+* **configuration:** revert export of merged build configuration, use 0.8.0 instead ([6ad4b549](https://github.com/w11k/fabs/commit/6ad4b549297ff853245995d92ed8b152a3f40e1a))
+
+
 <a name="0.7.2"></a>
 ### 0.7.2 (2015-03-23)
 
