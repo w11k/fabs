@@ -1,7 +1,24 @@
 # fabs Changelog
 
+<a name="0.8.0"></a>
+## 0.8.0 (2015-03-24)
+
+
+#### Features
+
+* **configuration:** export fabs build configuration ([10a33752](https://github.com/w11k/fabs/commit/10a337520440330f25df9e29a24ed85075ff5f00))
+
+
+#### Breaking Changes
+
+* additional indirection added
+You have to crate a configuration object first and then request the grunt configuration from that object. Previously the grunt configuration was requested at the required fabs module.
+require fabs -> createConfig -> getGruntConfig / getBuildConfig
+ ([10a33752](https://github.com/w11k/fabs/commit/10a337520440330f25df9e29a24ed85075ff5f00))
+
+
 <a name="0.7.3"></a>
-### 0.7.3 (2015-03-24)
+## 0.7.3 (2015-03-24)
 
 
 #### Bug Fixes
