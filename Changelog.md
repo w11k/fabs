@@ -1,5 +1,15 @@
 # fabs Changelog
 
+<a name="0.8.1"></a>
+## 0.8.1 (2015-04-08)
+
+
+#### Bug Fixes
+
+* **dependencies:** update ng-annotate to be able to run with node 0.12 ([8aace477](https://github.com/w11k/fabs/commit/8aace477dedded6d2c79733597eab48640fcdd63))
+* **dev-mode:** repair inclusion of separated js files ([a3d39966](https://github.com/w11k/fabs/commit/a3d39966d9f9cee7c2869add00809cfa28f5b664))
+
+
 <a name="0.8.0"></a>
 ## 0.8.0 (2015-03-24)
 
