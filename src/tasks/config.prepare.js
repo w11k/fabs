@@ -238,7 +238,7 @@ var prepareTasksConfig = {
     /**
      * During development, we don't want to have wait for compilation,
      * concatenation, minification, etc. So to avoid these steps, we simply
-     * add all script files directly to `index.html`.
+     * add all script files directly to the html file.
      */
     prepare: {
       options: {
@@ -260,14 +260,12 @@ var prepareTasksConfig = {
           {
             expand: true,
             nosort: true,
-            cwd: '<%= copy.prepare_vendor_js.options.out %>',
-            src: config.vendor.files.js
+            src: config.vendor.files.js.map(utils.addCwdToPattern('<%= copy.prepare_vendor_js.options.out %>'))
           },
           {
             expand: true,
             nosort: true,
-            cwd: '<%= copy.prepare_app_js.options.out %>',
-            src: config.app.files.js
+            src: config.app.files.js.map(utils.addCwdToPattern('<%= copy.prepare_app_js.options.out %>'))
           },
           {
             src: '<%= translations2js.prepare.options.out %>'
@@ -279,14 +277,12 @@ var prepareTasksConfig = {
             {
               expand: true,
               nosort: true,
-              cwd: '<%= copy.prepare_vendor_js_mock.options.out %>',
-              src: config.vendor.files.js_mock
+              src: config.vendor.files.js_mock.map(utils.addCwdToPattern('<%= copy.prepare_vendor_js_mock.options.out %>'))
             },
             {
               expand: true,
               nosort: true,
-              cwd: '<%= copy.prepare_app_js_mock.options.out %>',
-              src: config.app.files.js_mock
+              src: config.app.files.js_mock.map(utils.addCwdToPattern('<%= copy.prepare_app_js_mock.options.out %>'))
             }
           ], config.build.mocks.loadInBrowser)
         );
