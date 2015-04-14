@@ -42,7 +42,7 @@ var commonTasksConfig = {
     options: {
       // changed for dev mode via updateConfig:dev_changeLessSassConfig
       dumpLineNumbers: 'false',
-      paths: [ 'vendor' ]
+      paths: [ config.vendor.base ]
     }
   },
 
@@ -91,19 +91,19 @@ var commonTasksConfig = {
         {
           expand: true,
           nosort: true,
-          cwd: 'vendor',
+          cwd: config.vendor.base,
           src: config.vendor.files.js
         },
         {
           expand: true,
           nosort: true,
-          cwd: 'vendor',
+          cwd: config.vendor.base,
           src: config.vendor.files.js_mock
         },
         {
           expand: true,
           nosort: true,
-          cwd: 'vendor',
+          cwd: config.vendor.base,
           src: config.vendor.files.js_spec
         },
         {
