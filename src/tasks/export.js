@@ -22,7 +22,7 @@ var taskConfig = {
         '!*.iml',
         '!' + config.build.output.dir + '/**',
         '!node_modules/**',
-        '!vendor/**'
+        '!' + config.vendor.base + '/**'
       ]
     },
     build_system: {

@@ -3,6 +3,9 @@
 var project = require('./utils/project.js');
 var pkg = project.getPackageJson();
 
+var project = require('./utils/project.js');
+var bowerRc = project.getBowerRc();
+
 var systemConfig = {
 
   build: {
@@ -235,8 +238,9 @@ var systemConfig = {
      * Bower packages usually comes with a bunch of files and we certainly do not want to include them all. So we have
      * to handle the inclusion manually.
      *
-     * ALL PATHS ARE RELATIVE TO 'vendor' !!!
+     * ALL PATHS ARE RELATIVE TO base !!!
      */
+    base: bowerRc.directory,
     files: {
       js: [
 //        'angular/angular.js'

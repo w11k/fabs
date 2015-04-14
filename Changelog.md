@@ -1,5 +1,19 @@
 # fabs Changelog
 
+<a name="0.9.0"></a>
+## 0.9.0 (2015-04-14)
+
+
+#### Bug Fixes
+
+* **dependencies:** update karma, jasmine and phantomjs to improve tests ([21c368e5](https://github.com/w11k/fabs/commit/21c368e5ceca9d6e1405be0da7aa1d37dfe34530))
+
+
+#### Features
+
+* **vendor:** make vendor directory configurable via build-configuration vendor.base ([7afebc38](https://github.com/w11k/fabs/commit/7afebc38f4dce6e5e6366120d5b35f3776fb505e))
+
+
 <a name="0.8.1"></a>
 ## 0.8.1 (2015-04-08)
 

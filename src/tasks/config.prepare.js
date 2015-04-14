@@ -111,7 +111,7 @@ var prepareTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: 'vendor',
+          cwd: config.vendor.base,
           src: config.vendor.files.assets,
           dest: config.build.prepare.outdir + '/assets/'
         }
@@ -134,7 +134,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'vendor',
+        cwd: config.vendor.base,
         src: config.vendor.files.js,
         dest: '<%= copy.prepare_vendor_js.options.out %>'
       }]
@@ -156,7 +156,7 @@ var prepareTasksConfig = {
       },
       files: [{
         expand: true,
-        cwd: 'vendor',
+        cwd: config.vendor.base,
         src: config.vendor.files.js_mock,
         dest: '<%= copy.prepare_vendor_js_mock.options.out %>'
       }]
@@ -167,7 +167,7 @@ var prepareTasksConfig = {
     prepare_app: {
       options: {
         out: config.build.prepare.outdir + '/less/app',
-        paths: [config.app.files.root, 'vendor']
+        paths: [config.app.files.root, config.vendor.base]
       },
       files: [
         {
@@ -208,7 +208,7 @@ var prepareTasksConfig = {
         src: (function () {
           return [].concat(
             config.vendor.files.css
-              .map(utils.addCwdToPattern('vendor')),
+              .map(utils.addCwdToPattern(config.vendor.base)),
             config.app.files.css
               .map(utils.addCwdToPattern(config.app.files.root)),
             config.app.files.less

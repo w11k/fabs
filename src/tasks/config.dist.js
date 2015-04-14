@@ -45,7 +45,7 @@ var distTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: 'vendor',
+          cwd: config.vendor.base,
           src: config.vendor.files.js_mock,
           dest: '<%= copy.dist_e2e.options.out %>'
         },
