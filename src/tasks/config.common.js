@@ -81,8 +81,8 @@ var commonTasksConfig = {
     spec: {
       options: {
         template: path.normalize(__dirname + './../snippets/karma-spec.tpl.js'),
-        out: config.build.output.dir + '/karma-prepare-spec.js',
-        junitResults: config.build.output.dir + '/karma-prepare-spec-results.xml',
+        out: config.build.output.dir + '/karma-spec.js',
+        junitResults: config.build.output.dir + '/test-results/karma-spec.xml',
         browsers: config.build.spec.browsers,
         port: config.build.spec.karma.port,
         basePath: path.resolve('.')

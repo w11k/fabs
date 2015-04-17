@@ -83,7 +83,7 @@ var distTasksConfig = {
       options: {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
         out: config.build.output.dir + '/karma-e2e.js',
-        junitResults: config.build.output.dir + '/karma-e2e-results.xml',
+        junitResults: config.build.output.dir + '/test-results/karma-e2e.xml',
         connectPort: config.build.e2e.server.port,
         port: config.build.e2e.karma.port,
         browsers: config.build.e2e.browsers,
