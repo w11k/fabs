@@ -106,7 +106,8 @@ var distTasksConfig = {
         template: path.normalize(__dirname + './../snippets/protractor.tpl.js'),
         out: config.build.output.dir + '/protractor.js',
         browsers: config.build.tests.e2e.browsers,
-        url: 'http://localhost:' + config.build.tests.e2e.server.port
+        url: 'http://localhost:' + config.build.tests.e2e.server.port,
+        basePath: path.resolve('.')
       },
       files: [
         {
@@ -133,20 +134,20 @@ var distTasksConfig = {
     }
   },
 
-  indexHtml: {
+  processHtml: {
     dist_e2e: {
       options: {
         base: [
           config.build.prepare.outdir,
-          config.build.compile.outdir + '/' + config.build.compile.cacheBustingDir,
           config.build.compile.outdir,
+          config.build.compile.outdir + '/' + config.build.compile.cacheBustingDir,
           config.build.dist.e2e.outdir
         ],
         dir: config.build.dist.e2e.outdir,
         blessedPrefix: config.build.bless.prefix,
         angular_module: config.app.angular_module.withMocks
       },
-      files: [
+      javascript: [
         {
           expand: true,
           cwd: '<%= copy.compile_cacheBusting.options.out %>',
@@ -163,21 +164,29 @@ var distTasksConfig = {
           nosort: true,
           cwd: '<%= copy.dist_e2e.options.out %>',
           src: config.app.files.js_mock
-        },
-        {
-          expand: true,
-          cwd: '<%= copy.compile_cacheBusting.options.out %>',
-          src: '<%= copy.compile_css.options.outRelative %>'
         }
-      ]
+      ],
+      css: [{
+        expand: true,
+        cwd: '<%= copy.compile_cacheBusting.options.out %>',
+        src: '<%= copy.compile_css.options.outRelative %>'
+      }],
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.html,
+        dest: config.build.dist.e2e.outdir
+      }]
     }
   },
 
   htmlmin: {
     dist_e2e: {
       files: [{
-        src: config.build.dist.e2e.outdir  + '/index.html',
-        dest: config.build.dist.e2e.outdir + '/index.html'
+        expand: true,
+        cwd: config.build.dist.e2e.outdir,
+        src: config.app.files.html,
+        dest: config.build.dist.e2e.outdir
       }]
     }
   },
