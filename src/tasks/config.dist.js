@@ -107,6 +107,7 @@ var distTasksConfig = {
         out: config.build.output.dir + '/protractor.js',
         browsers: config.build.tests.e2e.browsers,
         url: 'http://localhost:' + config.build.tests.e2e.server.port,
+        junitResults: config.build.output.dir + '/' + config.build.tests.resultDir,
         basePath: path.resolve('.')
       },
       files: [

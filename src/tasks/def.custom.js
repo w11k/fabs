@@ -181,7 +181,8 @@ var protractorConfigTask = function () {
         data: {
           scripts: jsFiles,
           capabilities: capabilitiesAsStrings,
-          baseUrl: options.url
+          baseUrl: options.url,
+          junitResults: options.junitResults
         }
       });
     }
