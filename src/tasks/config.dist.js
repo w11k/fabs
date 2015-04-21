@@ -23,7 +23,7 @@ var distTasksConfig = {
     },
     dist_e2e: {
       options: {
-        port: config.build.e2e.server.port,
+        port: config.build.tests.e2e.server.port,
         hostname: '0.0.0.0',
         livereload: false,
         keepalive: false,
@@ -84,9 +84,9 @@ var distTasksConfig = {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
         out: config.build.output.dir + '/e2e-karma.js',
         junitResults: config.build.output.dir + '/test-results',
-        connectPort: config.build.e2e.server.port,
-        port: config.build.e2e.karma.port,
-        browsers: config.build.e2e.browsers,
+        connectPort: config.build.tests.e2e.server.port,
+        port: config.build.tests.e2e.karma.port,
+        browsers: config.build.tests.e2e.browsers,
         basePath: path.resolve('.')
       },
       files: [
@@ -105,8 +105,8 @@ var distTasksConfig = {
       options: {
         template: path.normalize(__dirname + './../snippets/protractor.tpl.js'),
         out: config.build.output.dir + '/protractor.js',
-        browsers: config.build.e2e.browsers,
-        url: 'http://localhost:' + config.build.e2e.server.port
+        browsers: config.build.tests.e2e.browsers,
+        url: 'http://localhost:' + config.build.tests.e2e.server.port
       },
       files: [
         {

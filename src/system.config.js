@@ -41,51 +41,54 @@ var systemConfig = {
       prefix: 'blessed_',
       enabled: true
     },
-    spec: {
-      // Enable / disable running spec tests in dev mode
-      runInDev: true,
-      // Enable / disable running spec tests in dist mode
-      runInDist: true,
-      karma: {
-        // port on which karma for spec tests runs
-        port: 9010
+    tests: {
+      spec: {
+        // Enable / disable running spec tests in dev mode
+        runInDev: true,
+        // Enable / disable running spec tests in dist mode
+        runInDist: true,
+        karma: {
+          // port on which karma for spec tests runs
+          port: 9010
+        },
+        /**
+         * The list of browsers to launch to test on. May include:
+         * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
+         *
+         * You may also leave this empty and manually navigate your browser to
+         * http://localhost:9010/ when you're running tests. The window/tab can be left
+         * open and the tests will automatically occur there during the build.
+         */
+        browsers: []
       },
-      /**
-       * The list of browsers to launch to test on. May include:
-       * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
-       *
-       * You may also leave this empty and manually navigate your browser to
-       * http://localhost:9010/ when you're running tests. The window/tab can be left
-       * open and the tests will automatically occur there during the build.
-       */
-      browsers: []
-    },
-    e2e: {
-      // Enable / disable running end-to-end tests against compiled application
-      runInDist: true,
-      karma: {
-        // Enable / disable running end-to-end tests with karma and ng-scenario runner
-        enabled: false,
-        // port on which karma for e2e tests runs
-        port: 9011
+      e2e: {
+        // Enable / disable running end-to-end tests against compiled application
+        runInDist: true,
+        karma: {
+          // Enable / disable running end-to-end tests with karma and ng-scenario runner
+          enabled: false,
+          // port on which karma for e2e tests runs
+          port: 9011
+        },
+        protrctor: {
+          // Enable / disable running end-to-end tests with protractor
+          enabled: true
+        },
+        server: {
+          // port used to start web server serving application for e2e tests (with mocks)
+          port: 9001
+        },
+        /**
+         * The list of browsers to launch to test on. May include:
+         * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
+         *
+         * You may also leave this empty and manually navigate your browser to
+         * http://localhost:9011/ when you're running tests. The window/tab can be left
+         * open and the tests will automatically occur there during the build.
+         */
+        browsers: []
       },
-      protrctor: {
-        // Enable / disable running end-to-end tests with protractor
-        enabled: true
-      },
-      server: {
-        // port used to start web server serving application for e2e tests (with mocks)
-        port: 9001
-      },
-      /**
-       * The list of browsers to launch to test on. May include:
-       * Chrome, ChromeCanary, Firefox, Opera, Safari, PhantomJS
-       *
-       * You may also leave this empty and manually navigate your browser to
-       * http://localhost:9011/ when you're running tests. The window/tab can be left
-       * open and the tests will automatically occur there during the build.
-       */
-      browsers: []
+      resultDir: 'test-results'
     },
     resultDir: 'test-results',
     mocks: {
