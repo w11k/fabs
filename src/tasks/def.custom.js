@@ -170,7 +170,7 @@ var protractorConfigTask = function () {
 
   var phantomJsCapabilities = capabilities.filter(function (capability) { return capability.browserName == 'phantomjs'; });
   phantomJsCapabilities.forEach(function (capability) {
-    capability['phantomjs.binary.path'] = './node_modules/phantomjs/bin/phantomjs';
+    capability['phantomjs.binary.path'] = './node_modules/fabs/node_modules/phantomjs/bin/phantomjs';
   });
 
   var capabilitiesAsStrings = capabilities.map(function (capability) { return JSON.stringify(capability); });
