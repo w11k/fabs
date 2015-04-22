@@ -1,5 +1,49 @@
 # fabs Changelog
 
+<a name="0.10.0"></a>
+## 0.10.0 (2015-04-22)
+
+
+### Bug Fixes
+
+* **protractor:** fix running end-2-end tests with protractor, adjust to multiple html-root-docume ([1423384a](https://github.com/w11k/fabs/commit/1423384aae06e3231382610abefbfdafcdda9c63))
+* **tests:**
+
+
+### Features
+
+* **configuration:** move spec and e2e configuration into tests block ([19e94a16](https://github.com/w11k/fabs/commit/19e94a16cfdf416ca5749ea28bb14f2b9ada5aa4))
+* **dependencies:** do not load grunt plugins as peer dependencies anymore ([8514e150](https://github.com/w11k/fabs/commit/8514e1502f30a0c6662818dd9fd4aa101b111619))
+* **protractor:** write protractor test results to junit-xml-file ([f31c8098](https://github.com/w11k/fabs/commit/f31c809826df25b47eb752218ec289fc6abf89b5))
+* **tests:** extract test-results-dir to config variable ([49098319](https://github.com/w11k/fabs/commit/49098319db52e39cb16f5157f845aaa947c73871))
+
+### Breaking Changes
+
+* build configuration structure modified
+  
+  The structure of the build configuration has been modified. The ```spec``` and the ```e2e``` objects has moved to the new tests object.
+  
+  before:
+  
+  ```
+  build: {
+    spec: {},
+    e2e: {}
+  }
+  ```
+  
+  after:
+  
+  ```
+  build: {
+    tests: {
+      spec: {},
+      e2e: {}
+    }
+  }
+  ```
+  
+
 <a name="0.9.0"></a>
 ## 0.9.0 (2015-04-14)
 
