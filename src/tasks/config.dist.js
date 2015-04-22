@@ -23,7 +23,7 @@ var distTasksConfig = {
     },
     dist_e2e: {
       options: {
-        port: config.build.e2e.server.port,
+        port: config.build.tests.e2e.server.port,
         hostname: '0.0.0.0',
         livereload: false,
         keepalive: false,
@@ -82,11 +82,11 @@ var distTasksConfig = {
     dist_e2e: {
       options: {
         template: path.normalize(__dirname + './../snippets/karma-e2e.tpl.js'),
-        out: config.build.output.dir + '/karma-e2e.js',
-        junitResults: config.build.output.dir + '/karma-e2e-results.xml',
-        connectPort: config.build.e2e.server.port,
-        port: config.build.e2e.karma.port,
-        browsers: config.build.e2e.browsers,
+        out: config.build.output.dir + '/e2e-karma.js',
+        junitResults: config.build.output.dir + '/test-results',
+        connectPort: config.build.tests.e2e.server.port,
+        port: config.build.tests.e2e.karma.port,
+        browsers: config.build.tests.e2e.browsers,
         basePath: path.resolve('.')
       },
       files: [
@@ -105,8 +105,10 @@ var distTasksConfig = {
       options: {
         template: path.normalize(__dirname + './../snippets/protractor.tpl.js'),
         out: config.build.output.dir + '/protractor.js',
-        browsers: config.build.e2e.browsers,
-        url: 'http://localhost:' + config.build.e2e.server.port
+        browsers: config.build.tests.e2e.browsers,
+        url: 'http://localhost:' + config.build.tests.e2e.server.port,
+        junitResults: config.build.output.dir + '/' + config.build.tests.resultDir,
+        basePath: path.resolve('.')
       },
       files: [
         {
@@ -121,7 +123,7 @@ var distTasksConfig = {
 
   shell: {
     dist_e2e: {
-      command: 'node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
+      command: 'node node_modules/fabs/node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
     }
   },
 
@@ -133,20 +135,20 @@ var distTasksConfig = {
     }
   },
 
-  indexHtml: {
+  processHtml: {
     dist_e2e: {
       options: {
         base: [
           config.build.prepare.outdir,
-          config.build.compile.outdir + '/' + config.build.compile.cacheBustingDir,
           config.build.compile.outdir,
+          config.build.compile.outdir + '/' + config.build.compile.cacheBustingDir,
           config.build.dist.e2e.outdir
         ],
         dir: config.build.dist.e2e.outdir,
         blessedPrefix: config.build.bless.prefix,
         angular_module: config.app.angular_module.withMocks
       },
-      files: [
+      javascript: [
         {
           expand: true,
           cwd: '<%= copy.compile_cacheBusting.options.out %>',
@@ -163,21 +165,29 @@ var distTasksConfig = {
           nosort: true,
           cwd: '<%= copy.dist_e2e.options.out %>',
           src: config.app.files.js_mock
-        },
-        {
-          expand: true,
-          cwd: '<%= copy.compile_cacheBusting.options.out %>',
-          src: '<%= copy.compile_css.options.outRelative %>'
         }
-      ]
+      ],
+      css: [{
+        expand: true,
+        cwd: '<%= copy.compile_cacheBusting.options.out %>',
+        src: '<%= copy.compile_css.options.outRelative %>'
+      }],
+      files: [{
+        expand: true,
+        cwd: config.app.files.root,
+        src: config.app.files.html,
+        dest: config.build.dist.e2e.outdir
+      }]
     }
   },
 
   htmlmin: {
     dist_e2e: {
       files: [{
-        src: config.build.dist.e2e.outdir  + '/index.html',
-        dest: config.build.dist.e2e.outdir + '/index.html'
+        expand: true,
+        cwd: config.build.dist.e2e.outdir,
+        src: config.app.files.html,
+        dest: config.build.dist.e2e.outdir
       }]
     }
   },

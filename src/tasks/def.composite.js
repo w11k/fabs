@@ -48,7 +48,7 @@ var devTask = [].concat(
   utils.includeIf([
     'karmaConfig:spec',
     'karma:dev_spec'
-  ], config.build.spec.runInDev && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
+  ], config.build.tests.spec.runInDev && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
   'configureProxies:dev',
   'connect:dev',
@@ -91,8 +91,8 @@ var prepareTask = [].concat(
   'copy:prepare_app_js',
   'copy:prepare_app_translations',
 
-  utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
-  utils.includeIf('copy:prepare_vendor_js_mock', config.build.mocks.loadInBrowser || config.build.e2e.runInDev),
+  utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser || config.build.tests.e2e.runInDev),
+  utils.includeIf('copy:prepare_vendor_js_mock', config.build.mocks.loadInBrowser || config.build.tests.e2e.runInDev),
 
   'copy:prepare_vendor_js',
   'processHtml:prepare',
@@ -166,26 +166,20 @@ grunt.registerTask('build', buildTask);
  * The 'test' task runs spec and e2e tests (e2e against the compiled app).
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+var e2eHasFiles = utils.hasFiles(config.app.files.root, config.app.files.js_e2e);
+var runE2eKarma = config.build.tests.e2e.runInDist && config.build.tests.e2e.karma.enabled && e2eHasFiles;
+var runE2eProtractor = config.build.tests.e2e.runInDist && config.build.tests.e2e.protrctor.enabled && e2eHasFiles;
+
 var testTask = [].concat(
   utils.includeIf([
     'jshint:spec',
     'karmaConfig:spec',
     'karma:dist_spec'
-  ], config.build.spec.runInDist && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
+  ], config.build.tests.spec.runInDist && utils.hasFiles(config.app.files.root, config.app.files.js_spec)),
 
   utils.includeIf([
     'jshint:e2e'
-  ], config.build.e2e.runInDist),
-
-  utils.includeIf([
-    'karmaConfig:dist_e2e',
-    'karma:dist_e2e'
-  ], config.build.e2e.runInDist && config.build.e2e.karma.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
-
-  utils.includeIf([
-    'protractorConfig:dist',
-    'protractor:dist'
-  ], config.build.e2e.runInDist && config.build.e2e.protrctor.enabled && utils.hasFiles(config.app.files.root, config.app.files.js_e2e)),
+  ], config.build.tests.e2e.runInDist),
 
   utils.includeIf([
     'copy:dist_e2e',
@@ -196,7 +190,17 @@ var testTask = [].concat(
     'shell:dist_e2e',
     'configureProxies:dist_e2e',
     'connect:dist_e2e'
-  ], config.build.e2e.runInDist)
+  ], runE2eKarma || runE2eProtractor),
+
+  utils.includeIf([
+    'karmaConfig:dist_e2e',
+    'karma:dist_e2e'
+  ], runE2eKarma ),
+
+  utils.includeIf([
+    'protractorConfig:dist',
+    'protractor:dist'
+  ], runE2eProtractor)
 );
 
 grunt.registerTask('test', testTask);

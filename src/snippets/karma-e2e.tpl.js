@@ -28,7 +28,7 @@ module.exports = function (karmaConfig) {
     ],
 
     junitReporter: {
-      outputFile: '<%= junit_results %>'
+      outputFile: '<%= junit_results %>' + '/e2e-karma.xml'
     },
 
     port: <%= port %>,
