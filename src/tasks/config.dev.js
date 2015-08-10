@@ -70,7 +70,7 @@ var devTasksConfig = {
      * plugin should auto-detect.
      */
     options: {
-      livereload: true,
+      livereload: config.build.server.withLiveReloadInDev,
       interval: 1007
     },
 
