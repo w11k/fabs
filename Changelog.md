@@ -1,5 +1,18 @@
 # fabs Changelog
 
+<a name="0.11.0"></a>
+## 0.11.0 (2015-10-07)
+
+
+### Bug Fixes
+
+* **livereload:** consistently use configuration build.server.withLiveReloadInDev ([c1f4f37](https://github.com/w11k/fabs/commit/c1f4f37))
+
+### Features
+
+* **dependencies:** update all dependencies to latest version and adjust usage ([f25a984](https://github.com/w11k/fabs/commit/f25a984))
+
+
 <a name="0.10.0"></a>
 ## 0.10.0 (2015-04-22)
 
