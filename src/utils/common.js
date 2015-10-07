@@ -1,6 +1,8 @@
 'use strict';
 
 var grunt = require('grunt');
+var serveStatic = require('serve-static');
+var serveDirectory = require('serve-index');
 
 module.exports = {
   includeIf: function (include, condition) {
@@ -65,11 +67,11 @@ module.exports = {
     }
     options.base.forEach(function (base) {
       // Serve static files.
-      middlewares.push(connect.static(base));
+      middlewares.push(serveStatic(base));
     });
 
     var directory = options.directory || options.base[options.base.length - 1];
-    middlewares.push(connect.directory(directory));
+    middlewares.push(serveDirectory(directory));
 
     return middlewares;
   },

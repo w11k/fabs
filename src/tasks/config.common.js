@@ -149,6 +149,25 @@ var commonTasksConfig = {
       createTag: false,
       push: false
     }
+  },
+
+  conventionalChangelog: {
+    options: {
+      changelogOpts: {
+        preset: 'angular'
+      },
+      context: {
+      },
+      gitRawCommitsOpts: {
+      },
+      parserOpts: {
+      },
+      writerOpts: {
+      }
+    },
+    release: {
+      src: 'CHANGELOG.md'
+    }
   }
 
 };
