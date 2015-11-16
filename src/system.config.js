@@ -33,6 +33,11 @@ var systemConfig = {
        */
       enabled: true
     },
+    preprocess: {
+      context: {
+        pkg: pkg
+      }
+    },
     jshint: {
       runInDev: true,
       runInDist: true

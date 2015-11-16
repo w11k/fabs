@@ -26,6 +26,7 @@ grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-uglify');
 grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-connect');
 grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-compress');
 grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-less');
+grunt.loadNpmTasks('fabs/node_modules/grunt-preprocess');
 grunt.loadNpmTasks('fabs/node_modules/grunt-connect-proxy');
 grunt.loadNpmTasks('fabs/node_modules/grunt-karma');
 grunt.loadNpmTasks('fabs/node_modules/grunt-ng-annotate');

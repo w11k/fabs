@@ -9,6 +9,18 @@ var path = require('path');
 
 var distTasksConfig = {
 
+  updateConfig: {
+    build: {
+      update: {
+        'preprocess.options.context.target': 'compile'
+      }
+    },
+    e2e: {
+      update: {
+        'replace.dist_e2e_cacheBusting.options.patterns': cacheBusting.compilePatterns
+      }
+    }
+  },
   connect: {
     dist: {
       options: {
@@ -189,14 +201,6 @@ var distTasksConfig = {
         src: config.app.files.html,
         dest: config.build.dist.e2e.outdir
       }]
-    }
-  },
-
-  updateConfig: {
-    replace_dist_e2e_cacheBusting: {
-      update: {
-        'replace.dist_e2e_cacheBusting.options.patterns': cacheBusting.compilePatterns
-      }
     }
   },
 
