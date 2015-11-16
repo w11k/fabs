@@ -2,7 +2,7 @@
   "name": "fabs",
   "description": "Fabulous AngularJS Build System - A Grunt based build system for AngularJS applications",
   "homepage": "http://github.com/w11k/fabs",
-  "version": "0.11.0",
+  "version": "0.12.0",
 
   "author": {
     "name": "WeigleWilczek GmbH",
@@ -43,6 +43,7 @@
     "grunt-replace": "0.11.0",
     "grunt-shell": "1.1.2",
     "grunt-bless": "0.2.0",
+    "grunt-preprocess": "5.0.1",
 
     "grunt-karma": "0.12.1",
     "karma-jasmine": "0.3.6",

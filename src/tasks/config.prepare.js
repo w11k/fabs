@@ -4,6 +4,16 @@ var grunt = require('grunt');
 var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var path = require('path');
+var project = require('./../utils/project.js');
+var pkg = project.getPackageJson();
+
+var paths = {
+  preprocess: {
+    prepare_app_sass: {
+      out: config.build.prepare.outdir + '/scss/app'
+    }
+  }
+};
 
 var prepareTasksConfig = {
 
@@ -59,17 +69,6 @@ var prepareTasksConfig = {
   },
 
   copy: {
-    prepare_app_templates: {
-      options: {
-        out: config.build.prepare.outdir
-      },
-      files: [{
-        expand: true,
-        cwd: config.app.files.root,
-        src: config.app.files.templates,
-        dest: '<%= copy.prepare_app_templates.options.out %>'
-      }]
-    },
     prepare_app_templates2js: {
       options: {
         out: config.build.prepare.outdir + '/js/templates.js',
@@ -117,17 +116,6 @@ var prepareTasksConfig = {
         }
       ]
     },
-    prepare_app_js: {
-      options: {
-        out: config.build.prepare.outdir + '/js/app'
-      },
-      files: [{
-        expand: true,
-        cwd: config.app.files.root,
-        src: config.app.files.js,
-        dest: '<%= copy.prepare_app_js.options.out %>'
-      }]
-    },
     prepare_vendor_js: {
       options: {
         out: config.build.prepare.outdir + '/js/vendor'
@@ -167,12 +155,12 @@ var prepareTasksConfig = {
     prepare_app: {
       options: {
         out: config.build.prepare.outdir + '/less/app',
-        paths: [config.app.files.root, config.vendor.base]
+        paths: ['<%= preprocess.prepare_app_less.options.out %>', config.vendor.base]
       },
       files: [
         {
           expand: true,
-          cwd: config.app.files.root,
+          cwd: '<%= preprocess.prepare_app_less.options.out %>',
           src: config.app.files.less,
           dest: '<%= less.prepare_app.options.out %>',
           ext: '.css'
@@ -185,12 +173,12 @@ var prepareTasksConfig = {
     prepare_app: {
       options: {
         // files
-        sassDir: config.app.files.root,
+        sassDir: '<%= preprocess.prepare_app_sass.options.out %>',
         specify: grunt.file.expand(
           { cwd: config.app.files.root },
           config.app.files.sass
         ).map(function (file) {
-            return config.app.files.root + '/' + file;
+            return paths.preprocess.prepare_app_sass.out + '/' + file;
           }
         ),
         cssDir: config.build.prepare.outdir + '/sass/app'
@@ -210,7 +198,7 @@ var prepareTasksConfig = {
             config.vendor.files.css
               .map(utils.addCwdToPattern(config.vendor.base)),
             config.app.files.css
-              .map(utils.addCwdToPattern(config.app.files.root)),
+              .map(utils.addCwdToPattern('<%= preprocess.prepare_app_css.options.out %>')),
             config.app.files.less
               .map(utils.addCwdToPattern('<%= less.prepare_app.options.out %>'))
               .map(utils.replaceExtension('less', 'css')),
@@ -232,6 +220,57 @@ var prepareTasksConfig = {
         dest: config.build.prepare.outdir + '/' + config.build.bless.prefix + '<%= concat.prepare_css.options.outRelative %>'
       }]
     }
+  },
+
+  preprocess: {
+    options: {
+      context: config.build.preprocess.context
+    },
+    prepare_app_js: {
+      options: {
+        out: config.build.prepare.outdir + '/js/app'
+      },
+      expand: true,
+      cwd: config.app.files.root,
+      src: config.app.files.js,
+      dest: '<%= preprocess.prepare_app_js.options.out %>'
+    },
+    prepare_app_css: {
+      options: {
+        out: config.build.prepare.outdir + '/css/app'
+      },
+      expand: true,
+      cwd: config.app.files.root,
+      src: config.app.files.css,
+      dest: '<%= preprocess.prepare_app_css.options.out %>'
+    },
+    prepare_app_sass: {
+      options: {
+        out: paths.preprocess.prepare_app_sass.out
+      },
+      expand: true,
+      cwd: config.app.files.root,
+      src: '**/*.scss',
+      dest: '<%= preprocess.prepare_app_sass.options.out %>'
+    },
+    prepare_app_less: {
+      options: {
+        out: config.build.prepare.outdir + '/less/app'
+      },
+      expand: true,
+      cwd: config.app.files.root,
+      src: '**/*.less',
+      dest: '<%= preprocess.prepare_app_less.options.out %>'
+    },
+    prepare_app_templates: {
+      options: {
+        out: config.build.prepare.outdir
+      },
+      expand: true,
+      cwd: config.app.files.root,
+      src: config.app.files.templates,
+      dest: '<%= preprocess.prepare_app_templates.options.out %>'
+    },
   },
 
   processHtml: {
@@ -265,7 +304,7 @@ var prepareTasksConfig = {
           {
             expand: true,
             nosort: true,
-            src: config.app.files.js.map(utils.addCwdToPattern('<%= copy.prepare_app_js.options.out %>'))
+            src: config.app.files.js.map(utils.addCwdToPattern('<%= preprocess.prepare_app_js.options.out %>'))
           },
           {
             src: '<%= translations2js.prepare.options.out %>'

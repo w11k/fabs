@@ -7,6 +7,18 @@ var path = require('path');
 
 var compileTasksConfig = {
 
+  updateConfig: {
+    compile: {
+      update: {
+        'preprocess.options.context.target': 'compile'
+      }
+    },
+    compile_cacheBusting: {
+      update: {
+        'replace.compile_cacheBusting.options.patterns': cacheBusting.compilePatterns
+      }
+    }
+  },
   copy: {
     compile_css: {
       options: {
@@ -36,7 +48,7 @@ var compileTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: '<%= copy.prepare_app_templates.options.out %>',
+          cwd: '<%= preprocess.prepare_app_templates.options.out %>',
           src: [ config.app.files.templates ],
           dest: config.build.compile.outdir
         }
@@ -89,7 +101,7 @@ var compileTasksConfig = {
           return [].concat(
             config.vendor.files.js.map(utils.addCwdToPattern('<%= copy.prepare_vendor_js.options.out %>')),
             path.normalize(__dirname + './../snippets/module.prefix'),
-            config.app.files.js.map(utils.addCwdToPattern('<%= copy.prepare_app_js.options.out %>')),
+            config.app.files.js.map(utils.addCwdToPattern('<%= preprocess.prepare_app_js.options.out %>')),
             '<%= html2js.compile_templates.options.out %>',
             '<%= translations2js.prepare.options.out %>',
             path.normalize(__dirname + './../snippets/module.suffix')
@@ -105,9 +117,9 @@ var compileTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: '<%= copy.prepare_app_js.options.out %>',
+          cwd: '<%= preprocess.prepare_app_js.options.out %>',
           src: config.app.files.js,
-          dest: '<%= copy.prepare_app_js.options.out %>'
+          dest: '<%= preprocess.prepare_app_js.options.out %>'
         }
       ]
     }
@@ -188,9 +200,9 @@ var compileTasksConfig = {
       files: [
         {
           expand: true,
-          cwd: '<%= copy.prepare_app_templates.options.out %>',
+          cwd: '<%= preprocess.prepare_app_templates.options.out %>',
           src: config.app.files.templates,
-          dest: '<%= copy.prepare_app_templates.options.out %>'
+          dest: '<%= preprocess.prepare_app_templates.options.out %>'
         }
       ]
     },
@@ -205,14 +217,14 @@ var compileTasksConfig = {
   html2js: {
     compile_templates: {
       options: {
-        base: '<%= copy.prepare_app_templates.options.out %>',
+        base: '<%= preprocess.prepare_app_templates.options.out %>',
         module: config.app.angular_module.templates,
         out: config.build.prepare.outdir + '/js/templates.js'
       },
       files: [
         {
           expand: true,
-          cwd: '<%= copy.prepare_app_templates.options.out %>',
+          cwd: '<%= preprocess.prepare_app_templates.options.out %>',
           src: [ config.app.files.templates2js ],
           // task requires a dir as dest so we must use the rename function to place all templates into one js file
           dest: config.build.prepare.outdir,
@@ -221,14 +233,6 @@ var compileTasksConfig = {
           }
         }
       ]
-    }
-  },
-
-  updateConfig: {
-    replace_compile_cacheBusting: {
-      update: {
-        'replace.compile_cacheBusting.options.patterns': cacheBusting.compilePatterns
-      }
     }
   },
 

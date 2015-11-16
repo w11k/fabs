@@ -37,9 +37,8 @@ grunt.verbose.writeln('registering composite tasks');
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 var devTask = [].concat(
-  'updateConfig:dev_changeLessSassConfig',
-
   'hookDevStart',
+  'updateConfig:dev',
 
   utils.includeIf('shell:bower', config.build.bower.runInDev),
 
@@ -72,7 +71,7 @@ var prepareTask = [].concat(
    * the code referencing the generated angular modules
    * in prepare we create the module, but without content
    */
-  'copy:prepare_app_templates',
+  'preprocess:prepare_app_templates',
   'copy:prepare_app_templates2js',
 
   /**
@@ -82,13 +81,22 @@ var prepareTask = [].concat(
    */
   'translations2js:prepare',
 
-  utils.includeIf('less:prepare_app', config.build.less.enabled),
-  utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
+  'preprocess:prepare_app_js',
+
+  utils.includeIf([
+    'preprocess:prepare_app_less',
+    'less:prepare_app'
+  ], config.build.less.enabled),
+  utils.includeIf([
+    'preprocess:prepare_app_sass',
+    'compass:prepare_app'
+  ], config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
+
+  'preprocess:prepare_app_css',
   'concat:prepare_css',
   utils.includeIf('bless:prepare', config.build.bless.enabled),
   'copy:prepare_app_assets',
   'copy:prepare_vendor_assets',
-  'copy:prepare_app_js',
   'copy:prepare_app_translations',
 
   utils.includeIf('copy:prepare_app_js_mock', config.build.mocks.loadInBrowser || config.build.tests.e2e.runInDev),
@@ -108,6 +116,7 @@ grunt.registerTask('prepare', prepareTask);
 
 var compileTask = [].concat(
   'hookCompileStart',
+  'updateConfig:compile',
 
   'copy:compile_css',
   'cssmin:compile',
@@ -133,7 +142,7 @@ var compileTask = [].concat(
 
   'copy:compile_cacheBusting',
   'clean:compile_cacheBusting',
-  'updateConfig:replace_compile_cacheBusting',
+  'updateConfig:compile_cacheBusting',
   'replace:compile_cacheBusting',
 
   'hookCacheBustingEnd',
@@ -148,10 +157,12 @@ grunt.registerTask('compile', compileTask);
 
 // don't forget to run the tasks that are called by watch:runOnce in dev mode
 var buildTask = [].concat(
+  'updateConfig:build',
   utils.includeIf([
     'jshint:src',
     'jshint:mock'
   ], config.build.jshint.runInDist),
+
   utils.includeIf('shell:bower', config.build.bower.runInDist),
 
   'prepare',
@@ -182,10 +193,10 @@ var testTask = [].concat(
   ], config.build.tests.e2e.runInDist),
 
   utils.includeIf([
+    'updateConfig:e2e',
     'copy:dist_e2e',
     'processHtml:dist_e2e',
     'htmlmin:dist_e2e',
-    'updateConfig:replace_dist_e2e_cacheBusting',
     'replace:dist_e2e_cacheBusting',
     'shell:dist_e2e',
     'configureProxies:dist_e2e',

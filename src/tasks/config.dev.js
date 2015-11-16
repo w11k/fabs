@@ -11,10 +11,11 @@ var bowerRc = project.getBowerRc();
 var devTasksConfig = {
 
   updateConfig: {
-    dev_changeLessSassConfig: {
+    dev: {
       update: {
         'compass.options.debugInfo': true,
-        'less.options.dumpLineNumbers': 'mediaquery'
+        'less.options.dumpLineNumbers': 'mediaquery',
+        'preprocess.options.context.target': 'prepare'
       }
     }
   },
@@ -46,7 +47,7 @@ var devTasksConfig = {
         {
           expand: true,
           cwd: '.',
-          src: [ '<%= copy.prepare_app_js.options.out %>/**/*.js' ],
+          src: [ '<%= preprocess.prepare_app_js.options.out %>/**/*.js' ],
           dest: '.'
         }
       ]
@@ -105,6 +106,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
+          'preprocess:prepeare_app_js',
           utils.includeIf('jshint:src', config.build.jshint.runInDev),
           utils.includeIf('karma:dev_spec:run', runKarmaInDev),
           'copy:prepare_app_js',
@@ -188,7 +190,9 @@ var devTasksConfig = {
       files: [
         config.app.files.templates.map(utils.addCwdToPattern(config.app.files.root))
       ],
-      tasks: [ 'copy:prepare_app_templates' ]
+      tasks: [
+        'preprocess:prepare_app_templates'
+      ]
     },
 
     less: {
@@ -200,6 +204,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
+          'preprocess:prepare_app_less',
           utils.includeIf('less:prepare_app', config.build.less.enabled && utils.hasFiles(config.app.files.root, config.app.files.less)),
           'concat:prepare_css',
           'processHtml:prepare'
@@ -215,6 +220,7 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
+          'preprocess:prepare_app_sass',
           utils.includeIf('compass:prepare_app', config.build.sass.enabled && utils.hasFiles(config.app.files.root, config.app.files.sass)),
           'concat:prepare_css',
           'processHtml:prepare'
@@ -225,8 +231,11 @@ var devTasksConfig = {
       files: [
         '<%= concat.prepare_css.options.out %>'
       ],
-      // livereload only
-      tasks: []
+      tasks: [
+        'preprocess:prepare_app_css',
+        'concat:prepare_css',
+        'processHtml:prepare'
+      ]
     }
   },
 
