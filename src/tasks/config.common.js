@@ -82,7 +82,7 @@ var commonTasksConfig = {
       options: {
         template: path.normalize(__dirname + './../snippets/karma-spec.tpl.js'),
         out: config.build.output.dir + '/spec-karma.js',
-        junitResults: config.build.output.dir + '/' + config.build.resultDir,
+        junitResults: config.build.output.dir + '/' + config.build.tests.resultDir,
         browsers: config.build.tests.spec.browsers,
         port: config.build.tests.spec.karma.port,
         basePath: path.resolve('.')

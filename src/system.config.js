@@ -95,7 +95,6 @@ var systemConfig = {
       },
       resultDir: 'test-results'
     },
-    resultDir: 'test-results',
     mocks: {
       /**
        * Enable / disable loading the mock files (app.files.js_mock and vendor.files.js_mock) in
