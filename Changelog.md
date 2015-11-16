@@ -1,5 +1,14 @@
 # fabs Changelog
 
+<a name="0.12.1"></a>
+## 0.12.1 (2015-11-16)
+
+
+### Bug Fixes
+
+* **preprocess:** fix watching js sources ([50b2e03](https://github.com/w11k/fabs/commit/50b2e03))
+
+
 <a name="0.12.0"></a>
 ## 0.12.0 (2015-11-16)
 

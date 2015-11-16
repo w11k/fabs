@@ -106,10 +106,9 @@ var devTasksConfig = {
       ],
       tasks: (function () {
         return [].concat(
-          'preprocess:prepeare_app_js',
           utils.includeIf('jshint:src', config.build.jshint.runInDev),
           utils.includeIf('karma:dev_spec:run', runKarmaInDev),
-          'copy:prepare_app_js',
+          'preprocess:prepare_app_js',
           'replace:dev_cacheBusting',
           'processHtml:prepare'
         );
