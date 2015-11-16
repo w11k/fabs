@@ -155,7 +155,7 @@ var prepareTasksConfig = {
     prepare_app: {
       options: {
         out: config.build.prepare.outdir + '/less/app',
-        paths: ['<%= preprocess.prepare_app_sass.options.out %>', config.vendor.base]
+        paths: ['<%= preprocess.prepare_app_less.options.out %>', config.vendor.base]
       },
       files: [
         {
