@@ -1,5 +1,19 @@
 # fabs Changelog
 
+<a name="0.12.0"></a>
+## 0.12.0 (2015-11-16)
+
+
+### Bug Fixes
+
+* **tests:** save unit test results under specifies folder (build config 'build.tests.results ([ea40fd2](https://github.com/w11k/fabs/commit/ea40fd2))
+
+### Features
+
+* **preprocess:** add preprocessing to be able to include code conditionally ([1c655ef](https://github.com/w11k/fabs/commit/1c655ef))
+
+
+
 <a name="0.11.0"></a>
 ## 0.11.0 (2015-10-07)
 
