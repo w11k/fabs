@@ -1,11 +1,8 @@
 'use strict';
 
 var grunt = require('grunt');
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Load all the grunt tasks provided by plugins. Plugins must be defined as devDependency in package.json
- * and installed with 'npm install'.
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+var path = require('path');
+var fs = require('fs');
 
 /*
  * Grunt requires plugins to be installed relative to Gruntfile.js. (directly under node_modules).
@@ -14,29 +11,54 @@ var grunt = require('grunt');
  */
 grunt.verbose.writeln('loading npm tasks');
 
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-clean');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-copy');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-htmlmin');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-jshint');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-compass');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-concat');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-cssmin');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-watch');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-uglify');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-connect');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-compress');
-grunt.loadNpmTasks('fabs/node_modules/grunt-contrib-less');
-grunt.loadNpmTasks('fabs/node_modules/grunt-preprocess');
-grunt.loadNpmTasks('fabs/node_modules/grunt-connect-proxy');
-grunt.loadNpmTasks('fabs/node_modules/grunt-karma');
-grunt.loadNpmTasks('fabs/node_modules/grunt-ng-annotate');
-grunt.loadNpmTasks('fabs/node_modules/grunt-minjson');
-grunt.loadNpmTasks('fabs/node_modules/grunt-replace');
-grunt.loadNpmTasks('fabs/node_modules/grunt-html2js');
-grunt.loadNpmTasks('fabs/node_modules/grunt-shell');
-grunt.loadNpmTasks('fabs/node_modules/grunt-bless');
-grunt.loadNpmTasks('fabs/node_modules/grunt-bump');
-grunt.loadNpmTasks('fabs/node_modules/grunt-conventional-changelog');
-grunt.loadNpmTasks('fabs/node_modules/grunt-protractor-runner');
+var plugins = [
+  'grunt-contrib-clean',
+  'grunt-contrib-copy',
+  'grunt-contrib-htmlmin',
+  'grunt-contrib-jshint',
+  'grunt-contrib-compass',
+  'grunt-contrib-concat',
+  'grunt-contrib-cssmin',
+  'grunt-contrib-watch',
+  'grunt-contrib-uglify',
+  'grunt-contrib-connect',
+  'grunt-contrib-compress',
+  'grunt-contrib-less',
+  'grunt-preprocess',
+  'grunt-connect-proxy',
+  'grunt-karma',
+  'grunt-ng-annotate',
+  'grunt-minjson',
+  'grunt-replace',
+  'grunt-html2js',
+  'grunt-shell',
+  'grunt-bless',
+  'grunt-bump',
+  'grunt-conventional-changelog',
+  'grunt-protractor-runner'
+];
+
+var pathToFabs = path.resolve(__dirname, '..', '..');
+var pathToFabsModules = path.resolve(pathToFabs, 'node_modules');
+//var pathToProject = path.resolve(pathToFabs, '..', '..');
+//var pathToProjectModules = path.resolve(pathToProject, 'node_modules');
+
+plugins.forEach(function (plugin) {
+  var isRelativeToFabs;
+
+  try {
+    isRelativeToFabs = fs.statSync(path.normalize(pathToFabsModules + path.sep + plugin)).isDirectory();
+  }
+  catch(e) {
+    isRelativeToFabs = false;
+  }
+
+  if (isRelativeToFabs) {
+    grunt.loadNpmTasks('fabs/node_modules/' + plugin);
+  }
+  else {
+    grunt.loadNpmTasks(plugin);
+  }
+});
 
 grunt.verbose.writeln('npm tasks loaded');
