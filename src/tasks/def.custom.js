@@ -4,6 +4,7 @@ var grunt = require('grunt');
 var path = require('path');
 var utils = require('./../utils/common.js');
 var _ = require('lodash');
+var nodeUtils = require('./../utils/node.js');
 
 grunt.verbose.writeln('registering custom tasks');
 
@@ -169,8 +170,15 @@ var protractorConfigTask = function () {
   var capabilities = options.browsers.map(function (browser) { return { browserName: browser.toLowerCase() }; });
 
   var phantomJsCapabilities = capabilities.filter(function (capability) { return capability.browserName == 'phantomjs'; });
+
+  var pathToPhantomJS = 'node_modules/phantomjs/bin/phantomjs';
+
+  if (nodeUtils.isRelativeToFabs()) {
+    pathToPhantomJS = 'node_modules/fabs/' + pathToPhantomJS;
+  }
+
   phantomJsCapabilities.forEach(function (capability) {
-    capability['phantomjs.binary.path'] = './node_modules/fabs/node_modules/phantomjs/bin/phantomjs';
+    capability['phantomjs.binary.path'] = pathToPhantomJS;
   });
 
   var capabilitiesAsStrings = capabilities.map(function (capability) { return JSON.stringify(capability); });

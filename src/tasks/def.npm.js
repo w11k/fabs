@@ -1,8 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
-var path = require('path');
-var fs = require('fs');
+var nodeUtils = require('../utils/node');
 
 /*
  * Grunt requires plugins to be installed relative to Gruntfile.js. (directly under node_modules).
@@ -38,22 +37,10 @@ var plugins = [
   'grunt-protractor-runner'
 ];
 
-var pathToFabs = path.resolve(__dirname, '..', '..');
-var pathToFabsModules = path.resolve(pathToFabs, 'node_modules');
-//var pathToProject = path.resolve(pathToFabs, '..', '..');
-//var pathToProjectModules = path.resolve(pathToProject, 'node_modules');
+
 
 plugins.forEach(function (plugin) {
-  var isRelativeToFabs;
-
-  try {
-    isRelativeToFabs = fs.statSync(path.normalize(pathToFabsModules + path.sep + plugin)).isDirectory();
-  }
-  catch(e) {
-    isRelativeToFabs = false;
-  }
-
-  if (isRelativeToFabs) {
+  if (nodeUtils.isRelativeToFabs(plugin)) {
     grunt.loadNpmTasks('fabs/node_modules/' + plugin);
   }
   else {

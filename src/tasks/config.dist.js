@@ -4,6 +4,7 @@ var config = require('./../build.config.js').getConfig();
 var utils = require('./../utils/common.js');
 var cacheBusting = require('./../utils/cacheBusting.js');
 var project = require('./../utils/project.js');
+var nodeUtils = require('./../utils/node.js');
 var pkg = project.getPackageJson();
 var path = require('path');
 
@@ -135,7 +136,15 @@ var distTasksConfig = {
 
   shell: {
     dist_e2e: {
-      command: 'node node_modules/fabs/node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update'
+      command: (function() {
+        var pathToRunner = 'node_modules/grunt-protractor-runner';
+
+        if (nodeUtils.isRelativeToFabs()) {
+          pathToRunner = 'node_modules/fabs/' + pathToRunner;
+        }
+
+        return 'node ' + pathToRunner + '/node_modules/protractor/bin/webdriver-manager update';
+      }())
     }
   },
 
