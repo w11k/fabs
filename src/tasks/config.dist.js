@@ -137,13 +137,9 @@ var distTasksConfig = {
   shell: {
     dist_e2e: {
       command: (function() {
-        var pathToRunner = 'node_modules/grunt-protractor-runner';
+        var pathToProtractor = nodeUtils.getPathToModule(['fabs', 'grunt-protractor-runner', 'protractor']);
 
-        if (nodeUtils.isRelativeToFabs()) {
-          pathToRunner = 'node_modules/fabs/' + pathToRunner;
-        }
-
-        return 'node ' + pathToRunner + '/node_modules/protractor/bin/webdriver-manager update';
+        return 'node ' + pathToProtractor + '/bin/webdriver-manager update';
       }())
     }
   },
