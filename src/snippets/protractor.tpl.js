@@ -5,7 +5,7 @@ exports.config = {
   baseUrl: '<%= baseUrl %>',
   framework: "jasmine2",
   onPrepare: function() {
-    var jasmineReporters = require('fabs/node_modules/jasmine-reporters');
+    var jasmineReporters = require('<%= jasmineReporterModule %>');
     jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
       consolidateAll: true,
       savePath: '<%= junitResults %>',

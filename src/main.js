@@ -47,7 +47,7 @@ module.exports = {
         if (grunt.option('dump')) {
           var asterisk = grunt.util.repeat(60, '* ');
           grunt.log.writeln(asterisk);
-          grunt.log.writeln('Build configuration: ' + JSON.stringify(buildConfig, null, '  '));
+          grunt.log.writeln('Build configuration: ' + JSON.stringify(fabsBuildConfig, null, '  '));
           grunt.log.writeln(asterisk);
           grunt.log.writeln('Tasks configuration: ' + JSON.stringify(tasksConfig, null, '  '));
           grunt.log.writeln(asterisk);

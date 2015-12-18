@@ -2,8 +2,10 @@
 
 var grunt = require('grunt');
 var path = require('path');
-var utils = require('./../utils/common.js');
+var process = require('process');
 var _ = require('lodash');
+var utils = require('./../utils/common.js');
+var nodeUtils = require('./../utils/node.js');
 
 grunt.verbose.writeln('registering custom tasks');
 
@@ -169,8 +171,16 @@ var protractorConfigTask = function () {
   var capabilities = options.browsers.map(function (browser) { return { browserName: browser.toLowerCase() }; });
 
   var phantomJsCapabilities = capabilities.filter(function (capability) { return capability.browserName == 'phantomjs'; });
+
+  var pathToPhantomJSModule = nodeUtils.getPathToModule(['fabs', 'phantomjs']);
+  var pathToPhantomJSBin = pathToPhantomJSModule + '/bin/phantomjs';
+
+  var pathToJasmineReporterModule = nodeUtils.getPathToModule(['fabs', 'jasmine-reporters']);
+  var relativePathToJasmineReporterModule = path.relative(path.resolve(process.cwd(), 'node_modules'), pathToJasmineReporterModule);
+
+
   phantomJsCapabilities.forEach(function (capability) {
-    capability['phantomjs.binary.path'] = './node_modules/fabs/node_modules/phantomjs/bin/phantomjs';
+    capability['phantomjs.binary.path'] = pathToPhantomJSBin;
   });
 
   var capabilitiesAsStrings = capabilities.map(function (capability) { return JSON.stringify(capability); });
@@ -182,7 +192,8 @@ var protractorConfigTask = function () {
           scripts: jsFiles,
           capabilities: capabilitiesAsStrings,
           baseUrl: options.url,
-          junitResults: options.junitResults
+          junitResults: options.junitResults,
+          jasmineReporterModule: relativePathToJasmineReporterModule
         }
       });
     }
