@@ -1,5 +1,18 @@
 # fabs Changelog
 
+<a name="0.12.2"></a>
+## 0.12.2 (2015-12-18)
+
+
+### Bug Fixes
+
+* **dump:** read fabs config instead of non existing variable 'gruntConfig' ([7494111](https://github.com/w11k/fabs/commit/7494111))
+* **livereload:** listen to all network interfaces ([bca251a](https://github.com/w11k/fabs/commit/bca251a))
+* **npm:** use path created by npm@2 or npm@3 ([68a49ea](https://github.com/w11k/fabs/commit/68a49ea)) ([926903f](https://github.com/w11k/fabs/commit/926903f))
+ ([b3d23ef](https://github.com/w11k/fabs/commit/b3d23ef))
+
+
+
 <a name="0.12.1"></a>
 ## 0.12.1 (2015-11-16)
 
