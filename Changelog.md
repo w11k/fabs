@@ -1,5 +1,15 @@
 # fabs Changelog
 
+
+<a name="0.12.4"></a>
+## 0.12.4 (2016-01-28)
+
+
+### Bug Fixes
+
+* **tests:** update karma to 0.13.9 to fix sockets error ([b302054](https://github.com/w11k/fabs/commit/b302054))
+
+
 <a name="0.12.3"></a>
 ## 0.12.3 (2016-01-28)
 
