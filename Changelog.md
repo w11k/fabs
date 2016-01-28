@@ -1,5 +1,15 @@
 # fabs Changelog
 
+<a name="0.12.3"></a>
+## 0.12.3 (2016-01-28)
+
+
+### Bug Fixes
+
+* **e2e:** fix updating webdriver with whitespace in project path ([a1a5479](https://github.com/w11k/fabs/commit/a1a5479))
+
+
+
 <a name="0.12.2"></a>
 ## 0.12.2 (2015-12-18)
 
