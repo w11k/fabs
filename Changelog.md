@@ -1,3 +1,13 @@
+<a name="0.12.5"></a>
+## [0.12.5](https://github.com/w11k/fabs/compare/0.12.4...v0.12.5) (2016-04-03)
+
+
+### Bug Fixes
+
+* **live-reload:** no infinite loop on css/scss/less changes ([99e2981](https://github.com/w11k/fabs/commit/99e2981))
+
+
+
 # fabs Changelog
 
 
