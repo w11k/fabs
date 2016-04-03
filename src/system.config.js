@@ -203,10 +203,6 @@ var systemConfig = {
        */
       sass: [
         '**/*.scss'
-        /**
-         * Do not exclude scss files starting with _. Compass will ignore the automatically. Excluding them here means
-         * excluding them from being watched.
-         */
         //'!**/_*.scss'
         //'app.scss'
       ]

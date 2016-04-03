@@ -101,9 +101,7 @@ var devTasksConfig = {
      * run our unit tests.
      */
     js: {
-      files: [
-        config.app.files.js.map(utils.addCwdToPattern(config.app.files.root))
-      ],
+      files: config.app.files.js.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:src', config.build.jshint.runInDev),
@@ -116,9 +114,7 @@ var devTasksConfig = {
     },
 
     js_mock: {
-      files: [
-        config.app.files.js_mock.map(utils.addCwdToPattern(config.app.files.root))
-      ],
+      files: config.app.files.js_mock.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:mock', config.build.jshint.runInDev),
@@ -137,9 +133,7 @@ var devTasksConfig = {
       options: {
         livereload: false
       },
-      files: [
-        config.app.files.js_spec.map(utils.addCwdToPattern(config.app.files.root))
-      ],
+      files: config.app.files.js_spec.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:spec', config.build.jshint.runInDev),
@@ -152,9 +146,7 @@ var devTasksConfig = {
       options: {
         livereload: false
       },
-      files: [
-        config.app.files.js_e2e.map(utils.addCwdToPattern(config.app.files.root))
-      ],
+      files: config.app.files.js_e2e.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: (function () {
         return [].concat(
           utils.includeIf('jshint:e2e', config.build.jshint.runInDev)
@@ -163,9 +155,7 @@ var devTasksConfig = {
     },
 
     translations: {
-      files: [
-        config.app.files.translations.map(utils.addCwdToPattern(config.app.files.root))
-      ],
+      files: config.app.files.translations.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: [ 'translations2js:prepare' ]
     },
 
@@ -186,9 +176,7 @@ var devTasksConfig = {
     },
 
     templates: {
-      files: [
-        config.app.files.templates.map(utils.addCwdToPattern(config.app.files.root))
-      ],
+      files: config.app.files.templates.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: [
         'preprocess:prepare_app_templates'
       ]
@@ -198,9 +186,7 @@ var devTasksConfig = {
       options: {
         livereload: false
       },
-      files: [
-        'src/**/*.less'
-      ],
+      files: ['**/*.less'].map(utils.addCwdToPattern(config.app.files.root)),
       tasks: (function () {
         return [].concat(
           'preprocess:prepare_app_less',
@@ -214,9 +200,7 @@ var devTasksConfig = {
       options: {
         livereload: false
       },
-      files: [
-        'src/**/*.scss'
-      ],
+      files: ['**/*.scss'].map(utils.addCwdToPattern(config.app.files.root)),
       tasks: (function () {
         return [].concat(
           'preprocess:prepare_app_sass',
@@ -227,14 +211,21 @@ var devTasksConfig = {
       })()
     },
     css: {
-      files: [
-        '<%= concat.prepare_css.options.out %>'
-      ],
+      options: {
+        livereload: false
+      },
+      files: config.app.files.css.map(utils.addCwdToPattern(config.app.files.root)),
       tasks: [
-        'preprocess:prepare_app_css',
         'concat:prepare_css',
         'processHtml:prepare'
       ]
+    },
+    css_out_reload: {
+      files: [
+        '<%= concat.prepare_css.options.out %>'
+      ],
+      // livereload only
+      tasks: []
     }
   },
 
