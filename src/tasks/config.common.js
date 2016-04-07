@@ -73,7 +73,7 @@ var commonTasksConfig = {
   shell: {
     bower: {
       command:
-        'bower install --offline'
+        'bower install'
     }
   },
 
