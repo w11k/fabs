@@ -6,7 +6,7 @@ var cacheBusting = require('./../utils/cacheBusting.js');
 var project = require('./../utils/project.js');
 
 var runKarmaInDev = config.build.tests.spec.runInDev && utils.hasFiles(config.app.files.root, config.app.files.js_spec);
-var bowerRc = project.getBowerRc();
+var bowerJsonPath = project.getBowerJsonPath();
 
 var devTasksConfig = {
 
@@ -245,7 +245,7 @@ if (config.build.bower.runInDev) {
     options: {
       livereload: false
     },
-    files: [ bowerRc.json ],
+    files: [ bowerJsonPath ],
     tasks: ['shell:bower']
   };
 }
