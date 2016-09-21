@@ -1,6 +1,16 @@
 # fabs Changelog
 
 
+<a name="0.12.7"></a>
+## 0.12.7 (2016-09-21)
+
+
+### Bug Fixes
+
+* **bower:** read bower.json if json in bowerrc is not set ([ea474f0](https://github.com/w11k/fabs/commit/ea474f0))
+
+
+
 <a name="0.12.6"></a>
 ## 0.12.6 (2016-04-07)
 
