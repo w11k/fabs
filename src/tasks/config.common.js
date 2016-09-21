@@ -5,12 +5,12 @@ var grunt = require('grunt');
 var project = require('./../utils/project.js');
 var path = require('path');
 
-var bowerrc = project.getBowerRc();
+var bowerJsonPath = project.getBowerJsonPath();
 var bower = project.getBowerJson();
 
 var bumpFiles = [ 'package.json' ];
 if (bower !== undefined && bower.version !== undefined) {
-  bumpFiles.push(bowerrc.json);
+  bumpFiles.push(bowerJsonPath);
 }
 
 var commonTasksConfig = {

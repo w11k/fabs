@@ -20,18 +20,22 @@ var projectUtil = {
     return bowerRc;
 
   },
-  getBowerJson: function () {
+  getBowerJsonPath: function () {
     var bowerRc = projectUtil.getBowerRc();
 
-    var bower;
-    if (grunt.file.exists(bowerRc.json)) {
-      bower = grunt.file.readJSON(bowerRc.json);
+    if (bowerRc && typeof bowerRc.json === "string" && grunt.file.exists(bowerRc.json)) {
+      return bowerRc.json;
+    }
+    else if (grunt.file.exists("./bower.json")) {
+      return "./bower.json";
     }
     else {
-      bower = undefined;
+      throw new Error("can't find bower.json");
     }
-
-    return bower;
+  },
+  getBowerJson: function () {
+    var bowerJsonPath = projectUtil.getBowerJsonPath();
+    return grunt.file.readJSON(bowerJsonPath);
   },
   getPackageJson: function () {
     return grunt.file.readJSON('./package.json');
